@@ -32,10 +32,54 @@ document.querySelector('.buttons').onclick = (event) => {
 
     // если нажата кнопка 0-9 или .
     if (digit.includes(key)) {
-        a += key;
+        if (b === '' && sign === '') {
+            a += key;
+            console.log(a, b, sign);
+            out.textContent = a;
+        }
+        // если и первое и второе числа заполнены
+        else if (a !== '' && b !== '' && finish) {
+            b = key;
+            finish = false;
+            out.textContent = b;
+        }
+        else {
+            b += key;
+            out.textContent = b;
+        }
         console.log(a, b, sign);
-        out.textContent = a;
+        return;
     };
 
+    // если нажата кнопка + - X /
+    if (action.includes(key)) {
+        sign = key;
+        out.textContent = sign;
+        console.log(a, b, sign);
+        return;
+    }
+
+    // если нажата =
+    if (key === '=') {
+        if (b === '') b = a;
+        switch (sign) {
+            case '+':
+                a = (+a) + (+b);
+                break;
+            case '-':
+                a = a - b;
+                break;
+            case 'X':
+                a = a * b;
+                break;
+            case '/':
+                a = a / b;
+                break;
+        }
+        finish = true;
+        // вывести на экран
+        out.textContent = a;
+        console.log(a, b, sign);
+    }
 
 };
