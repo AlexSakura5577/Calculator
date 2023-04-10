@@ -20,22 +20,35 @@ function clearAll() {
 
 document.querySelector('.ac').onclick = clearAll;
 
-// ввод с клавиатуры:
+// // ввод с клавиатуры:
+// if (window.addEventListener("keypress") {
+//     console.log('нажата клавиша');
 
+//     window.addEventListener("keypress", numPad, false);
+//     function numPad(event) {
+//         let keyNum = event.key;
+//         console.log("keyNum: " + keyNum);
+//     }
+//     // клик мышкой:
+//     if {
+//         console.log('клик мышкой');
 
-window.addEventListener("keypress", numPad, false);
-function numPad(event) {
-    // получаю нажатую кнопку
-    let keyNum = event.key;
-    console.log("keyNum: " + keyNum);
+//         document.querySelector('.buttons').onclick = (event) => {
+//             let keyMouse = event.target.textContent;
+//             console.log("keyMouse: " + keyMouse);
+//         };
+//     };
 
-};
+// window.addEvenListener('keydown', (e) => {
+//     console.log('Нажата клавиша', e)
+// });
+
 // ввод мышкой:
 // window.addEventListener("click", numPad, false);
-document.querySelector('.buttons').onclick = (event) => {
-    let keyMouse = event.target.textContent;
-    console.log("keyMouse: " + keyMouse);
-};
+// document.querySelector('.buttons').onclick = (event) => {
+//     let keyMouse = event.target.textContent;
+//     console.log("keyMouse: " + keyMouse);
+// };
 
 
 
