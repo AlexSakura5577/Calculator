@@ -21,12 +21,12 @@ function clearAll() {
 document.querySelector('.ac').onclick = clearAll;
 
 // ввод с клавиатуры:
-// window.addEventListener("keypress", dealWithKeyboard, false);
-// function dealWithKeyboard(event) {
-//     console.log("key: " + event.key);
-//     console.log("a:" + a, "b:" + b, "sign:" + sign);
+window.addEventListener("keypress", dealWithKeyboard, false);
+function dealWithKeyboard(event) {
+    console.log("key: " + event.key);
+    console.log("a:" + a, "b:" + b, "sign:" + sign);
 
-// };
+};
 
 document.querySelector('.buttons').onclick = (event) => {
     // нажата не кнопка
