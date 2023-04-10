@@ -21,12 +21,11 @@ function clearAll() {
 document.querySelector('.ac').onclick = clearAll;
 
 // ввод с клавиатуры:
-window.addEventListener("keypress", dealWithKeyboard, false);
-function dealWithKeyboard(event) {
+window.addEventListener("keypress", numPad, false);
+function numPad(event) {
     console.log("key: " + event.key);
-    console.log("a:" + a, "b:" + b, "sign:" + sign);
-
 };
+
 
 document.querySelector('.buttons').onclick = (event) => {
     // нажата не кнопка
@@ -43,7 +42,7 @@ document.querySelector('.buttons').onclick = (event) => {
         if (b === '' && sign === '') {
             a += key;
             // console.log(a, b, sign);
-            console.log("a:" + a, "b:" + b, "sign:" + sign);
+            // console.log("a:" + a, "b:" + b, "sign:" + sign);
             out.textContent = a;
         }
         // если и первое и второе числа заполнены
