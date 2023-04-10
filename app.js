@@ -2,6 +2,7 @@ let a = ''; // первое число
 let b = ''; // второе число
 let sign = ''; // знак операции
 let finish = false; // 
+let keyNum
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', 'X', '/'];
@@ -20,36 +21,60 @@ function clearAll() {
 
 document.querySelector('.ac').onclick = clearAll;
 
-// // ввод с клавиатуры:
-// if (window.addEventListener("keypress") {
-//     console.log('нажата клавиша');
+// ввод с клавиатуры:
 
-//     window.addEventListener("keypress", numPad, false);
-//     function numPad(event) {
-//         let keyNum = event.key;
-//         console.log("keyNum: " + keyNum);
-//     }
-//     // клик мышкой:
-//     if {
-//         console.log('клик мышкой');
-
-//         document.querySelector('.buttons').onclick = (event) => {
-//             let keyMouse = event.target.textContent;
-//             console.log("keyMouse: " + keyMouse);
-//         };
-//     };
-
-// window.addEvenListener('keydown', (e) => {
-//     console.log('Нажата клавиша', e)
-// });
+window.addEventListener("keypress", numPad, false);
+function numPad(event) {
+    let keyNum = event.key;
+    console.log("keyNum: " + keyNum);
+    if (digit.includes(keyNum)) {
+        if (b === '' && sign === '') {
+            a += keyNum;
+            console.log("a:" + a, "b:" + b, "sign:" + sign);
+            out.textContent = a;
+        }
+        // если и первое и второе числа заполнены
+        else if (a !== '' && b !== '' && finish) {
+            b = keyNum;
+            finish = false;
+            out.textContent = b;
+        }
+        else {
+            b += keyNum;
+            out.textContent = b;
+        }
+        console.log("a:" + a, "b:" + b, "sign:" + sign);
+    };
+};
 
 // ввод мышкой:
-// window.addEventListener("click", numPad, false);
-// document.querySelector('.buttons').onclick = (event) => {
-//     let keyMouse = event.target.textContent;
-//     console.log("keyMouse: " + keyMouse);
-// };
 
+document.querySelector('.buttons').onclick = (event) => {
+    const key = event.target.textContent;
+    console.log("keyMouse: " + key);
+    if (!event.target.classList.contains('btn')) return;
+    if (event.target.classList.contains('ac')) return;
+    out.textContent = '';
+
+    if (digit.includes(key)) {
+        if (b === '' && sign === '') {
+            a += key;
+            out.textContent = a;
+        }
+        // если и первое и второе числа заполнены
+        else if (a !== '' && b !== '' && finish) {
+            b = key;
+            finish = false;
+            out.textContent = b;
+        }
+        else {
+            b += key;
+            out.textContent = b;
+        }
+        console.log("a:" + a, "b:" + b, "sign:" + sign);
+        return;
+    };
+};
 
 
 
