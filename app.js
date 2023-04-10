@@ -20,6 +20,14 @@ function clearAll() {
 
 document.querySelector('.ac').onclick = clearAll;
 
+// ввод с клавиатуры:
+// window.addEventListener("keypress", dealWithKeyboard, false);
+// function dealWithKeyboard(event) {
+//     console.log("key: " + event.key);
+//     console.log("a:" + a, "b:" + b, "sign:" + sign);
+
+// };
+
 document.querySelector('.buttons').onclick = (event) => {
     // нажата не кнопка
     if (!event.target.classList.contains('btn')) return;
@@ -34,7 +42,8 @@ document.querySelector('.buttons').onclick = (event) => {
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
             a += key;
-            console.log(a, b, sign);
+            // console.log(a, b, sign);
+            console.log("a:" + a, "b:" + b, "sign:" + sign);
             out.textContent = a;
         }
         // если и первое и второе числа заполнены
@@ -47,7 +56,8 @@ document.querySelector('.buttons').onclick = (event) => {
             b += key;
             out.textContent = b;
         }
-        console.log(a, b, sign);
+        // console.log(a, b, sign);
+        console.log("a:" + a, "b:" + b, "sign:" + sign);
         return;
     };
 
@@ -55,7 +65,8 @@ document.querySelector('.buttons').onclick = (event) => {
     if (action.includes(key)) {
         sign = key;
         out.textContent = sign;
-        console.log(a, b, sign);
+        // console.log(a, b, sign);
+        console.log("a:" + a, "b:" + b, "sign:" + sign);
         return;
     }
 
@@ -86,7 +97,8 @@ document.querySelector('.buttons').onclick = (event) => {
         finish = true;
         // вывести на экран
         out.textContent = a;
-        console.log(a, b, sign);
+        // console.log(a, b, sign);
+        console.log("a:" + a, "b:" + b, "sign:" + sign);
     }
 
 };
