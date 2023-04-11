@@ -90,7 +90,8 @@ document.querySelector('.buttons').onclick = (event) => {
     console.log("keyMouse: " + key);
     if (!event.target.classList.contains('btn')) return;
     if (event.target.classList.contains('ac')) return;
-    out.textContent = '';
+
+    // out.textContent = '';
 
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
@@ -146,7 +147,23 @@ document.querySelector('.buttons').onclick = (event) => {
         console.log("a:" + a, "sign:" + sign, "b:" + b);
         return;
     };
+    // если нажата +/-
+    if (event.target.classList.contains('plus-minus') && b === '' && sign === '') {
+        a = -1 * a;
+        out.textContent = a;
+
+    } else if (event.target.classList.contains('plus-minus') && a !== '') {
+        b = -1 * b;
+        if (finish === false)
+            out.textContent = b;
+
+    } else if (event.target.classList.contains('plus-minus') && a !== '' && b !== '' && finish) {
+        out.textContent = a;
+    }
+    console.log("a:" + a, "sign:" + sign, "b:" + b);
+    return;
 };
+
 
 
 
