@@ -17,14 +17,27 @@ function clearAll() {
     sign = ''; // знак операции
     finish = false; //
     out.textContent = 0;
+    console.clear();
 }
 // нажата ac
 document.querySelector('.ac').onclick = clearAll;
 
+
+window.addEventListener('keydown', function(event) {
+    const key = event.key; 
+    if (key === "Backspace" || key === "Delete") {
+        clearAll()
+        console.log('BACKSPACE was pressed');
+        return;
+    }
+});
+
+
+
 // ввод с клавиатуры:
-window.addEventListener("keypress", numPad, false);
+window.addEventListener("keydown", numPad, false);
 function numPad(event) {
-    let keyNum = event.key;
+    const keyNum = event.key;
     console.log("keyNum: " + keyNum);
 
     if (digit.includes(keyNum)) {
