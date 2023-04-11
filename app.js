@@ -2,10 +2,10 @@ let a = ''; // первое число
 let b = ''; // второе число
 let sign = ''; // знак операции
 let finish = false; // 
-let keyNum
+let keyNum;
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-const action = ['-', '+', 'X', '/'];
+const action = ['-', '+', '*', '/'];
 
 // экран
 const out = document.querySelector('.calc-screen p');
@@ -44,6 +44,45 @@ function numPad(event) {
             out.textContent = b;
         }
         console.log("a:" + a, "b:" + b, "sign:" + sign);
+        return;
+    };
+    // если нажата кнопка + - * /
+    if (action.includes(keyNum)) {
+        sign = keyNum;
+        out.textContent = sign;
+        console.log("a:" + a, "b:" + b, "sign:" + sign);
+        return;
+    };
+    // если нажата =
+    if (keyNum === '=' || keyNum === 'Enter') {
+        if (b === '') b = a;
+        switch (sign) {
+            case '+':
+                a = (+a) + (+b);
+                break;
+            case '-':
+                a = (+a) - (+b);
+                break;
+            case '*':
+                a = (+a) * (+b);
+                break;
+            case '/':
+                if (b === '0') {
+                    out.textContent = 'Деление на 0';
+                    a = '';
+                    b = '';
+                    sign = '';
+                    return;
+                }
+                a = (+a) / (+b);
+                break;
+        }
+        finish = true;
+        // вывести на экран
+        out.textContent = a;
+        // console.log(a, b, sign);
+        console.log("a:" + a, "b:" + b, "sign:" + sign);
+        return;
     };
 };
 
@@ -74,54 +113,14 @@ document.querySelector('.buttons').onclick = (event) => {
         console.log("a:" + a, "b:" + b, "sign:" + sign);
         return;
     };
-};
 
-
-
-
-
-/*
-document.querySelector('.buttons').onclick = (event) => {
-    // нажата не кнопка
-    if (!event.target.classList.contains('btn')) return;
-    // нажата кнопка ac
-    if (event.target.classList.contains('ac')) return;
-
-    out.textContent = '';
-    // получаю нажатую кнопку
-    const key = event.target.textContent;
-
-    // если нажата кнопка 0-9 или .
-    if (digit.includes(key)) {
-        if (b === '' && sign === '') {
-            a += key;
-            // console.log(a, b, sign);
-            // console.log("a:" + a, "b:" + b, "sign:" + sign);
-            out.textContent = a;
-        }
-        // если и первое и второе числа заполнены
-        else if (a !== '' && b !== '' && finish) {
-            b = key;
-            finish = false;
-            out.textContent = b;
-        }
-        else {
-            b += key;
-            out.textContent = b;
-        }
-        // console.log(a, b, sign);
-        console.log("a:" + a, "b:" + b, "sign:" + sign);
-        return;
-    };
-
-    // если нажата кнопка + - X /
+    // если нажата кнопка + - * /
     if (action.includes(key)) {
         sign = key;
         out.textContent = sign;
-        // console.log(a, b, sign);
         console.log("a:" + a, "b:" + b, "sign:" + sign);
         return;
-    }
+    };
 
     // если нажата =
     if (key === '=') {
@@ -131,10 +130,10 @@ document.querySelector('.buttons').onclick = (event) => {
                 a = (+a) + (+b);
                 break;
             case '-':
-                a = a - b;
+                a = (+a) - (+b);
                 break;
-            case 'X':
-                a = a * b;
+            case '*':
+                a = (+a) * (+b);
                 break;
             case '/':
                 if (b === '0') {
@@ -144,7 +143,7 @@ document.querySelector('.buttons').onclick = (event) => {
                     sign = '';
                     return;
                 }
-                a = a / b;
+                a = (+a) / (+b);
                 break;
         }
         finish = true;
@@ -152,8 +151,16 @@ document.querySelector('.buttons').onclick = (event) => {
         out.textContent = a;
         // console.log(a, b, sign);
         console.log("a:" + a, "b:" + b, "sign:" + sign);
-    }
+        return;
+    };
 
 };
-*/
+
+
+
+
+
+
+
+
 
