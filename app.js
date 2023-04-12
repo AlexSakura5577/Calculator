@@ -25,12 +25,14 @@ document.querySelector('.ac').onclick = clearAll;
 
 window.addEventListener('keydown', function (event) {
     const key = event.key;
-    if (key === "Backspace" || key === "Delete") {
+    if (key === "Delete") {
         clearAll()
-        console.log('BACKSPACE was pressed');
+        console.log('DELETE was pressed');
         return;
     }
 });
+
+
 
 
 
