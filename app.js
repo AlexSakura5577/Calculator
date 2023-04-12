@@ -249,3 +249,39 @@ document.querySelector('.buttons').onclick = (event) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+// СОБЫТИЯ КЛАВИАТУРЫ:
+// window.addEventListener("keydown", dealWithKeyboard, false);
+// window.addEventListener("keypress", dealWithKeyboard, false);
+// window.addEventListener("keyup", dealWithKeyboard, false);
+
+// function dealWithKeyboard(event) {
+// console.log("key: " + event.key);
+//     console.log("code: " + event.code);
+//     console.log("keyCode: " + event.keyCode);
+//     console.log("charCode: " + event.charCode);
+//     console.log("ctrlKey: " + event.ctrlKey);
+//     console.log("altKey: " + event.altKey);
+//     console.log("shiftKey: " + event.shiftKey);
+//     console.log("metaKey: " + event.metaKey);
+//     console.log("type: " + event.type);
+//     console.log(event);
+// };
+
+
+
+
+
+
+
+
