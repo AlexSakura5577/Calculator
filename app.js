@@ -237,6 +237,10 @@ document.querySelector('.buttons').onclick = (event) => {
     }
     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
     return;
+    // если нажата клавиша процент:
+    if(event.target.classList.contains('percent') {
+        a = a / 100; 
+    }
 };
 
 
