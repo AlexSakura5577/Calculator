@@ -23,8 +23,8 @@ function clearAll() {
 document.querySelector('.ac').onclick = clearAll;
 
 
-window.addEventListener('keydown', function(event) {
-    const key = event.key; 
+window.addEventListener('keydown', function (event) {
+    const key = event.key;
     if (key === "Backspace" || key === "Delete") {
         clearAll()
         console.log('BACKSPACE was pressed');
@@ -161,21 +161,22 @@ document.querySelector('.buttons').onclick = (event) => {
         return;
     };
     // если нажата +/-
-    if (event.target.classList.contains('plus-minus') && b === '' && sign === '') {
+    if (event.target.classList.contains('plus-minus') && a !== '' && b === '' && sign === '') {
         a = -1 * a;
         out.textContent = a;
 
-    } else if (event.target.classList.contains('plus-minus') && a !== '') {
+    } else if (event.target.classList.contains('plus-minus') && a !== '' && b !== '' && finish === false) {
         b = -1 * b;
-        if (finish === false)
-            out.textContent = b;
+        out.textContent = b;
 
     } else if (event.target.classList.contains('plus-minus') && a !== '' && b !== '' && finish) {
+        a = -1 * a;
         out.textContent = a;
     }
     console.log("a:" + a, "sign:" + sign, "b:" + b);
     return;
 };
+
 
 
 
