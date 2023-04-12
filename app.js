@@ -7,6 +7,8 @@ let finish = false; //
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '*', '/'];
 
+const firstNumber = a.split('');
+
 // экран
 const out = document.querySelector('.calc-screen p');
 
@@ -22,7 +24,7 @@ function clearAll() {
 // нажата ac
 document.querySelector('.ac').onclick = clearAll;
 
-
+// очистка консоли и сброс клавишей delete:
 window.addEventListener('keydown', function (event) {
     const key = event.key;
     if (key === "Delete") {
@@ -32,8 +34,11 @@ window.addEventListener('keydown', function (event) {
     }
 });
 
+// удалить по одной цифре справа налево клавишей backspace:
 
-
+// let firstNumber = a.split('');
+console.log("firstNumber:" + firstNumber);
+console.log("тип:" + typeof (a));
 
 
 // ввод с клавиатуры:
@@ -46,6 +51,8 @@ function numPad(event) {
         if (b === '' && sign === '') {
             a += keyNum;
             console.log("a:" + a, "sign:" + sign, "b:" + b);
+            console.log("firstNumber:" + firstNumber);
+            console.log("тип firstNumber:" + typeof (a));
             out.textContent = a;
         }
         // если и первое и второе числа заполнены
@@ -59,6 +66,8 @@ function numPad(event) {
             out.textContent = b;
         }
         console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("firstNumber:" + firstNumber);
+        console.log("тип firstNumber:" + typeof (a));
         return;
     };
     // если нажата кнопка + - * /
@@ -66,6 +75,8 @@ function numPad(event) {
         sign = keyNum;
         out.textContent = sign;
         console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("firstNumber:" + firstNumber);
+        console.log("тип firstNumber:" + typeof (a));
         return;
     };
     // если нажата =
@@ -95,6 +106,8 @@ function numPad(event) {
         finish = true;
         out.textContent = a;
         console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("firstNumber:" + firstNumber);
+        console.log("тип firstNumber:" + typeof (a));
         return;
     };
 };
@@ -124,6 +137,8 @@ document.querySelector('.buttons').onclick = (event) => {
             out.textContent = b;
         }
         console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("firstNumber:" + firstNumber);
+        console.log("тип firstNumber:" + typeof (a));
         return;
     };
     // если нажата кнопка + - * /
@@ -131,6 +146,8 @@ document.querySelector('.buttons').onclick = (event) => {
         sign = key;
         out.textContent = sign;
         console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("firstNumber:" + firstNumber);
+        console.log("тип firstNumber:" + typeof (a));
         return;
     };
     // если нажата =
@@ -160,6 +177,8 @@ document.querySelector('.buttons').onclick = (event) => {
         finish = true;
         out.textContent = a;
         console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("firstNumber:" + firstNumber);
+        console.log("тип firstNumber:" + typeof (a));
         return;
     };
     // если нажата +/-
@@ -176,6 +195,8 @@ document.querySelector('.buttons').onclick = (event) => {
         out.textContent = a;
     }
     console.log("a:" + a, "sign:" + sign, "b:" + b);
+    console.log("firstNumber:" + firstNumber);
+    console.log("тип firstNumber:" + typeof (a));
     return;
 };
 
