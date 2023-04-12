@@ -4,6 +4,7 @@ let b = ''; // второе число
 let arrB = b.split(''); // массив переменной b
 let sign = ''; // знак операции
 let finish = false; // 
+console.log('finish: ' + finish);
 // let keyNum;
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
@@ -18,6 +19,7 @@ function clearAll() {
     b = ''; // второе число
     sign = ''; // знак операции
     finish = false; //
+    console.log('finish: ' + finish);
     out.textContent = 0;
     arrA = [];
     arrB = [];
@@ -47,7 +49,7 @@ window.addEventListener('keydown', function (event) {
         console.log("strNew:" + strNew);
         console.log("a:" + a);
         console.log(arrA);
-        console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
     }
     if (key === "Backspace" && a !== '' && b !== '' && finish === false) {
         let strNew = arrB.splice(arrB.length - 1, 1);
@@ -56,7 +58,7 @@ window.addEventListener('keydown', function (event) {
         console.log("strNew:" + strNew);
         console.log("b:" + b);
         console.log(arrB);
-        console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
     }
     if (key === "Backspace" && a !== '' && b !== '' && finish === true) {
         clearAll()
@@ -75,29 +77,38 @@ function numPad(event) {
         if (b === '' && sign === '') {
             a += keyNum;
             arrA = a.split('');
-            console.log("a:" + a, "sign:" + sign, "b:" + b);
+            console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
             out.textContent = a;
         }
-        // если и первое и второе числа заполнены
+        // если и первое и второе числа заполнены и вычисления произведены
         else if (a !== '' && b !== '' && finish) {
-            b = keyNum;
-            arrB = b.split('');
+            // b = keyNum;
+            // arrB = b.split('');
+            // finish = false;
+            // console.log('finish: ' + finish);
+            // out.textContent = b;
+
+            a = keyNum;
+            arrA = a.split('');
+            b = ''; // второе число
+            sign = ''; // знак операции
             finish = false;
-            out.textContent = b;
+            console.log('finish: ' + finish);
+            out.textContent = a;
         }
         else {
             b += keyNum;
             arrB = b.split('');
             out.textContent = b;
         }
-        console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
     // если нажата кнопка + - * /
     if (action.includes(keyNum)) {
         sign = keyNum;
         out.textContent = sign;
-        console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
     // вычисления! если нажата =
@@ -125,8 +136,9 @@ function numPad(event) {
                 break;
         }
         finish = true;
+        console.log('finish: ' + finish);
         out.textContent = a;
-        console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
 };
@@ -146,26 +158,35 @@ document.querySelector('.buttons').onclick = (event) => {
             arrA = a.split('');
             out.textContent = a;
         }
-        // если и первое и второе числа заполнены
+        // если и первое и второе числа заполнены и вычисления произведены
         else if (a !== '' && b !== '' && finish) {
-            b = key;
-            arrB = b.split('');
+            // b = key;
+            // arrB = b.split('');
+            // finish = false;
+            // console.log('finish: ' + finish);
+            // out.textContent = b;
+
+            a = key;
+            arrA = a.split('');
+            b = ''; // второе число
+            sign = ''; // знак операции
             finish = false;
-            out.textContent = b;
+            console.log('finish: ' + finish);
+            out.textContent = a;
         }
         else {
             b += key;
             arrB = b.split('');
             out.textContent = b;
         }
-        console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
     // если нажата кнопка + - * /
     if (action.includes(key)) {
         sign = key;
         out.textContent = sign;
-        console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
     // если нажата =
@@ -193,8 +214,9 @@ document.querySelector('.buttons').onclick = (event) => {
                 break;
         }
         finish = true;
+        console.log('finish: ' + finish);
         out.textContent = a;
-        console.log("a:" + a, "sign:" + sign, "b:" + b);
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
     // если нажата +/-
@@ -213,7 +235,7 @@ document.querySelector('.buttons').onclick = (event) => {
         // arrA = a.split('');
         out.textContent = a;
     }
-    console.log("a:" + a, "sign:" + sign, "b:" + b);
+    console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
     return;
 };
 
