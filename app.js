@@ -112,6 +112,7 @@ function numPad(event) {
         console.log("a:" + a, "sign:" + sign, "b:" + b);
         return;
     };
+    // удалить по одной цифре справа налево клавишей backspace:
 
 };
 
