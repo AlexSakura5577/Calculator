@@ -1,6 +1,7 @@
 let a = ''; // первое число
-// let arr = a.split(''); // 
+let arrA = a.split(''); // массив переменной a
 let b = ''; // второе число
+let arrB = b.split(''); // массив переменной b
 let sign = ''; // знак операции
 let finish = false; // 
 // let keyNum;
@@ -18,6 +19,8 @@ function clearAll() {
     sign = ''; // знак операции
     finish = false; //
     out.textContent = 0;
+    arrA = [];
+    arrB = [];
     console.clear();
 }
 // нажата ac
@@ -34,22 +37,33 @@ window.addEventListener('keydown', function (event) {
 });
 
 // удалить по одной цифре справа налево клавишей backspace:
-let str = '12345';
-let arr = str.split('');
-
+console.log(arrA);
 window.addEventListener('keydown', function (event) {
     const key = event.key;
-    if (key === "Backspace") {
-        let strNew = arr.splice(arr.length - 1, 1);
-        str = arr.join();
+    if (key === "Backspace" && a !== '' && b === '' && finish === false) {
+        let strNew = arrA.splice(arrA.length - 1, 1);
+        a = arrA.join('');
+        out.textContent = a;
         console.log("strNew:" + strNew);
-        console.log("str:" + str);
-        console.log(arr);
-        return;
+        console.log("a:" + a);
+        console.log(arrA);
+        console.log("a:" + a, "sign:" + sign, "b:" + b);
     }
+    if (key === "Backspace" && a !== '' && b !== '' && finish === false) {
+        let strNew = arrB.splice(arrB.length - 1, 1);
+        b = arrB.join('');
+        out.textContent = b;
+        console.log("strNew:" + strNew);
+        console.log("b:" + b);
+        console.log(arrB);
+        console.log("a:" + a, "sign:" + sign, "b:" + b);
+    }
+    if (key === "Backspace" && a !== '' && b !== '' && finish === true) {
+        clearAll()
+        console.log('BACKSPACE was pressed');
+    }
+    return;
 });
-
-
 
 // ввод с клавиатуры:
 window.addEventListener("keydown", numPad, false);
@@ -60,17 +74,20 @@ function numPad(event) {
     if (digit.includes(keyNum)) {
         if (b === '' && sign === '') {
             a += keyNum;
+            arrA = a.split('');
             console.log("a:" + a, "sign:" + sign, "b:" + b);
             out.textContent = a;
         }
         // если и первое и второе числа заполнены
         else if (a !== '' && b !== '' && finish) {
             b = keyNum;
+            arrB = b.split('');
             finish = false;
             out.textContent = b;
         }
         else {
             b += keyNum;
+            arrB = b.split('');
             out.textContent = b;
         }
         console.log("a:" + a, "sign:" + sign, "b:" + b);
@@ -83,7 +100,7 @@ function numPad(event) {
         console.log("a:" + a, "sign:" + sign, "b:" + b);
         return;
     };
-    // если нажата =
+    // вычисления! если нажата =
     if (keyNum === '=' || keyNum === 'Enter') {
         if (b === '') b = a;
         switch (sign) {
@@ -112,8 +129,6 @@ function numPad(event) {
         console.log("a:" + a, "sign:" + sign, "b:" + b);
         return;
     };
-    // удалить по одной цифре справа налево клавишей backspace:
-
 };
 
 // ввод мышкой:
@@ -128,16 +143,19 @@ document.querySelector('.buttons').onclick = (event) => {
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
             a += key;
+            arrA = a.split('');
             out.textContent = a;
         }
         // если и первое и второе числа заполнены
         else if (a !== '' && b !== '' && finish) {
             b = key;
+            arrB = b.split('');
             finish = false;
             out.textContent = b;
         }
         else {
             b += key;
+            arrB = b.split('');
             out.textContent = b;
         }
         console.log("a:" + a, "sign:" + sign, "b:" + b);
@@ -182,14 +200,17 @@ document.querySelector('.buttons').onclick = (event) => {
     // если нажата +/-
     if (event.target.classList.contains('plus-minus') && a !== '' && b === '' && sign === '') {
         a = -1 * a;
+        // arrA = a.split('');
         out.textContent = a;
 
     } else if (event.target.classList.contains('plus-minus') && a !== '' && b !== '' && finish === false) {
         b = -1 * b;
+        // arrB = b.split('');
         out.textContent = b;
 
     } else if (event.target.classList.contains('plus-minus') && a !== '' && b !== '' && finish) {
         a = -1 * a;
+        // arrA = a.split('');
         out.textContent = a;
     }
     console.log("a:" + a, "sign:" + sign, "b:" + b);
