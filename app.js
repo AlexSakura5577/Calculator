@@ -182,7 +182,7 @@ document.querySelector('.buttons').onclick = (event) => {
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
-    // если нажата кнопка + - * /
+    // если нажата кнопка + - * / (знак операции)
     if (action.includes(key)) {
         sign = key;
         out.textContent = sign;
@@ -219,7 +219,7 @@ document.querySelector('.buttons').onclick = (event) => {
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
-    // если нажата +/-
+    // если нажата +/- (смена знака)
     if (event.target.classList.contains('plus-minus') && a !== '' && b === '' && sign === '') {
         a = -1 * a;
         out.textContent = a;
@@ -229,14 +229,25 @@ document.querySelector('.buttons').onclick = (event) => {
     } else if (event.target.classList.contains('plus-minus') && a !== '' && b !== '' && finish) {
         a = -1 * a;
         out.textContent = a;
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+        return;
     }
-    console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
-    return;
 
     // если нажата клавиша процент %:
+    if (event.target.classList.contains('percent') && a === '' && b === '' && sign === '') {
+        out.textContent = 0;
+    } else if (event.target.classList.contains('percent') && a !== '' && b === '' && sign === '') {
+        a = (+a) / (+100);
+        out.textContent = a;
+    }else if (event.target.classList.contains('percent') && a !== '' && b === '' && sign !== '') {
+        out.textContent = "Ошибка";
+    }else if (event.target.classList.contains('percent') && a !== '' && b !== '' && sign !== '' && finish === false) {
+
+    }
 
 
-
+    console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+    return;
 };
 
 
