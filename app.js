@@ -149,9 +149,9 @@ document.querySelector('.buttons').onclick = (event) => {
     console.log("keyMouse: " + key);
     if (!event.target.classList.contains('btn')) return;
     if (event.target.classList.contains('ac')) return;
-
     // out.textContent = '';
 
+    // если нажата цифра
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
             a += key;
@@ -189,7 +189,7 @@ document.querySelector('.buttons').onclick = (event) => {
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
-    // если нажата =
+    // если нажата = (вычисления)
     if (key === '=') {
         if (b === '') b = a;
         switch (sign) {
@@ -222,36 +222,22 @@ document.querySelector('.buttons').onclick = (event) => {
     // если нажата +/-
     if (event.target.classList.contains('plus-minus') && a !== '' && b === '' && sign === '') {
         a = -1 * a;
-        // arrA = a.split('');
         out.textContent = a;
-
     } else if (event.target.classList.contains('plus-minus') && a !== '' && b !== '' && finish === false) {
         b = -1 * b;
-        // arrB = b.split('');
         out.textContent = b;
-
     } else if (event.target.classList.contains('plus-minus') && a !== '' && b !== '' && finish) {
         a = -1 * a;
-        // arrA = a.split('');
         out.textContent = a;
     }
     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
     return;
-    // если нажата клавиша процент:
-    if(event.target.classList.contains('percent') {
-        a = a / 100; 
-    }
+
+    // если нажата клавиша процент %:
+
+
+
 };
-
-
-
-
-
-
-
-
-
-
 
 
 
