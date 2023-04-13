@@ -71,7 +71,9 @@ window.addEventListener('keydown', function (event) {
 window.addEventListener("keydown", numPad, false);
 function numPad(event) {
     const keyNum = event.key;
+    // const keyCode = event.code;
     console.log("keyNum: " + keyNum);
+    // console.log("keyCode: " + keyCode);
 
     if (digit.includes(keyNum)) {
         if (b === '' && sign === '') {
@@ -141,6 +143,14 @@ function numPad(event) {
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
+    // если нажата клавиша процент %
+    if (keyNum === '%' && event.shiftKey == true) {
+        console.log("одновременное нажатие: Shift + %");
+
+        
+        // console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+        return;
+    };
 };
 
 // ввод мышкой:
@@ -150,7 +160,6 @@ document.querySelector('.buttons').onclick = (event) => {
     if (!event.target.classList.contains('btn')) return;
     if (event.target.classList.contains('ac')) return;
     // out.textContent = '';
-
     // если нажата цифра
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
@@ -231,9 +240,8 @@ document.querySelector('.buttons').onclick = (event) => {
         out.textContent = a;
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
-    }
-
-    // если нажата клавиша процент %:
+    };
+    // если нажата клавиша процент %
     if (event.target.classList.contains('percent') && a === '' && b === '' && sign === '') {
         out.textContent = 0;
     } else if (event.target.classList.contains('percent') && a !== '' && b === '' && sign === '') {
