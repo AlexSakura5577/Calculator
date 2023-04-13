@@ -239,13 +239,35 @@ document.querySelector('.buttons').onclick = (event) => {
     } else if (event.target.classList.contains('percent') && a !== '' && b === '' && sign === '') {
         a = (+a) / (+100);
         out.textContent = a;
-    }else if (event.target.classList.contains('percent') && a !== '' && b === '' && sign !== '') {
+    } else if (event.target.classList.contains('percent') && a !== '' && b === '' && sign !== '') {
         out.textContent = "Ошибка";
-    }else if (event.target.classList.contains('percent') && a !== '' && b !== '' && sign !== '' && finish === false) {
-
-    }
-
-
+    } else if (event.target.classList.contains('percent') && a !== '' && b !== '' && sign !== '' && finish === false) {
+        switch (sign) {
+            case '+':
+                a = ((+a / 100) * (+b)) + (+a);
+                break;
+            case '-':
+                a = (+a) - ((+a / 100) * (+b));
+                break;
+            case '*':
+                a = ((+a / 100) * (+b));
+                break;
+            case '/':
+                if (b === '0') {
+                    out.textContent = 'Деление на 0';
+                    a = '';
+                    b = '';
+                    sign = '';
+                    return;
+                }
+                a = ((+a) / (+b / 100));
+                break;
+        }
+        finish = true;
+        console.log('finish: ' + finish);
+        out.textContent = a;
+        return;
+    };
     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
     return;
 };
