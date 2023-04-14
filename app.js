@@ -196,6 +196,9 @@ document.querySelector('.buttons').onclick = (event) => {
     // если нажата цифра
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
+
+            // добавить проверку "если после 0 не кликнули точку ."
+
             a += key;
             arrA = a.split('');
             out.textContent = a;
