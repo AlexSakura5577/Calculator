@@ -144,14 +144,49 @@ function numPad(event) {
         return;
     };
     // если нажата клавиша процент %
-    if (keyNum === '%' && event.shiftKey == true) {
+    if (keyNum === '%' && event.shiftKey == true && a === '' && b === '' && sign === '') {
         console.log("одновременное нажатие: Shift + %");
-
-        
-        // console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+        out.textContent = 0;
+    } else if (keyNum === '%' && event.shiftKey == true && a !== '' && b === '' && sign === '') {
+        console.log("одновременное нажатие: Shift + %");
+        a = (+a) / (+100);
+        out.textContent = a;
+    } else if (keyNum === '%' && event.shiftKey == true && a !== '' && b === '' && sign !== '') {
+        console.log("одновременное нажатие: Shift + %");
+        out.textContent = "Ошибка";
+    } else if (keyNum === '%' && event.shiftKey == true && a !== '' && b !== '' && sign !== '' && finish === false) {
+        console.log("одновременное нажатие: Shift + %");
+        switch (sign) {
+            case '+':
+                a = ((+a / 100) * (+b)) + (+a);
+                break;
+            case '-':
+                a = (+a) - ((+a / 100) * (+b));
+                break;
+            case '*':
+                a = ((+a / 100) * (+b));
+                break;
+            case '/':
+                if (b === '0') {
+                    out.textContent = 'Деление на 0';
+                    a = '';
+                    b = '';
+                    sign = '';
+                    return;
+                }
+                a = ((+a) / (+b / 100));
+                break;
+        }
+        finish = true;
+        console.log('finish: ' + finish);
+        out.textContent = a;
         return;
     };
+
+    // console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+    return;
 };
+
 
 // ввод мышкой:
 document.querySelector('.buttons').onclick = (event) => {
