@@ -182,11 +182,9 @@ function numPad(event) {
         out.textContent = a;
         return;
     };
-
     // console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
     return;
 };
-
 
 // ввод мышкой:
 document.querySelector('.buttons').onclick = (event) => {
