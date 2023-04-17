@@ -1,7 +1,9 @@
 let a = ''; // первое число
-let arrA = a.split(''); // массив переменной a
+let arrA = [];
+arrA = a.split(''); // массив переменной a
 let b = ''; // второе число
-let arrB = b.split(''); // массив переменной b
+let arrB = [];
+arrB = b.split(''); // массив переменной b
 let sign = ''; // знак операции
 let finish = false; // 
 console.log('finish: ' + finish);
@@ -195,6 +197,8 @@ document.querySelector('.buttons').onclick = (event) => {
     const key = event.target.textContent;
     console.log("keyMouse: " + key);
 
+    // !! массив показывает не то кол-во элементов (обновляется уже после)
+    arrA = a.split('');
     arrA.push(a);
     arrA = a.split('');
     let len = arrA.length;
@@ -217,9 +221,11 @@ document.querySelector('.buttons').onclick = (event) => {
 
         if (b === '' && sign === '') {
 
+            // !! точка может быть в любом месте ввода, а не только на 2-м
             if (arrA[1] === '.') {
                 console.log('ввод дробного числа');
             }
+
             a += key;
             arrA = a.split('');
             console.log(arrA);
