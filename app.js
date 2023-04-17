@@ -77,6 +77,10 @@ function numPad(event) {
 
     if (digit.includes(keyNum)) {
         if (b === '' && sign === '') {
+            arrA = a.split('');
+            if (arrA[1] === '.') {
+                console.log('ввод дробного числа');
+            }
             a += keyNum;
             arrA = a.split('');
             console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
@@ -190,17 +194,35 @@ function numPad(event) {
 document.querySelector('.buttons').onclick = (event) => {
     const key = event.target.textContent;
     console.log("keyMouse: " + key);
+
+    arrA.push(a);
+    arrA = a.split('');
+    let len = arrA.length;
+    console.log('кол-во элементов: ' + len);
+    console.log('5-й элемент: ' + arrA[4]);
+
     if (!event.target.classList.contains('btn')) return;
     if (event.target.classList.contains('ac')) return;
     // out.textContent = '';
     // если нажата цифра
     if (digit.includes(key)) {
+
+        // // добавить проверку "если после 0 не кликнули точку ."
+        // if (a !== '0.') {
+        //     console.log('нажат 0');
+        //     console.log(arrA);
+        //     // out.textContent = 0;
+        //     // return;
+        // };
+
         if (b === '' && sign === '') {
 
-            // добавить проверку "если после 0 не кликнули точку ."
-
+            if (arrA[1] === '.') {
+                console.log('ввод дробного числа');
+            }
             a += key;
             arrA = a.split('');
+            console.log(arrA);
             out.textContent = a;
         }
         // если и первое и второе числа заполнены и вычисления произведены
