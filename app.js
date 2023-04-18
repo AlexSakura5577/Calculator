@@ -42,7 +42,6 @@ window.addEventListener('keydown', function (event) {
 });
 
 // удалить по одной цифре справа налево клавишей backspace:
-// console.log(arrA);
 window.addEventListener('keydown', function (event) {
     const key = event.key;
     if (key === "Backspace" && a !== '' && b === '' && finish === false) {
@@ -97,6 +96,19 @@ function numPad(event) {
             console.log('массив А: ' + arrA);
             console.log('5-й элемент: ' + arrA[4]);
             // console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+
+            // !! точка может быть в любом месте ввода, а не только на 2-м
+            if (a !== '' && arrA.includes('.')) {
+                console.log('ввод дробного числа');
+            };
+            if (a === '00' && arrA[1] !== '.') {
+                // a = 0;
+                clearAll();
+                console.log('набор нескольких нулей');
+                // out.textContent = 0;
+                return;
+            };
+
             out.textContent = a;
         }
         // если и первое и второе числа заполнены и вычисления произведены
@@ -157,6 +169,7 @@ function numPad(event) {
         finish = true;
         console.log('finish: ' + finish);
         out.textContent = a;
+        console.log(arrA);
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
@@ -208,9 +221,16 @@ document.querySelector('.buttons').onclick = (event) => {
     const key = event.target.textContent;
     console.log("keyMouse: " + key);
 
+    // if (finish === true) {
+    //     // a = out.textContent;
+    //     arrA = a.split('');
+    //     console.log(arrA);
+    // }
 
-    arrA = a.split('');
-    arrA.push(a);
+    // лишнее:
+    // arrA = a.split('');
+    // arrA.push(a);
+
     // arrA = a.split('');
     let len = arrA.length;
     console.log('кол-во элементов: ' + len);
@@ -229,10 +249,6 @@ document.querySelector('.buttons').onclick = (event) => {
         //     // return;
         // };
 
-        // !! точка может быть в любом месте ввода, а не только на 2-м
-        if (arrA[1] === '.') {
-            console.log('ввод дробного числа');
-        }
 
         if (b === '' && sign === '') {
 
@@ -241,6 +257,20 @@ document.querySelector('.buttons').onclick = (event) => {
             console.log(arrA);
             console.log('массив А: ' + arrA);
             console.log('5-й элемент: ' + arrA[4]);
+
+            // !! точка может быть в любом месте ввода, а не только на 2-м
+            if (a !== '' && arrA.includes('.')) {
+                console.log('ввод дробного числа');
+            };
+            // набор нескольких нулей
+            if (a === '00' && arrA[1] !== '.') {
+                // a = 0;
+                clearAll();
+                console.log('набор нескольких нулей');
+                // out.textContent = 0;
+                return;
+            };
+
             out.textContent = a;
         }
         // если и первое и второе числа заполнены и вычисления произведены
@@ -280,6 +310,8 @@ document.querySelector('.buttons').onclick = (event) => {
         switch (sign) {
             case '+':
                 a = (+a) + (+b);
+                arrA = a;
+                console.log('сложение: ' + arrA);
                 break;
             case '-':
                 a = (+a) - (+b);
@@ -298,10 +330,24 @@ document.querySelector('.buttons').onclick = (event) => {
                 a = (+a) / (+b);
                 break;
         }
+
+        // arrA = a.split('');
+        // console.log(arrA);
+
         finish = true;
         console.log('finish: ' + finish);
         out.textContent = a;
+        // arrA = a.split('');
+        console.log('arrA: ' + arrA);
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+
+        // if (finish === true) {
+        //     a = out.textContent;
+        //     arrA = a.split('');
+        //     console.log(arrA);
+        //     return;
+        // }
+
         return;
     };
     // если нажата +/- (смена знака)
