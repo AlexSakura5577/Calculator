@@ -54,10 +54,8 @@ window.addEventListener('keydown', function (event) {
 });
 
 // несколько запятых подряд
-// if (a === '..') {
-//     console.log('несколько запятых подряд');
-//     return;
-// }
+doubleComma = arrA.filter(item => item === '.').length;
+
 
 // удалить по одной цифре справа налево клавишей backspace:
 window.addEventListener('keydown', function (event) {
@@ -148,6 +146,7 @@ function numPad(event) {
         else {
             b += keyNum;
             arrB = b.split('');
+            console.log(arrB);
             out.textContent = b;
         }
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
@@ -247,34 +246,15 @@ document.querySelector('.buttons').onclick = (event) => {
     const key = event.target.textContent;
     console.log("keyMouse: " + key);
 
-    // if (finish === true) {
-    //     // a = out.textContent;
-    //     arrA = a.split('');
-    //     console.log(arrA);
-    // }
-
-    // лишнее:
-    // arrA = a.split('');
-    // arrA.push(a);
-
-    // arrA = a.split('');
     let len = arrA.length;
     console.log('кол-во элементов: ' + len);
 
     if (!event.target.classList.contains('btn')) return;
     if (event.target.classList.contains('ac')) return;
     // out.textContent = '';
+
     // если нажата цифра
     if (digit.includes(key)) {
-
-        // // добавить проверку "если после 0 не кликнули точку ."
-        // if (a !== '0.') {
-        //     console.log('нажат 0');
-        //     console.log(arrA);
-        //     // out.textContent = 0;
-        //     // return;
-        // };
-
 
         if (b === '' && sign === '') {
 
@@ -296,6 +276,7 @@ document.querySelector('.buttons').onclick = (event) => {
                 // out.textContent = 0;
                 return;
             };
+            
 
             out.textContent = a;
         }
@@ -318,6 +299,7 @@ document.querySelector('.buttons').onclick = (event) => {
         else {
             b += key;
             arrB = b.split('');
+            console.log(arrB);
             out.textContent = b;
         }
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
