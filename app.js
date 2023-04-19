@@ -41,6 +41,9 @@ window.addEventListener('keydown', function (event) {
     }
 });
 
+// запятую в точку ru раскладка
+
+
 // удалить по одной цифре справа налево клавишей backspace:
 window.addEventListener('keydown', function (event) {
     const key = event.key;
