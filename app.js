@@ -9,6 +9,7 @@ let sign = ''; // знак операции
 let finish = false; // 
 // console.log('finish: ' + finish);
 // let keyNum;
+// let doubleComma;
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '*', '/'];
@@ -54,7 +55,7 @@ window.addEventListener('keydown', function (event) {
 });
 
 // несколько запятых подряд
-doubleComma = arrA.filter(item => item === '.').length;
+// doubleComma = arrA.filter(item => item === '.').length;
 
 
 // удалить по одной цифре справа налево клавишей backspace:
@@ -110,7 +111,7 @@ function numPad(event) {
             arrA = a.split('');
             console.log(arrA);
             console.log('массив А: ' + arrA);
-            console.log('5-й элемент: ' + arrA[4]);
+            // console.log('5-й элемент: ' + arrA[4]);
             // console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
 
             // !! точка может быть в любом месте ввода, а не только на 2-м
@@ -246,6 +247,18 @@ document.querySelector('.buttons').onclick = (event) => {
     const key = event.target.textContent;
     console.log("keyMouse: " + key);
 
+    // a = arrA;
+    let doubleComma = arrA.filter(item => item === '.').length;
+    // console.log('doubleComma: ' + doubleComma);
+    // несколько запятых подряд
+    if (b === '' && sign === '' && doubleComma >= 1) {
+        // a += key;
+
+        console.log('!doubleComma: ' + doubleComma);
+        // arrA.map();
+        // return;
+    }
+
     let len = arrA.length;
     console.log('кол-во элементов: ' + len);
 
@@ -255,14 +268,14 @@ document.querySelector('.buttons').onclick = (event) => {
 
     // если нажата цифра
     if (digit.includes(key)) {
-
+        // 
         if (b === '' && sign === '') {
 
             a += key;
             arrA = a.split('');
             console.log(arrA);
             console.log('массив А: ' + arrA);
-            console.log('5-й элемент: ' + arrA[4]);
+            // console.log('5-й элемент: ' + arrA[4]);
 
             // !! точка может быть в любом месте ввода, а не только на 2-м
             if (a !== '' && arrA.includes('.')) {
@@ -276,7 +289,6 @@ document.querySelector('.buttons').onclick = (event) => {
                 // out.textContent = 0;
                 return;
             };
-            
 
             out.textContent = a;
         }
@@ -352,6 +364,9 @@ document.querySelector('.buttons').onclick = (event) => {
         console.log('finish: ' + finish);
         out.textContent = a;
         // arrA = a.split('');
+
+        // arrA = a;
+
         console.log('arrA: ' + arrA);
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
 
