@@ -77,8 +77,8 @@ function numPad(event) {
     console.log("keyNum: " + keyNum);
     // console.log("keyCode: " + keyCode);
 
-    arrA = a.split('');
-    arrA.push(a);
+    // arrA = a.split('');
+    // arrA.push(a);
     // arrA = a.split('');
     let len = arrA.length;
     console.log('кол-во элементов: ' + len);
@@ -148,12 +148,18 @@ function numPad(event) {
         switch (sign) {
             case '+':
                 a = (+a) + (+b);
+                arrA = a;
+                console.log('сложение: ' + arrA);
                 break;
             case '-':
                 a = (+a) - (+b);
+                arrA = a;
+                console.log('вычитание: ' + arrA);
                 break;
             case '*':
                 a = (+a) * (+b);
+                arrA = a;
+                console.log('умножение: ' + arrA);
                 break;
             case '/':
                 if (b === '0') {
@@ -164,12 +170,14 @@ function numPad(event) {
                     return;
                 }
                 a = (+a) / (+b);
+                arrA = a;
+                console.log('деление: ' + arrA);
                 break;
         }
         finish = true;
         console.log('finish: ' + finish);
         out.textContent = a;
-        console.log(arrA);
+        console.log('arrA: ' + arrA);
         console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
         return;
     };
@@ -315,9 +323,13 @@ document.querySelector('.buttons').onclick = (event) => {
                 break;
             case '-':
                 a = (+a) - (+b);
+                arrA = a;
+                console.log('вычитание: ' + arrA);
                 break;
             case '*':
                 a = (+a) * (+b);
+                arrA = a;
+                console.log('умножение: ' + arrA);
                 break;
             case '/':
                 if (b === '0') {
@@ -328,6 +340,8 @@ document.querySelector('.buttons').onclick = (event) => {
                     return;
                 }
                 a = (+a) / (+b);
+                arrA = a;
+                console.log('деление: ' + arrA);
                 break;
         }
 
