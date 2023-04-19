@@ -42,7 +42,22 @@ window.addEventListener('keydown', function (event) {
 });
 
 // запятую в точку ru раскладка
+window.addEventListener('keydown', function (event) {
+    let comma = event.key;
+    if (comma === ",") {
+        comma = ".";
+        a += comma;
+        out.textContent = a;
+        console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+        return;
+    }
+});
 
+// несколько запятых подряд
+// if (a === '..') {
+//     console.log('несколько запятых подряд');
+//     return;
+// }
 
 // удалить по одной цифре справа налево клавишей backspace:
 window.addEventListener('keydown', function (event) {
@@ -77,7 +92,7 @@ window.addEventListener("keydown", numPad, false);
 function numPad(event) {
     const keyNum = event.key;
     // const keyCode = event.code;
-    console.log("keyNum: " + keyNum);
+    // console.log("keyNum: " + keyNum);
     // console.log("keyCode: " + keyCode);
 
     // arrA = a.split('');
