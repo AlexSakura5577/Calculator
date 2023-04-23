@@ -16,15 +16,19 @@ const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '*', '/'];
 // экран вывода
 const out = document.querySelector('.calc-screen p');
+// const paragraph = document.querySelector('.pole_ebanoe_blyat');
+const buttons = document.querySelector('.buttons');
 
-// клик мышкой
-// document.querySelector('.buttons').onclick = (event) => {
-//     let key = event.target.textContent;
-//     console.log("keyMouse: " + key);
-// };
-// ввод с клавиатуры
-window.addEventListener("keydown", numPad, false);
-function numPad(event) {
-    const key = event.key;
-    console.log("key: " + key);
-};
+window.addEventListener('keydown', (e) => {
+  changeParagraph(e.key)
+})
+
+buttons.addEventListener('click', (e) => {
+  changeParagraph(e.target.innerText)
+})
+
+const changeParagraph = (key) => {
+  if (!isNaN(key)){
+    out.innerText += key;
+  }
+}
