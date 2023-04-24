@@ -1,14 +1,14 @@
 // calc
 const calc = {
-    arrA: [], // первое число
-    arrB: [], // второе число
-    clear: function clearAll() { }, // очистить всё
-    delete: function deleteKey() { }, // очистка консоли и сброс клавишей delete
-    backspace: function backspaceKey() { }, // удалить по одной цифре справа налево клавишей backspace
-    comma: function commaKey() { }, // запятую в точку ru раскладка
-    mouse: function mouseE() { }, // ввод мышкой
-    keyboard: function keyboardE() { }, // ввод с клавиатуры
-    calculations: function calculationsEnd() { }, // вычисления
+  arrA: [], // первое число
+  arrB: [], // второе число
+  clear: function clearAll() { }, // очистить всё
+  delete: function deleteKey() { }, // очистка консоли и сброс клавишей delete
+  backspace: function backspaceKey() { }, // удалить по одной цифре справа налево клавишей backspace
+  comma: function commaKey() { }, // запятую в точку ru раскладка
+  mouse: function mouseE() { }, // ввод мышкой
+  keyboard: function keyboardE() { }, // ввод с клавиатуры
+  calculations: function calculationsEnd() { }, // вычисления
 };
 // цифры и точка
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
@@ -28,7 +28,11 @@ buttons.addEventListener('click', (e) => {
 })
 
 const changeParagraph = (key) => {
-  if (!isNaN(key)){
+  if (!isNaN(key)) {
     out.innerText += key;
   }
+}
+
+if (true) {
+  console.log(true);
 }
