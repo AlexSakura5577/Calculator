@@ -6,19 +6,9 @@ const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '*', '/'];
 // экран вывода
 const out = document.querySelector('.calc-screen p');
-// const paragraph = document.querySelector('.pole_ebanoe_blyat');
 
 // кнопка (селектор)
 const btn = document.querySelector('.buttons')
-
-// вывод на экран (переделать)
-// const changeParagraph = (key) => {
-//   if (!isNaN(key)) {
-//     out.innerText += key;
-//   }
-// }
-
-
 
 // calc
 const calc = {
@@ -28,15 +18,16 @@ const calc = {
   key: window.addEventListener('keydown', (e) => {
     let key = e.key;
     // changeParagraph(e.key)
-    out.textContent = key;
     calc.arrA.push(key);
+    calc.output();
+    // out.textContent = key;
     console.log(calc.arrA);
   }),
 
   key: btn.addEventListener('click', (e) => {
     let key = e.target.textContent;
     // changeParagraph(e.target.innerText)
-    out.textContent = key;
+    // out.textContent = key;
     calc.arrA.push(key);
     console.log(calc.arrA);
   }),
@@ -51,7 +42,9 @@ const calc = {
   mouse: function mouseE() { }, // ввод мышкой
   keyboard: function keyboardE() { }, // ввод с клавиатуры
   calculations: function calculationsEnd() { }, // вычисления
-
+  output: function outputWin() {
+    out.textContent = key;
+  }, // окно вывода
   message: function consoleMessage() {
     console.log('клик по кнопке');
   } // сообщение
