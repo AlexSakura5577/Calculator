@@ -1,104 +1,167 @@
-let a = ''; // первое число
-let b = ''; // второе число
-let sign = ''; // знак операции
-let finish = false; // 
+const isSymbol = (s) => {
+  return ['/', '-', '+', '*'].filter((j) => j === s).length > 0;
+};
 
-const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-const action = ['-', '+', 'X', '/'];
+const checkWrongNumber = (str) => {
+  let validStr = str;
+  for (let i = 0; i < str.length; i++) {
+    const n0 = str[i];
+    const n1 = str[i + 1];
+    const n2 = str[i + 2];
 
-// экран
-const out = document.querySelector('.calc-screen p');
+    if (isSymbol(n0) && isSymbol(n1) && isSymbol(n2)) {
+      validStr =
+        validStr.split('').splice(0, i).join('') +
+        validStr
+          .split('')
+          .splice(i + 1, validStr.length - 1)
+          .join('');
+      return validStr;
+    } else if (isSymbol(n0) && isSymbol(n1)) {
+      if (
+        (n0 === '*' && n1 !== '*') ||
+        (n0 !== '*' && n1 === '*') ||
+        (n0 !== '*' && n1 !== '*')
+      ) {
+        validStr =
+          validStr.split('').splice(0, i).join('') +
+          validStr
+            .split('')
+            .splice(i + 1, validStr.length - 1)
+            .join('');
 
-// очистить всё
-function clearAll() {
-    a = ''; // первое число
-    b = ''; // второе число
-    sign = ''; // знак операции
-    finish = false; //
-    out.textContent = 0;
+        console.log('validStr: ', validStr);
+
+        return validStr;
+      }
+    } else if (n0 === '.' && n1 === '.') {
+      validStr =
+        validStr.split('').splice(0, i).join('') +
+        validStr
+          .split('')
+          .splice(i + 1, validStr.length - 1)
+          .join('');
+
+
+      return validStr;
+    }
+  }
+  return validStr;
+};
+
+const getCounting = (value) => {
+  const str = value.replace(/[^-()\d/*+.]/g, '');
+
+  const validStr = checkWrongNumber(str);
+
+  if (validStr !== str) {
+    const valid = getCounting(validStr)
+    return { result: valid.result, str: valid.str };
+  }
+
+  try {
+    if (str === '') {
+      return { result: null, str: '' };
+    }
+
+    const result = String(eval(str));
+
+    if (String(result) === str || result === 'undefined' || result === 'NaN') {
+      return { result: null, str: str };
+    }
+
+    if (result === 'Infinity') {
+      return { result: 'Infinity', str: str };
+    }
+
+    if (result.split('').indexOf('e') !== -1) {
+      return { result: null, str: str };
+    }
+    return { result: result, str: str };
+  } catch (e) {
+    return { result: null, str: str };
+  }
+};
+
+
+
+const Calculator = (calcClass) => {
+  const mainCalc = document.querySelector(calcClass)
+  mainCalc.classList.add('calculator')
+
+  const field = mainCalc.querySelector('.calcField');
+  const result = mainCalc.querySelector('.result');
+  const buttons = mainCalc.querySelector('.buttons')
+
+  field.addEventListener('input', (e) => { fieldChange(e.target.value) })
+  buttons.addEventListener('click', (e) => { buttonClick(e.target.innerText) });
+  field.addEventListener('keypress', (e) => { inputKeyDownHandler(e) })
+
+  const inputKeyDownHandler = (e) => {
+    if (e.key === 'Enter' || e.key === '=') {
+      buttonClick('=');
+    }
+  };
+
+  const fieldChange = (value) => {
+    const fields = getCounting(value);
+    render(fields.str, fields.result);
+  }
+
+  const buttonClick = (key) => {
+    if (key.length > 2) return;
+    switch (key) {
+      case 'CA': {
+        render('');
+        break;
+      }
+      case '=': {
+        getEquals();
+        break;
+      }
+      case '√': {
+        const result = getCounting(field.value).result;
+
+        let returnedValue = '';
+
+        if (result === null) {
+          returnedValue = String(Math.sqrt(Number(field.value)));
+        }
+
+        if (returnedValue === '') {
+          returnedValue = String(Math.sqrt(Number(result)));
+        }
+
+        render(returnedValue, returnedValue);
+        break;
+      }
+      default: {
+        if (
+          !isNaN(Number(key)) ||
+          ['/', '*', '-', '+', '.', '(', ')'].filter((i) => i === key).length > 0
+        ) {
+          fieldChange(field.value + key);
+        }
+      }
+    }
+  }
+
+  const getEquals = () => {
+    const value = getCounting(field.value);
+    render(value.result);
+  }
+
+
+
+  const render = (fieldValue, resultText) => {
+    if (fieldValue !== undefined) {
+      field.value = fieldValue;
+    }
+    if (resultText !== undefined && resultText !== null) {
+      result.innerText = `= ${resultText}`;
+    } else {
+      result.innerText = '';
+    }
+  }
 }
 
-document.querySelector('.ac').onclick = clearAll;
-
-// ввод с клавиатуры:
-// window.addEventListener("keypress", dealWithKeyboard, false);
-// function dealWithKeyboard(event) {
-//     console.log("key: " + event.key);
-//     console.log("a:" + a, "b:" + b, "sign:" + sign);
-
-// };
-
-document.querySelector('.buttons').onclick = (event) => {
-    // нажата не кнопка
-    if (!event.target.classList.contains('btn')) return;
-    // нажата кнопка ac
-    if (event.target.classList.contains('ac')) return;
-
-    out.textContent = '';
-    // получаю нажатую кнопку
-    const key = event.target.textContent;
-
-    // если нажата кнопка 0-9 или .
-    if (digit.includes(key)) {
-        if (b === '' && sign === '') {
-            a += key;
-            // console.log(a, b, sign);
-            console.log("a:" + a, "b:" + b, "sign:" + sign);
-            out.textContent = a;
-        }
-        // если и первое и второе числа заполнены
-        else if (a !== '' && b !== '' && finish) {
-            b = key;
-            finish = false;
-            out.textContent = b;
-        }
-        else {
-            b += key;
-            out.textContent = b;
-        }
-        // console.log(a, b, sign);
-        console.log("a:" + a, "b:" + b, "sign:" + sign);
-        return;
-    };
-
-    // если нажата кнопка + - X /
-    if (action.includes(key)) {
-        sign = key;
-        out.textContent = sign;
-        // console.log(a, b, sign);
-        console.log("a:" + a, "b:" + b, "sign:" + sign);
-        return;
-    }
-
-    // если нажата =
-    if (key === '=') {
-        if (b === '') b = a;
-        switch (sign) {
-            case '+':
-                a = (+a) + (+b);
-                break;
-            case '-':
-                a = a - b;
-                break;
-            case 'X':
-                a = a * b;
-                break;
-            case '/':
-                if (b === '0') {
-                    out.textContent = 'Деление на 0';
-                    a = '';
-                    b = '';
-                    sign = '';
-                    return;
-                }
-                a = a / b;
-                break;
-        }
-        finish = true;
-        // вывести на экран
-        out.textContent = a;
-        // console.log(a, b, sign);
-        console.log("a:" + a, "b:" + b, "sign:" + sign);
-    }
-
-};
