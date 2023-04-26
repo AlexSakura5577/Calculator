@@ -17,7 +17,7 @@ const calc = {
   key: window.addEventListener('keydown', (e) => {
     let key = e.key;
     calc.arrA.push(key);
-    calc.output();
+    calc.output(calc.arrA);
     console.log(calc.arrA);
     return;
   }),
@@ -25,13 +25,18 @@ const calc = {
   key: btn.addEventListener('click', (e) => {
     let key = e.target.textContent;
     calc.arrA.push(key);
-    calc.output();
+    calc.output(calc.arrA);
     console.log(calc.arrA);
     return;
   }),
 
-  output: function output() {
-    out.textContent = calc.arrA.join('');
+  // str1: 
+
+  // str2: 
+
+  output: function output(arr) {
+    strOut = arr.join('');
+    out.textContent = strOut;
   }, // окно вывода
 
 
