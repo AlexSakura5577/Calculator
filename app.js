@@ -71,6 +71,8 @@ calc.message();
 
 
 
+
+
 /*
   clear: function clearAll() { }, // очистить всё
   delete: function deleteKey() { }, // очистка консоли и сброс клавишей delete
