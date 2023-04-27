@@ -15,16 +15,18 @@ const calc = {
   arrA: [], // первое число
   arrB: [], // второе число
 
-  key: function key() {
+  key: function key(cb) {
     let key;
     event1 = window.addEventListener('keydown', (e) => {
       key = e.key;
-      console.log(key);
+      cb(e.key);
+      // console.log(key);
       return key;
     })
     event2 = btn.addEventListener('click', (e) => {
       key = e.target.textContent;
-      console.log(key);
+      cb(e.target.textContent);
+      // console.log(key);
       return key;
     })
     return;
@@ -56,7 +58,7 @@ const calc = {
 
 
   message: function consoleMessage() {
-    calc.key();
+    // calc.key();
     // events = calc.key();
     // console.log(events);
     // console.log(calc.key());
@@ -66,9 +68,12 @@ const calc = {
   } // сообщение
 };
 
+// inputLine = '';
 // calc.key();
-calc.message();
-
+// calc.message();
+calc.key(key => console.log(key))
+// calc.key(key => inputLine = key);
+// console.log(inputLine);
 
 
 
