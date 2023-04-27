@@ -1,4 +1,6 @@
 // Calculator
+
+// ввод
 inputLine = '';
 // цифры и точка
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
@@ -23,6 +25,7 @@ const calc = {
       // console.log(key);
     })
     event2 = btn.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('btn')) return;
       key = e.target.textContent;
       callback(key);
       // console.log(key);
@@ -30,51 +33,20 @@ const calc = {
     return;
   },
 
-  // key: window.addEventListener('keydown', (e) => {
-  //   let key = e.key;
-  //   return;
-  // }),
-
-  // key: btn.addEventListener('click', (e) => {
-  //   let key = e.target.textContent;
-  //   return;
-  // }),
-
   // calc.arrA.push(key);
   // calc.output(calc.arrA);
   // console.log(calc.arrA);
 
   // str1: 
-
   // str2: 
 
   output: function output(arr) {
     strOut = arr.join('');
     out.textContent = strOut;
   }, // окно вывода
-
-
-  message: function consoleMessage() {
-    // calc.key();
-    // events = calc.key();
-    // console.log(events);
-    // console.log(calc.key());
-    // calc.arrA.push(calc.key());
-    // calc.output(calc.arrA);
-    // console.log(calc.arrA);
-  }, // сообщение
-
-
 };
 
-// inputLine = '';
-// console.log('inputLine: ' + inputLine);
-// calc.key();
-// calc.message();
 // calc.key(key => console.log(key)) // key в консоль
-// calc.key(key => inputLine = key);
-// console.log(inputLine);
-// calc.key(key => console.log(key))
 
 // calc.key(key => {
 //   // вот тут пиши дальше код который использует key
@@ -82,12 +54,19 @@ const calc = {
 //   console.log('inputLine: ' + inputLine);
 // })
 
+// функция присваивания значения переменной ввода
 function out2(key) {
   inputLine = key;
   console.log('inputLine: ' + inputLine);
 }
+// вызов 
 // myFunc(out2);
 calc.key(out2);
+
+
+
+
+
 
 
 
