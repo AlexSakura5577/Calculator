@@ -44,6 +44,15 @@ const calc = {
     strOut = arr.join('');
     out.textContent = strOut;
   }, // окно вывода
+
+  sign: function sign(key) {
+    if (action.includes(key)) {
+      let sign = key;
+      inputLine = key;
+      out.textContent = sign;
+      console.log('inputLine: ' + inputLine);
+    }
+  },
 };
 
 // calc.key(key => console.log(key)) // key в консоль
@@ -55,13 +64,24 @@ const calc = {
 // })
 
 // функция присваивания значения переменной ввода
-function out2(key) {
-  inputLine = key;
-  console.log('inputLine: ' + inputLine);
-}
-// вызов 
+// function out2(key) {
+//   inputLine = key;
+//   console.log('inputLine: ' + inputLine);
+// };
+
+// function sign(key) {
+//   if (action.includes(key)) {
+//     let sign = key;
+//     inputLine = key;
+//     out.textContent = sign;
+//     console.log('inputLine: ' + inputLine);
+//   }
+// };
+// вызов
 // myFunc(out2);
-calc.key(out2);
+// calc.key(out2);
+// calc.key(sign);
+calc.key(calc.sign);
 
 
 
