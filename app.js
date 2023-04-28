@@ -1,19 +1,28 @@
 // Calculator
 
 // ввод
-inputLine = '';
+// inputLine = '';
 // цифры и точка
-const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+// const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 // знаки для вычислений
-const action = ['-', '+', '*', '/'];
+// const action = ['-', '+', '*', '/'];
 // экран вывода
-const out = document.querySelector('.calc-screen p');
+// const out = document.querySelector('.calc-screen p');
 // кнопка (селектор)
-const btn = document.querySelector('.buttons')
+// const btn = document.querySelector('.buttons')
 
 // calc
 const calc = {
-
+  // ввод
+  // inputLine: '',
+  // экран вывода
+  out: document.querySelector('.calc-screen p'),
+  // кнопка (селектор)
+  btn: document.querySelector('.buttons'),
+  // цифры и точка
+  digit: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'],
+  // знаки для вычислений
+  action: ['-', '+', '*', '/'],
   arrA: [], // первое число
   arrB: [], // второе число
 
@@ -24,7 +33,7 @@ const calc = {
       callback(key);
       // console.log(key);
     })
-    event2 = btn.addEventListener('click', (e) => {
+    event2 = calc.btn.addEventListener('click', (e) => {
       if (!e.target.classList.contains('btn')) return;
       key = e.target.textContent;
       callback(key);
@@ -40,19 +49,20 @@ const calc = {
   // str1: 
   // str2: 
 
-  output: function output(arr) {
-    strOut = arr.join('');
-    out.textContent = strOut;
-  }, // окно вывода
-
   sign: function sign(key) {
-    if (action.includes(key)) {
+    if (calc.action.includes(key)) {
       let sign = key;
       inputLine = key;
-      out.textContent = sign;
+      calc.out.textContent = sign;
       console.log('inputLine: ' + inputLine);
     }
   },
+
+  output: function output(arr) {
+    strOut = arr.join('');
+    calc.out.textContent = strOut;
+  }, // окно вывода
+
 };
 
 // calc.key(key => console.log(key)) // key в консоль
@@ -64,10 +74,10 @@ const calc = {
 // })
 
 // функция присваивания значения переменной ввода
-// function out2(key) {
-//   inputLine = key;
-//   console.log('inputLine: ' + inputLine);
-// };
+function out2(key) {
+  inputLine = key;
+  console.log('inputLine: ' + inputLine);
+};
 
 // function sign(key) {
 //   if (action.includes(key)) {
