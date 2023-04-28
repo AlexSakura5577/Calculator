@@ -1,20 +1,9 @@
 // Calculator
 
-// ввод
-// inputLine = '';
-// цифры и точка
-// const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-// знаки для вычислений
-// const action = ['-', '+', '*', '/'];
-// экран вывода
-// const out = document.querySelector('.calc-screen p');
-// кнопка (селектор)
-// const btn = document.querySelector('.buttons')
-
 // calc
 const calc = {
   // ввод
-  // inputLine: '',
+  inputLine: '',
   // экран вывода
   out: document.querySelector('.calc-screen p'),
   // кнопка (селектор)
@@ -49,12 +38,18 @@ const calc = {
   // str1: 
   // str2: 
 
+  // функция присваивания значения переменной ввода
+  line: function out2(key) {
+    calc.inputLine = key;
+    console.log('inputLine: ' + calc.inputLine);
+  },
+
   sign: function sign(key) {
     if (calc.action.includes(key)) {
       let sign = key;
-      inputLine = key;
+      calc.inputLine = key;
       calc.out.textContent = sign;
-      console.log('inputLine: ' + inputLine);
+      console.log('inputLine: ' + calc.inputLine);
     }
   },
 
@@ -65,33 +60,14 @@ const calc = {
 
 };
 
-// calc.key(key => console.log(key)) // key в консоль
 
-// calc.key(key => {
-//   // вот тут пиши дальше код который использует key
-//   inputLine = key;
-//   console.log('inputLine: ' + inputLine);
-// })
 
-// функция присваивания значения переменной ввода
-function out2(key) {
-  inputLine = key;
-  console.log('inputLine: ' + inputLine);
-};
-
-// function sign(key) {
-//   if (action.includes(key)) {
-//     let sign = key;
-//     inputLine = key;
-//     out.textContent = sign;
-//     console.log('inputLine: ' + inputLine);
-//   }
-// };
 // вызов
 // myFunc(out2);
 // calc.key(out2);
+calc.key(calc.line);
 // calc.key(sign);
-calc.key(calc.sign);
+// calc.key(calc.sign);
 
 
 
@@ -110,3 +86,21 @@ calc.key(calc.sign);
   calculations: function calculationsEnd() { }, // вычисления
 */
 
+// ввод
+// inputLine = '';
+// цифры и точка
+// const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+// знаки для вычислений
+// const action = ['-', '+', '*', '/'];
+// экран вывода
+// const out = document.querySelector('.calc-screen p');
+// кнопка (селектор)
+// const btn = document.querySelector('.buttons')
+
+// calc.key(key => console.log(key)) // key в консоль
+
+// calc.key(key => {
+//   // вот тут пиши дальше код который использует key
+//   inputLine = key;
+//   console.log('inputLine: ' + inputLine);
+// })
