@@ -20,16 +20,15 @@ const calc = {
     event1 = window.addEventListener('keydown', (e) => {
       key = e.key;
       callback(key);
-      // console.log(key);
     })
     event2 = calc.btn.addEventListener('click', (e) => {
       if (!e.target.classList.contains('btn')) return;
       key = e.target.textContent;
       callback(key);
-      // console.log(key);
     })
     return;
   },
+
 
   // calc.arrA.push(key);
   // calc.output(calc.arrA);
@@ -53,10 +52,17 @@ const calc = {
     }
   },
 
+  // условия ввода
+  termsOfEnter: function termsOfEnter() {
+    calc.arrA.push(calc.inputLine);
+    console.log(calc.arrA);
+  },
+
+  // окно вывода
   output: function output(arr) {
-    strOut = arr.join('');
+    strOut = calc.arrA.join('');
     calc.out.textContent = strOut;
-  }, // окно вывода
+  },
 };
 
 // вызовы
@@ -66,7 +72,8 @@ calc.key(calc.line);
 // calc.key(sign);
 // calc.key(calc.sign);
 
-
+calc.key(calc.termsOfEnter);
+calc.key(calc.output);
 
 
 
@@ -78,8 +85,6 @@ calc.key(calc.line);
   delete: function deleteKey() { }, // очистка консоли и сброс клавишей delete
   backspace: function backspaceKey() { }, // удалить по одной цифре справа налево клавишей backspace
   comma: function commaKey() { }, // запятую в точку ru раскладка
-  mouse: function mouseE() { }, // ввод мышкой
-  keyboard: function keyboardE() { }, // ввод с клавиатуры
   calculations: function calculationsEnd() { }, // вычисления
 */
 
@@ -101,3 +106,8 @@ calc.key(calc.line);
 //   inputLine = key;
 //   console.log('inputLine: ' + inputLine);
 // })
+
+// Я сравнивала event.code, а не само значение event.key.
+// if (e.target.textContent == '888') {
+//   key = 7;
+// }
