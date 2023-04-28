@@ -57,12 +57,9 @@ const calc = {
     strOut = arr.join('');
     calc.out.textContent = strOut;
   }, // окно вывода
-
 };
 
-
-
-// вызов
+// вызовы
 // myFunc(out2);
 // calc.key(out2);
 calc.key(calc.line);
