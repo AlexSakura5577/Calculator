@@ -54,8 +54,12 @@ const calc = {
 
   // условия ввода
   termsOfEnter: function termsOfEnter() {
+
+
+    
     calc.arrA.push(calc.inputLine);
     console.log(calc.arrA);
+    console.log('length: ' + calc.arrA.length);
   },
 
   // окно вывода
