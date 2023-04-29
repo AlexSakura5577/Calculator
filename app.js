@@ -2,7 +2,7 @@
 
 // calc
 const calc = {
-  // ввод
+  // строка ввода
   inputLine: '',
   // знак операции
   sign: '',
@@ -17,6 +17,8 @@ const calc = {
   // числа
   arrA: [], // первое число
   arrB: [], // второе число
+  // строка вывода
+  strOut: '',
 
   key: function myFunc(callback) {
     let key;
@@ -46,37 +48,50 @@ const calc = {
     console.log('inputLine: ' + calc.inputLine); //!
   },
 
+  operation: function operation(key) {
+    if (calc.action.includes(key)) {
+      // let sign = key;
+      calc.sign = key;
+      // calc.out.textContent = calc.sign;
+      calc.strOut = calc.sign;
+      console.log('sign: ' + calc.sign);
+    }
+  },
+
   // условия ввода
   termsOfEnter: function termsOfEnter(key) {
 
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
-      calc.arrA.push(calc.inputLine);
-      console.log(calc.arrA);
-      console.log('length: ' + calc.arrA.length);
+      // if (calc.arrB.length == 0) {
 
-      if (calc.arrA.length == 3) {
-        console.log('! ввели 3 цифр');
+      // }
+
+      // if (calc.arrA.length == 3) {
+      //   console.log('! ввели 4 цифры');
+      //   return;
+      // };
+
+      if (calc.sign == '+') {
+        console.log('! ввели +');
         return;
       };
-    };
-    // return;
-  },
 
-  operation: function operation(key) {
-    if (calc.action.includes(key)) {
-      // let sign = key;
-      calc.sign = key;
-      calc.out.textContent = calc.sign;
-      console.log('sign: ' + calc.sign);
-    }
+      calc.arrA.push(calc.inputLine);
+      console.log(calc.arrA);
+      console.log(calc.arrB);
+      console.log('length: ' + calc.arrA.length);
+      return;
+    };
   },
 
   // окно вывода
   output: function output() {
-    strOut = calc.arrA.join('');
-    calc.out.textContent = strOut;
+    // strOut = calc.arrA.join('');
+    calc.strOut += calc.inputLine;
+    calc.out.textContent = calc.strOut;
+    console.log('strOut: ' + calc.strOut);
   },
 };
 
