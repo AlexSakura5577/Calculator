@@ -4,6 +4,8 @@
 const calc = {
   // ввод
   inputLine: '',
+  // знак операции
+  sign: '',
   // экран вывода
   out: document.querySelector('.calc-screen p'),
   // кнопка (селектор)
@@ -12,6 +14,7 @@ const calc = {
   digit: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'],
   // знаки для вычислений
   action: ['-', '+', '*', '/'],
+  // числа
   arrA: [], // первое число
   arrB: [], // второе число
 
@@ -40,30 +43,38 @@ const calc = {
   // функция присваивания значения переменной ввода
   line: function out2(key) {
     calc.inputLine = key;
-    console.log('inputLine: ' + calc.inputLine);
-  },
-
-  sign: function sign(key) {
-    if (calc.action.includes(key)) {
-      let sign = key;
-      calc.inputLine = key;
-      calc.out.textContent = sign;
-      console.log('inputLine: ' + calc.inputLine);
-    }
+    console.log('inputLine: ' + calc.inputLine); //!
   },
 
   // условия ввода
-  termsOfEnter: function termsOfEnter() {
+  termsOfEnter: function termsOfEnter(key) {
 
+    // если нажата цифра
+    if (calc.digit.includes(key)) {
 
-    
-    calc.arrA.push(calc.inputLine);
-    console.log(calc.arrA);
-    console.log('length: ' + calc.arrA.length);
+      calc.arrA.push(calc.inputLine);
+      console.log(calc.arrA);
+      console.log('length: ' + calc.arrA.length);
+
+      if (calc.arrA.length == 3) {
+        console.log('! ввели 3 цифр');
+        return;
+      };
+    };
+    // return;
+  },
+
+  operation: function operation(key) {
+    if (calc.action.includes(key)) {
+      // let sign = key;
+      calc.sign = key;
+      calc.out.textContent = calc.sign;
+      console.log('sign: ' + calc.sign);
+    }
   },
 
   // окно вывода
-  output: function output(arr) {
+  output: function output() {
     strOut = calc.arrA.join('');
     calc.out.textContent = strOut;
   },
@@ -73,9 +84,7 @@ const calc = {
 // myFunc(out2);
 // calc.key(out2);
 calc.key(calc.line);
-// calc.key(sign);
-// calc.key(calc.sign);
-
+calc.key(calc.operation);
 calc.key(calc.termsOfEnter);
 calc.key(calc.output);
 
