@@ -249,14 +249,19 @@ document.querySelector('.buttons').onclick = (event) => {
   if (event.target.classList.contains('ac')) return;
   console.log("keyMouse: " + key);
 
-  // a = arrA;
   let doubleComma = arrA.filter(item => item === '.').length;
-  // console.log('doubleComma: ' + doubleComma);
   // несколько запятых подряд
   if (b === '' && sign === '' && doubleComma >= 1) {
     // a += key;
 
     console.log('!doubleComma: ' + doubleComma);
+    // получить индекс дубля точки
+    commaIndex = arrA.indexOf('.', 0);
+    console.log('commaIndex: ' + commaIndex);
+    // удалить дубль и присвоить массиву значение
+    arrA = arrA.splice(commaIndex, 1);
+    console.log('очищенный массив:' + arrA);
+
     // arrA.map();
     // return;
   }
