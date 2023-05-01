@@ -249,24 +249,28 @@ document.querySelector('.buttons').onclick = (event) => {
   if (event.target.classList.contains('ac')) return;
   console.log("keyMouse: " + key);
 
+  console.log(arrA);
+  console.log('длина массива: ' + arrA.length);
   let doubleComma = arrA.filter(item => item === '.').length;
   // несколько запятых подряд
-  if (b === '' && sign === '' && doubleComma >= 1) {
-    // a += key;
-
-    console.log('!doubleComma: ' + doubleComma);
+  console.log('кол-во точек: ' + doubleComma);
+  // получить индекс дубля точки
+  let commaIndex = arrA.indexOf('.', 0);
+  console.log('индекс точки: ' + commaIndex);
+  let firstComma = commaIndex;
+  console.log('первая точка: ' + firstComma);
+  // удалить дубль и присвоить массиву значение
+  for (let i = 0; i <= doubleComma - 1; i++) {
     // получить индекс дубля точки
-    commaIndex = arrA.indexOf('.', 0);
-    console.log('commaIndex: ' + commaIndex);
-    // удалить дубль и присвоить массиву значение
-    arrA = arrA.splice(commaIndex, 1);
-    console.log('очищенный массив:' + arrA);
-
-    // arrA.map();
-    // return;
+    let commaIndex = arrA.indexOf('.', 0);
+    arrA.splice(commaIndex, 1);
   }
-  let len = arrA.length;
-  console.log('кол-во элементов: ' + len);
+  arrA.splice(firstComma, 0, '.');
+  console.log(arrA);
+  console.log('длина массива: ' + arrA.length);
+  
+  a = arrA.join('');
+  out.textContent = a;
 
   // если нажата цифра
   if (digit.includes(key)) {
