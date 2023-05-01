@@ -17,6 +17,27 @@ const action = ['-', '+', '*', '/'];
 // экран
 const out = document.querySelector('.calc-screen p');
 
+const styles = window.getComputedStyle(out);
+console.log('fontSize x4: ' + styles.fontSize);
+
+// if (arrA.length > 8) {
+//   out.style.fontSize = '3rem';
+//   console.log('fontSize > 8: ' + styles.fontSize);
+// }
+// if (arrA.length > 11) {
+//   out.style.fontSize = '2rem';
+//   console.log('fontSize > 11: ' + styles.fontSize);
+// }
+// if (arrA.length > 16) {
+//   out.style.fontSize = '1rem';
+//   console.log('fontSize > 16: ' + styles.fontSize);
+// }
+// if (arrA.length > 32) {
+//   console.log('fontSize > 32: Error');
+// }
+
+
+
 // очистить всё
 function clearAll() {
   a = ''; // первое число
@@ -99,6 +120,25 @@ function numPad(event) {
   // arrA = a.split('');
   let len = arrA.length;
   console.log('кол-во элементов: ' + len);
+
+  if (arrA.length > 7) {
+    out.style.fontSize = '3rem';
+    console.log('fontSize > 8: ' + styles.fontSize);
+  }
+  if (arrA.length > 10) {
+    out.style.fontSize = '2rem';
+    console.log('fontSize > 11: ' + styles.fontSize);
+  }
+  if (arrA.length > 15) {
+    out.style.fontSize = '1rem';
+    console.log('fontSize > 16: ' + styles.fontSize);
+  }
+  if (arrA.length > 31) {
+    console.log('fontSize > 32: Error');
+    out.style.fontSize = '4rem';
+    out.textContent = 'Error';
+    return;
+  }
 
   if (digit.includes(keyNum)) {
     if (b === '' && sign === '') {
@@ -249,6 +289,25 @@ document.querySelector('.buttons').onclick = (event) => {
   if (event.target.classList.contains('ac')) return;
   console.log("keyMouse: " + key);
 
+  if (arrA.length > 8) {
+    out.style.fontSize = '3rem';
+    console.log('fontSize > 8: ' + styles.fontSize);
+  }
+  if (arrA.length > 11) {
+    out.style.fontSize = '2rem';
+    console.log('fontSize > 11: ' + styles.fontSize);
+  }
+  if (arrA.length > 16) {
+    out.style.fontSize = '1rem';
+    console.log('fontSize > 16: ' + styles.fontSize);
+  }
+  if (arrA.length > 32) {
+    console.log('fontSize > 32: Error');
+    out.style.fontSize = '4rem';
+    out.textContent = 'Error';
+    return;
+  }
+
   console.log(arrA);
   console.log('длина массива: ' + arrA.length);
   let doubleComma = arrA.filter(item => item === '.').length;
@@ -268,7 +327,7 @@ document.querySelector('.buttons').onclick = (event) => {
   arrA.splice(firstComma, 0, '.');
   console.log(arrA);
   console.log('длина массива: ' + arrA.length);
-  
+
   a = arrA.join('');
   out.textContent = a;
 
@@ -436,8 +495,6 @@ document.querySelector('.buttons').onclick = (event) => {
   console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
   return;
 };
-
-
 
 
 
