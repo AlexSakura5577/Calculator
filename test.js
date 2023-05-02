@@ -4,39 +4,37 @@
 // let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 // let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 // let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5, 6, 7, 8,5, 6, 7, 8, 9, 2, 3, 4,5, 6, 7, 8, 9, 2, 3]
-let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5, 6, 7, 8,5, 6, 7, 8, 9, 2, 3, 4,5, 6, 7, 8, 9, 2, 3, 3, 3]
-console.log('длина массива: ' + arr.length);
+// let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5, 6, 7, 8,5, 6, 7, 8, 9, 2, 3, 4,5, 6, 7, 8, 9, 2, 3, 3, 3]
+// console.log('длина массива: ' + arr.length);
 
 // изменение окна вывода
-let outSize = document.querySelector('.calc-screen p');
+// let outSize = document.querySelector('.calc-screen p');
 
-const styles = window.getComputedStyle(outSize);
-console.log('fontSize x4: ' + styles.fontSize);
+// const styles = window.getComputedStyle(outSize);
+// console.log('fontSize x4: ' + styles.fontSize);
 
-if (arr.length > 8) {
-    outSize.style.fontSize = '3rem';
-    console.log('fontSize > 8: ' + styles.fontSize);
-}
-if (arr.length > 11) {
-    outSize.style.fontSize = '2rem';
-    console.log('fontSize > 11: ' + styles.fontSize);
-}
-if (arr.length > 16) {
-    outSize.style.fontSize = '1rem';
-    console.log('fontSize > 16: ' + styles.fontSize);
-}
-if (arr.length > 32) {
-    console.log('fontSize > 32: Error');
-    out.style.fontSize = '4rem';
-    out.textContent = 'Error';
-    return;
-}
+// if (arr.length > 8) {
+//     outSize.style.fontSize = '3rem';
+//     console.log('fontSize > 8: ' + styles.fontSize);
+// }
+// if (arr.length > 11) {
+//     outSize.style.fontSize = '2rem';
+//     console.log('fontSize > 11: ' + styles.fontSize);
+// }
+// if (arr.length > 16) {
+//     outSize.style.fontSize = '1rem';
+//     console.log('fontSize > 16: ' + styles.fontSize);
+// }
+// if (arr.length > 32) {
+//     console.log('fontSize > 32: Error');
+//     out.style.fontSize = '4rem';
+//     out.textContent = 'Error';
+//     return;
+// }
 
 // экран
-const out = document.querySelector('.calc-screen p');
-out.textContent = arr.join('')
-
-
+// const out = document.querySelector('.calc-screen p');
+// out.textContent = arr.join('')
 
 // удалить дубли точки
 // let arr = [0, '.', '.', '.', '.', '.', '.', '.', 3]
