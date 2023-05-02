@@ -94,4 +94,12 @@ out.textContent = arr.join('')
 // res.splice(firstIndex, 0, '.')
 // console.log(res)
 
+// альтернативный код 3:
+// function getStr(arr) {
+//     let firstIndex = arr.findIndex(el => el === '.');
+//     let res = arr.filter((el, i) => el !== '.' || i === firstIndex);
+//     return res;
+// }
+
+// getStr(arr);
 
