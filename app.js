@@ -1,3 +1,5 @@
+// доработка №4
+
 let a = ''; // первое число
 let arrA = [];
 console.log(arrA);
