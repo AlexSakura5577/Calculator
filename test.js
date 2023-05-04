@@ -1,4 +1,14 @@
 
+
+
+// вывод текущей даты
+// const getToday = () => {
+//     const date = new Date();
+
+//     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+// };
+// console.log(getToday());
+
 // переполнение экрана
 // let arr = [0, 1, 2, 3, 4, 5, 6, 7,]
 // let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

@@ -9,9 +9,6 @@ let arrB = [];
 arrB = b.split(''); // массив переменной b
 let sign = ''; // знак операции
 let finish = false; // 
-// console.log('finish: ' + finish);
-// let keyNum;
-// let doubleComma;
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '*', '/'];
@@ -21,24 +18,6 @@ const out = document.querySelector('.calc-screen p');
 
 const styles = window.getComputedStyle(out);
 console.log('fontSize x4: ' + styles.fontSize);
-
-// if (arrA.length > 8) {
-//   out.style.fontSize = '3rem';
-//   console.log('fontSize > 8: ' + styles.fontSize);
-// }
-// if (arrA.length > 11) {
-//   out.style.fontSize = '2rem';
-//   console.log('fontSize > 11: ' + styles.fontSize);
-// }
-// if (arrA.length > 16) {
-//   out.style.fontSize = '1rem';
-//   console.log('fontSize > 16: ' + styles.fontSize);
-// }
-// if (arrA.length > 32) {
-//   console.log('fontSize > 32: Error');
-// }
-
-
 
 // очистить всё
 function clearAll() {
@@ -77,10 +56,6 @@ window.addEventListener('keydown', function (event) {
   }
 });
 
-// несколько запятых подряд
-// doubleComma = arrA.filter(item => item === '.').length;
-
-
 // удалить по одной цифре справа налево клавишей backspace:
 window.addEventListener('keydown', function (event) {
   const key = event.key;
@@ -113,13 +88,7 @@ window.addEventListener('keydown', function (event) {
 window.addEventListener("keydown", numPad, false);
 function numPad(event) {
   const keyNum = event.key;
-  // const keyCode = event.code;
-  // console.log("keyNum: " + keyNum);
-  // console.log("keyCode: " + keyCode);
 
-  // arrA = a.split('');
-  // arrA.push(a);
-  // arrA = a.split('');
   let len = arrA.length;
   console.log('кол-во элементов: ' + len);
 
@@ -153,8 +122,6 @@ function numPad(event) {
       arrA = a.split('');
       console.log(arrA);
       console.log('массив А: ' + arrA);
-      // console.log('5-й элемент: ' + arrA[4]);
-      // console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
 
       // !! точка может быть в любом месте ввода, а не только на 2-м
       if (a !== '' && arrA.includes('.')) {
@@ -172,12 +139,6 @@ function numPad(event) {
     }
     // если и первое и второе числа заполнены и вычисления произведены
     else if (a !== '' && b !== '' && finish) {
-      // b = keyNum;
-      // arrB = b.split('');
-      // finish = false;
-      // console.log('finish: ' + finish);
-      // out.textContent = b;
-
       a = keyNum;
       arrA = a.split('');
       b = ''; // второе число
@@ -342,8 +303,6 @@ document.querySelector('.buttons').onclick = (event) => {
       arrA = a.split('');
       console.log(arrA);
       console.log('массив А: ' + arrA);
-      // console.log('5-й элемент: ' + arrA[4]);
-
       // !! точка может быть в любом месте ввода, а не только на 2-м
       if (a !== '' && arrA.includes('.')) {
         console.log('ввод дробного числа');
@@ -361,12 +320,6 @@ document.querySelector('.buttons').onclick = (event) => {
     }
     // если и первое и второе числа заполнены и вычисления произведены
     else if (a !== '' && b !== '' && finish) {
-      // b = key;
-      // arrB = b.split('');
-      // finish = false;
-      // console.log('finish: ' + finish);
-      // out.textContent = b;
-
       a = key;
       arrA = a.split('');
       b = ''; // второе число
@@ -424,15 +377,9 @@ document.querySelector('.buttons').onclick = (event) => {
         break;
     }
 
-    // arrA = a.split('');
-    // console.log(arrA);
-
     finish = true;
     console.log('finish: ' + finish);
     out.textContent = a;
-    // arrA = a.split('');
-
-    // arrA = a;
 
     console.log('arrA: ' + arrA);
     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
@@ -497,38 +444,4 @@ document.querySelector('.buttons').onclick = (event) => {
   console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
   return;
 };
-
-
-
-
-
-
-
-
-
-
-// СОБЫТИЯ КЛАВИАТУРЫ:
-// window.addEventListener("keydown", dealWithKeyboard, false);
-// window.addEventListener("keypress", dealWithKeyboard, false);
-// window.addEventListener("keyup", dealWithKeyboard, false);
-
-// function dealWithKeyboard(event) {
-// console.log("key: " + event.key);
-//     console.log("code: " + event.code);
-//     console.log("keyCode: " + event.keyCode);
-//     console.log("charCode: " + event.charCode);
-//     console.log("ctrlKey: " + event.ctrlKey);
-//     console.log("altKey: " + event.altKey);
-//     console.log("shiftKey: " + event.shiftKey);
-//     console.log("metaKey: " + event.metaKey);
-//     console.log("type: " + event.type);
-//     console.log(event);
-// };
-
-
-
-
-
-
-
 
