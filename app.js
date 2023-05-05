@@ -88,8 +88,11 @@ const calc = {
 
   // окно вывода
   output: function output() {
+
+    // добавить разветвления по условиям
+
     // strOut = calc.arrA.join('');
-    calc.strOut += calc.inputLine;
+    calc.strOut == calc.inputLine;
     calc.out.textContent = calc.strOut;
     console.log('strOut: ' + calc.strOut);
   },
