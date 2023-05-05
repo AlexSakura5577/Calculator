@@ -5,7 +5,7 @@ const calc = {
   // строка ввода
   inputLine: '',
   // знак операции
-  sign: '',
+  sign: [],
   // экран вывода
   out: document.querySelector('.calc-screen p'),
   // кнопка (селектор)
@@ -17,6 +17,8 @@ const calc = {
   // числа
   arrA: [], // первое число
   arrB: [], // второе число
+  result: [], // результат
+  finish: false, // 
   // строка вывода
   strOut: '',
 
@@ -50,12 +52,24 @@ const calc = {
 
   operation: function operation(key) {
     if (calc.action.includes(key)) {
-      // let sign = key;
-      calc.sign = key;
-      // calc.out.textContent = calc.sign;
+      calc.sign.push(key);
       calc.strOut = calc.sign;
-      console.log('sign: ' + calc.sign);
-    }
+      console.log(calc.sign);
+
+      // просто для наглядности (удалить потом)
+      if (calc.sign == '+') {
+        console.log('знак операции +');
+      };
+      if (calc.sign == '-') {
+        console.log('знак операции -');
+      };
+      if (calc.sign == '*') {
+        console.log('знак операции *');
+      };
+      if (calc.sign == '/') {
+        console.log('знак операции /');
+      };
+    };
   },
 
   // условия ввода
@@ -63,6 +77,12 @@ const calc = {
 
     // если нажата цифра
     if (calc.digit.includes(key)) {
+
+      if (calc.sign.length > 0) {
+        console.log('в знаке что-то есть!');
+        calc.arrB.push(calc.inputLine);
+        console.log('length B: ' + calc.arrB.length);
+      }
 
       // if (calc.arrB.length == 0) {
 
@@ -72,16 +92,14 @@ const calc = {
       //   console.log('! ввели 4 цифры');
       //   return;
       // };
+      if (calc.sign.length <= 0) {
+        calc.arrA.push(calc.inputLine);
+        console.log('length A: ' + calc.arrA.length);
+      }
 
-      if (calc.sign == '+') {
-        console.log('! ввели +');
-        return;
-      };
-
-      calc.arrA.push(calc.inputLine);
       console.log(calc.arrA);
       console.log(calc.arrB);
-      console.log('length: ' + calc.arrA.length);
+
       return;
     };
   },
@@ -92,7 +110,7 @@ const calc = {
     // добавить разветвления по условиям
 
     // strOut = calc.arrA.join('');
-    calc.strOut == calc.inputLine;
+    calc.strOut == calc.result.join('');
     calc.out.textContent = calc.strOut;
     console.log('strOut: ' + calc.strOut);
   },
