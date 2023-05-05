@@ -25,11 +25,11 @@ function clearAll() {
   b = ''; // второе число
   sign = ''; // знак операции
   finish = false; //
-  console.log('finish: ' + finish);
   out.textContent = 0;
   arrA = [];
   arrB = [];
   console.clear();
+  console.log('finish: ' + finish);
 }
 // нажата ac
 document.querySelector('.ac').onclick = clearAll;
@@ -110,6 +110,29 @@ function numPad(event) {
     out.textContent = 'Error';
     return;
   }
+
+  console.log(arrA);
+  console.log('длина массива: ' + arrA.length);
+  let doubleComma = arrA.filter(item => item === '.').length;
+  // несколько запятых подряд
+  console.log('кол-во точек: ' + doubleComma);
+  // получить индекс дубля точки
+  let commaIndex = arrA.indexOf('.', 0);
+  console.log('индекс точки: ' + commaIndex);
+  let firstComma = commaIndex;
+  console.log('первая точка: ' + firstComma);
+  // удалить дубль и присвоить массиву значение
+  for (let i = 0; i <= doubleComma - 1; i++) {
+    // получить индекс дубля точки
+    let commaIndex = arrA.indexOf('.', 0);
+    arrA.splice(commaIndex, 1);
+  }
+  arrA.splice(firstComma, 0, '.');
+  console.log(arrA);
+  console.log('длина массива: ' + arrA.length);
+
+  a = arrA.join('');
+  out.textContent = a;
 
   if (digit.includes(keyNum)) {
     if (b === '' && sign === '') {
@@ -241,7 +264,6 @@ function numPad(event) {
     out.textContent = a;
     return;
   };
-  // console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
   return;
 };
 
@@ -383,14 +405,6 @@ document.querySelector('.buttons').onclick = (event) => {
 
     console.log('arrA: ' + arrA);
     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
-
-    // if (finish === true) {
-    //     a = out.textContent;
-    //     arrA = a.split('');
-    //     console.log(arrA);
-    //     return;
-    // }
-
     return;
   };
   // если нажата +/- (смена знака)
