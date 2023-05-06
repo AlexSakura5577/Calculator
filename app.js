@@ -47,12 +47,12 @@ const calc = {
   // функция присваивания значения переменной ввода
   line: function out2(key) {
     calc.inputLine = key;
-    console.log('inputLine: ' + calc.inputLine); //!
+    console.log('key: ' + calc.inputLine); //!
   },
 
   operation: function operation(key) {
     if (calc.action.includes(key)) {
-      calc.sign.push(key);
+      calc.sign[0] = key;
       calc.strOut = calc.sign;
       console.log(calc.sign);
 
@@ -78,10 +78,35 @@ const calc = {
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
+      // ввод первого числа
+      if (calc.arrB.length == 0 &&
+        calc.sign.length == 0) {
+        calc.arrA.push(calc.inputLine);
+        console.log('кол-во цифр числа A: ' + calc.arrA.length);
+        // точка
+        if (calc.arrA.length > 0 &&
+          calc.arrA.includes('.')) {
+          console.log('ввод дробного числа');
+        };
+      };
+
+      // ввод знака
       if (calc.sign.length > 0) {
         console.log('в знаке что-то есть!');
-        calc.arrB.push(calc.inputLine);
-        console.log('length B: ' + calc.arrB.length);
+      }
+
+      // ввод второго числа
+      if (calc.arrB.length == 0 &&
+        calc.sign.length == 0) {
+
+
+        // calc.arrB.push(calc.inputLine);
+        // console.log('кол-во цифр числа B: ' + calc.arrB.length);
+
+        if (calc.arrB.length > 0 &&
+          calc.arrB.includes('.')) {
+          console.log('ввод дробного числа');
+        };
       }
 
       // if (calc.arrB.length == 0) {
@@ -92,12 +117,10 @@ const calc = {
       //   console.log('! ввели 4 цифры');
       //   return;
       // };
-      if (calc.sign.length <= 0) {
-        calc.arrA.push(calc.inputLine);
-        console.log('length A: ' + calc.arrA.length);
-      }
+
 
       console.log(calc.arrA);
+      console.log(calc.sign);
       console.log(calc.arrB);
 
       return;

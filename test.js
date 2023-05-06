@@ -1,15 +1,24 @@
 
 
 // очистить всё
-function clearAll() {
-    sign = ''; // знак операции
-    finish = false; //
-    out.textContent = 0;
-    arrA = [];
-    arrB = [];
-    console.clear();
-    console.log('finish: ' + finish);
-}
+// function clearAll() {
+//     sign = ''; // знак операции
+//     finish = false; //
+//     out.textContent = 0;
+//     arrA = [];
+//     arrB = [];
+//     console.clear();
+//     console.log('finish: ' + finish);
+// }
+
+// набор нескольких нулей
+// if (a === '00' && arrA[1] !== '.') {
+//     // a = 0;
+//     clearAll();
+//     console.log('набор нескольких нулей');
+//     // out.textContent = 0;
+//     return;
+// };
 
 // очистка консоли и сброс клавишей delete:
 // window.addEventListener('keydown', function (event) {
