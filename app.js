@@ -88,30 +88,29 @@ const calc = {
           calc.arrA.includes('.')) {
           console.log('ввод дробного числа');
         };
+
+        calc.strOut = calc.arrA.join('');
       };
 
       // ввод знака
-      if (calc.sign.length > 0) {
-        console.log('в знаке что-то есть!');
-      }
+      // if (calc.sign.length > 0) {
+      //   console.log('в знаке что-то есть!');
+      // }
 
       // ввод второго числа
-      if (calc.arrB.length == 0 &&
-        calc.sign.length == 0) {
-
-
-        // calc.arrB.push(calc.inputLine);
-        // console.log('кол-во цифр числа B: ' + calc.arrB.length);
+      if (calc.sign.length > 0) {
+        calc.arrB.push(calc.inputLine);
+        console.log('кол-во цифр числа B: ' + calc.arrB.length);
 
         if (calc.arrB.length > 0 &&
           calc.arrB.includes('.')) {
           console.log('ввод дробного числа');
         };
-      }
 
-      // if (calc.arrB.length == 0) {
+        calc.strOut = calc.arrB.join('');
+      };
 
-      // }
+
 
       // if (calc.arrA.length == 3) {
       //   console.log('! ввели 4 цифры');
@@ -120,7 +119,9 @@ const calc = {
 
 
       console.log(calc.arrA);
-      console.log(calc.sign);
+      //
+      if (calc.sign.length > 0) { console.log(calc.sign); }
+      // 
       console.log(calc.arrB);
 
       return;
@@ -133,7 +134,7 @@ const calc = {
     // добавить разветвления по условиям
 
     // strOut = calc.arrA.join('');
-    calc.strOut == calc.result.join('');
+    // calc.strOut == calc.result.join('');
     calc.out.textContent = calc.strOut;
     console.log('strOut: ' + calc.strOut);
   },
