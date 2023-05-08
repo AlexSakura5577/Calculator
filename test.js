@@ -1,4 +1,16 @@
 
+// let num = 48621;
+// let array = ('' + num).split('').map(function(digit){
+//   return +digit;
+// });
+// console.log(array);
+// [4, 8, 6, 2, 1]
+
+// let arr1 = [2]
+// let arr2 = [2]
+
+// console.log(2 + 2);
+// console.log(+arr1 + +arr2);
 
 // очистить всё
 // function clearAll() {

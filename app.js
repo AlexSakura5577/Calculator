@@ -36,14 +36,6 @@ const calc = {
     return;
   },
 
-
-  // calc.arrA.push(key);
-  // calc.output(calc.arrA);
-  // console.log(calc.arrA);
-
-  // str1: 
-  // str2: 
-
   // функция присваивания значения переменной ввода
   line: function out2(key) {
     calc.inputLine = key;
@@ -128,10 +120,79 @@ const calc = {
     };
   },
 
+  // вычисления
+  calculations: function calculations(key) {
+
+    if (key === '=' || key === 'Enter') {
+      if (calc.arrB.length == 0) calc.arrB = calc.arrA;
+
+      // console.log(calc.sign);
+
+      switch (calc.sign[0]) {
+        case '+':
+          calc.result = (+calc.arrA) + (+calc.arrB);
+          calc.arrA = calc.result;
+          // a = (+a) + (+b);
+          // arrA = a;
+          console.log(`сложение: ${calc.sign[0]}`);
+          console.log(`результат: ${calc.result}`);
+          break;
+        case '-':
+          calc.result = (+calc.arrA) - (+calc.arrB);
+          // a = (+a) - (+b);
+          // arrA = a;
+          console.log(`вычитание: ${calc.sign[0]}`);
+          console.log(`результат: ${calc.result}`);
+          break;
+        case '*':
+          calc.result = (+calc.arrA) * (+calc.arrB);
+          // a = (+a) * (+b);
+          // arrA = a;
+          console.log(`умножение: ${calc.sign[0]}`);
+          console.log(`результат: ${calc.result}`);
+          break;
+        case '/':
+          if (calc.arrB[0] == 0) {
+            calc.strOut = 'Деление на 0';
+            console.log('Деление на 0');
+            // a = '';
+            // b = '';
+            // sign = '';
+            return;
+          }
+          calc.result = (+calc.arrA) / (+calc.arrB);
+          // a = (+a) / (+b);
+          // calc.arrA = a;
+          console.log(`деление: ${calc.sign[0]}`);
+          console.log(`результат: ${calc.result}`);
+          break;
+      }
+      calc.finish = true;
+      console.log(`finish: ${calc.finish}`);
+      console.log(calc.arrA);
+    };
+    return;
+  },
+
   // окно вывода
   output: function output() {
 
     // добавить разветвления по условиям
+    if (calc.finish == true) {
+      calc.strOut = calc.result;
+
+      // let num = 48621;
+      let array = ('' + calc.result).split('').map(function (digit) {
+        return digit;
+      });
+      console.log(array);
+
+      let array2 = ('' + calc.arrA).split('').map(function (digit) {
+        return digit;
+      });
+      console.log(array2);
+
+    }
 
     // strOut = calc.arrA.join('');
     // calc.strOut == calc.result.join('');
@@ -146,6 +207,7 @@ const calc = {
 calc.key(calc.line);
 calc.key(calc.operation);
 calc.key(calc.termsOfEnter);
+calc.key(calc.calculations);
 calc.key(calc.output);
 
 
@@ -158,7 +220,6 @@ calc.key(calc.output);
   delete: function deleteKey() { }, // очистка консоли и сброс клавишей delete
   backspace: function backspaceKey() { }, // удалить по одной цифре справа налево клавишей backspace
   comma: function commaKey() { }, // запятую в точку ru раскладка
-  calculations: function calculationsEnd() { }, // вычисления
 */
 
 // ввод
