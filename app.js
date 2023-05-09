@@ -17,7 +17,7 @@ const calc = {
   // числа
   arrA: [], // первое число
   arrB: [], // второе число
-  // result: [], // результат
+  result: [], // результат
   finish: false, // 
   // строка вывода
   strOut: '',
@@ -116,9 +116,9 @@ const calc = {
         // return;
       };
 
-      console.log(`arrA: ${calc.arrA.join('')}`);
-      if (calc.sign.length > 0) { console.log(`sign: ${calc.sign}`); }
-      console.log(`arrB: ${calc.arrB.join('')}`);
+      // console.log(`arrA: ${calc.arrA.join('')}`);
+      // if (calc.sign.length > 0) { console.log(`sign: ${calc.sign}`); }
+      // console.log(`arrB: ${calc.arrB.join('')}`);
       return;
     };
   },
@@ -130,25 +130,27 @@ const calc = {
       if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
 
       // if (calc.finish == true) { calc.finish = false }
+      let a = calc.arrA.join('');
+      let b = calc.arrB.join('');
 
       switch (calc.sign[0]) {
         case '+':
-          calc.arrA = (+calc.arrA.join('')) +
-            (+calc.arrB.join(''));
+          let plus = (+a) + (+b);
+          calc.result = Array.from(String(plus));
+          calc.arrA = calc.result;
           console.log(`сложение: ${calc.sign[0]}`);
-          // calc.arrA = calc.arrA.toString(10).split('').map(int => parseInt(int, 10))
           break;
         case '-':
-          calc.arrA = (+calc.arrA.join('')) -
-            (+calc.arrB.join(''));
+          let minus = (+a) - (+b);
+          calc.result = Array.from(String(minus));
+          calc.arrA = calc.result;
           console.log(`вычитание: ${calc.sign[0]}`);
-          // calc.arrA = calc.arrA.toString(10).split('').map(int => parseInt(int, 10))
           break;
         case '*':
-          calc.arrA = (+calc.arrA.join('')) *
-            (+calc.arrB.join(''));
+          let multiply = (+a) * (+b);
+          calc.result = Array.from(String(multiply));
+          calc.arrA = calc.result;
           console.log(`умножение: ${calc.sign[0]}`);
-          // calc.arrA = calc.arrA.toString(10).split('').map(int => parseInt(int, 10))
           break;
         case '/':
           if (calc.arrB[0] == 0) {
@@ -159,19 +161,21 @@ const calc = {
             calc.sign = [];
             return;
           }
-          calc.arrA = (+calc.arrA.join('')) /
-            (+calc.arrB.join(''));
+          let divide = (+a) / (+b);
+          calc.result = Array.from(String(divide));
+          calc.arrA = calc.result;
           console.log(`деление: ${calc.sign[0]}`);
-          // calc.arrA = calc.arrA.toString(10).split('').map(int => parseInt(int, 10))
           break;
-      }
+      };
+      // console.log(calc.result);
 
       // console.log(typeof (calc.arrA.toString(10).split('').map(int => parseInt(int, 10))));
       calc.finish = true;
-      console.log(`finish: ${calc.finish}`);
-      calc.strOut = calc.arrA;
+      // console.log(`finish: ${calc.finish}`);
+      calc.strOut = calc.arrA.join('');
       // calc.strOut = calc.arrA.join('');
-      console.log(`результат: ${calc.arrA.join('')}`);
+      // console.log(`результат: ${calc.arrA}`);
+      // console.log(`результат: ${calc.strOut}`);
       // calc.arrB = [];
       // calc.sign = [];
       return;
@@ -205,12 +209,25 @@ const calc = {
     // }
 
     calc.out.textContent = calc.strOut;
-    console.log('strOut: ' + calc.strOut);
     // calc.finish = false;
     // console.log(`finish: ${calc.finish}`);
     return;
   },
+
+  log: function log() {
+    console.log(calc.arrA);
+    console.log(calc.sign);
+    console.log(calc.arrB);
+    console.log('strOut: ' + calc.strOut);
+    if (calc.finish == true) {
+      console.log(`результат: ${calc.strOut}`);
+    };
+    console.log(`finish: ${calc.finish}`);
+  }
 };
+
+
+
 
 // вызовы
 // myFunc(out2);
@@ -221,6 +238,7 @@ calc.key(calc.operation);
 calc.key(calc.termsOfEnter);
 calc.key(calc.calculations);
 calc.key(calc.output);
+calc.key(calc.log);
 // }
 
 

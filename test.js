@@ -1,4 +1,46 @@
 
+
+
+// switch (calc.sign[0]) {
+//     case '+':
+//       let plus = (+a) + (+b);
+//       calc.result = Array.from(String(plus));
+//       console.log(calc.result);
+//       calc.arrA = calc.result;
+//       console.log(calc.arrA);
+//       // calc.arrA = (+calc.arrA.join('')) +
+//       //   (+calc.arrB.join(''));
+//       console.log(`сложение: ${calc.sign[0]}`);
+//       // calc.arrA = calc.arrA.toString(10).split('').map(int => parseInt(int, 10))
+//       break;
+//     case '-':
+//       calc.arrA = (+calc.arrA.join('')) -
+//         (+calc.arrB.join(''));
+//       console.log(`вычитание: ${calc.sign[0]}`);
+//       // calc.arrA = calc.arrA.toString(10).split('').map(int => parseInt(int, 10))
+//       break;
+//     case '*':
+//       calc.arrA = (+calc.arrA.join('')) *
+//         (+calc.arrB.join(''));
+//       console.log(`умножение: ${calc.sign[0]}`);
+//       // calc.arrA = calc.arrA.toString(10).split('').map(int => parseInt(int, 10))
+//       break;
+//     case '/':
+//       if (calc.arrB[0] == 0) {
+//         calc.strOut = 'Деление на 0';
+//         console.log('Деление на 0');
+//         calc.arrA = [];
+//         calc.arrB = [];
+//         calc.sign = [];
+//         return;
+//       }
+//       calc.arrA = (+calc.arrA.join('')) /
+//         (+calc.arrB.join(''));
+//       console.log(`деление: ${calc.sign[0]}`);
+//       // calc.arrA = calc.arrA.toString(10).split('').map(int => parseInt(int, 10))
+//       break;
+//   }
+
 // let num = 23456;
 // let numArr = num.toString(10).split('').map(int => parseInt(int, 10));
 // console.log(numArr);
