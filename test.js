@@ -1,4 +1,8 @@
 
+// let num = 23456;
+// let numArr = num.toString(10).split('').map(int => parseInt(int, 10));
+// console.log(numArr);
+
 // let num = 48621;
 // let array = ('' + num).split('').map(function(digit){
 //   return +digit;
