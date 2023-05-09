@@ -132,6 +132,7 @@ const calc = {
         case '+':
           calc.result = (+calc.arrA) + (+calc.arrB);
           calc.arrA = calc.result;
+          // Error - NaN
           // a = (+a) + (+b);
           // arrA = a;
           console.log(`сложение: ${calc.sign[0]}`);
