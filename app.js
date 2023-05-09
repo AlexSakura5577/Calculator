@@ -22,6 +22,7 @@ const calc = {
   // строка вывода
   strOut: '',
 
+  // клавиша
   key: function myFunc(callback) {
     let key;
     event1 = window.addEventListener('keydown', (e) => {
@@ -40,13 +41,7 @@ const calc = {
   line: function out2(key) {
     calc.inputLine = key;
     console.log('key: ' + calc.inputLine); //!
-  },
-
-  operation: function operation(key) {
-    if (calc.action.includes(key)) {
-      calc.sign[0] = key;
-      calc.strOut = calc.sign;
-    };
+    return;
   },
 
   // условия ввода
@@ -57,7 +52,11 @@ const calc = {
 
       // ввод первого числа
       if (calc.arrB.length == 0 &&
-        calc.sign.length == 0) {
+        calc.sign.length == 0 &&
+        calc.finish == false) {
+
+        console.log('ввод первого числа');
+
         calc.arrA.push(calc.inputLine);
         // точка
         if (calc.arrA.length > 0 &&
@@ -71,7 +70,14 @@ const calc = {
       if (calc.arrA.length > 0 &&
         calc.arrB.length > 0 &&
         calc.finish == true) {
+
+        console.log('первое и второе числа заполнены');
+
         // calc.finish = false;
+        // calc.arrA = [];
+        // calc.arrA = calc.inputLine;
+        // console.log(typeof (calc.inputLine));
+        // calc.arrA = calc.inputLine.split('');
         calc.arrA.push(calc.inputLine);
         // calc.arrB.push(calc.inputLine);
         // calc.arrA = calc.inputLine;
@@ -86,7 +92,11 @@ const calc = {
       // ввод второго числа
       if (calc.arrA.length > 0 &&
         calc.sign.length > 0 &&
-        calc.finish == false) {
+        calc.finish === false) {
+
+        console.log('ввод второго числа');
+
+        // calc.arrB = [];
         calc.arrB.push(calc.inputLine);
         console.log('кол-во цифр числа B: ' +
           calc.arrB.length);
@@ -96,7 +106,29 @@ const calc = {
         };
         calc.strOut = calc.arrB.join('');
       };
+      return;
+    };
+    return;
+  },
 
+  // операции
+  operation: function operation(key) {
+
+    // if (calc.action.includes(key) &&
+    //   calc.arrB.length > 0 &&
+    //   calc.arrA.length > 0 &&
+    //   calc.sign > 0) {
+    //   calc.finish = false;
+    //   console.log('есть!');
+    //   return;
+    // }
+
+    if (calc.action.includes(key)) {
+
+      console.log(`ввод знака`);
+
+      calc.sign[0] = key;
+      calc.strOut = calc.sign;
       return;
     };
   },
@@ -108,8 +140,11 @@ const calc = {
 
     if (key === '=' || key === 'Enter') {
 
+      console.log('вычисления');
+
       if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
-      if (calc.finish == true) { calc.arrB = calc.arrA }
+      if (calc.finish == true) { calc.arrB = calc.arrA };
+      // if (calc.sign > 0) {calc.finish = false};
 
       let a = calc.arrA.join('');
       let b = calc.arrB.join('');
@@ -149,19 +184,21 @@ const calc = {
           break;
       };
       calc.finish = true;
-      calc.arrB = [];
+      // calc.arrB = [];
       calc.strOut = calc.arrA.join('');
       return;
     };
+    return;
   },
 
   // окно вывода
   output: function output() {
     calc.out.textContent = calc.strOut;
-    calc.finish = false;
+    // calc.finish = false;
     return;
   },
 
+  // лог
   log: function log() {
     console.log(calc.arrA);
     console.log(calc.sign);
@@ -171,6 +208,7 @@ const calc = {
       console.log(`результат: ${calc.strOut}`);
     };
     console.log(`finish: ${calc.finish}`);
+    return;
   }
 };
 
@@ -179,8 +217,8 @@ const calc = {
 // calc.key(out2);
 // while (true) {
 calc.key(calc.line);
-calc.key(calc.operation);
 calc.key(calc.termsOfEnter);
+calc.key(calc.operation);
 calc.key(calc.calculations);
 calc.key(calc.output);
 calc.key(calc.log);
