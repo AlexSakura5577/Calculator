@@ -4,6 +4,9 @@
 //   return +digit;
 // });
 // console.log(array);
+
+// let str = array.join('');
+// console.log(str);
 // [4, 8, 6, 2, 1]
 
 // let arr1 = [2]

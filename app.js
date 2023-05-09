@@ -17,7 +17,7 @@ const calc = {
   // числа
   arrA: [], // первое число
   arrB: [], // второе число
-  result: [], // результат
+  // result: [], // результат
   finish: false, // 
   // строка вывода
   strOut: '',
@@ -130,27 +130,30 @@ const calc = {
 
       switch (calc.sign[0]) {
         case '+':
-          calc.result = (+calc.arrA) + (+calc.arrB);
-          calc.arrA = calc.result;
+          calc.arrA = (+calc.arrA.join('')) + 
+          (+calc.arrB.join(''));
+          // calc.arrA = calc.result;
           // Error - NaN
           // a = (+a) + (+b);
           // arrA = a;
           console.log(`сложение: ${calc.sign[0]}`);
-          console.log(`результат: ${calc.result}`);
+          // console.log(`результат: ${calc.arrA}`);
           break;
         case '-':
-          calc.result = (+calc.arrA) - (+calc.arrB);
+          calc.arrA = (+calc.arrA.join('')) - 
+          (+calc.arrB.join(''));
           // a = (+a) - (+b);
           // arrA = a;
           console.log(`вычитание: ${calc.sign[0]}`);
-          console.log(`результат: ${calc.result}`);
+          // console.log(`результат: ${calc.arrA}`);
           break;
         case '*':
-          calc.result = (+calc.arrA) * (+calc.arrB);
+          calc.arrA = (+calc.arrA.join('')) * 
+          (+calc.arrB.join(''));
           // a = (+a) * (+b);
           // arrA = a;
           console.log(`умножение: ${calc.sign[0]}`);
-          console.log(`результат: ${calc.result}`);
+          // console.log(`результат: ${calc.arrA}`);
           break;
         case '/':
           if (calc.arrB[0] == 0) {
@@ -161,16 +164,17 @@ const calc = {
             // sign = '';
             return;
           }
-          calc.result = (+calc.arrA) / (+calc.arrB);
+          calc.arrA = (+calc.arrA.join('')) / 
+          (+calc.arrB.join(''));
           // a = (+a) / (+b);
           // calc.arrA = a;
           console.log(`деление: ${calc.sign[0]}`);
-          console.log(`результат: ${calc.result}`);
+          // console.log(`результат: ${calc.arrA}`);
           break;
       }
       calc.finish = true;
       console.log(`finish: ${calc.finish}`);
-      console.log(calc.arrA);
+      console.log(`результат: ${calc.arrA}`);
     };
     return;
   },
@@ -180,15 +184,16 @@ const calc = {
 
     // добавить разветвления по условиям
     if (calc.finish == true) {
-      calc.strOut = calc.result;
+      calc.strOut = calc.arrA;
 
       // let num = 48621;
-      let array = ('' + calc.result).split('').map(function (digit) {
-        return digit;
-      });
-      console.log(array);
+      // let array = ('' + calc.result).split('').map(function (digit) {
+      //   return digit;
+      // });
+      // console.log(array);
 
-      let array2 = ('' + calc.arrA).split('').map(function (digit) {
+      let array2 = ('' + calc.arrA).split('')
+      .map(function (digit) {
         return digit;
       });
       console.log(array2);
