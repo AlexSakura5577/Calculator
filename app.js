@@ -106,23 +106,23 @@ const calc = {
 
       if (calc.arrA.length > 0 &&
         calc.sign.length > 0 &&
-        calc.finish === false) {
-
+        calc.finish === false) 
+        {
         calc.arrB.push(calc.inputLine);
         console.log('кол-во цифр числа B: ' +
           calc.arrB.length);
-
         calc.strOut = calc.arrB.join('');
       };
 
       if (calc.arrA.length > 0 &&
         calc.sign.length > 0 &&
         calc.arrB.length > 0 &&
-        calc.numOfCalc > 0) {
-        // calc.arrB = [];
+        calc.numOfCalc > 0) 
+        {
+        calc.arrB = [];
         calc.arrB.length = 0;
-        // calc.arrB = calc.inputLine.split('');
-        calc.arrB.push(calc.inputLine);
+        calc.numOfCalc -= 1;
+        calc.arrB = calc.inputLine.split('');
         calc.strOut = calc.arrB.join('');
         return;
       }
