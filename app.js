@@ -21,6 +21,7 @@ const calc = {
   finish: false, // 
   // строка вывода
   strOut: '',
+  numOfCalc: 0,
 
   // клавиша
   key: function myFunc(callback) {
@@ -66,6 +67,18 @@ const calc = {
         calc.strOut = calc.arrA.join('');
       };
 
+      // второе число заполнено и нажат знак
+      // if (calc.arrA.length > 0 &&
+      //   calc.arrB.length > 0 &&
+      //   calc.sign > 0 &&
+      //   calc.finish == false) {
+
+      //   console.log('второе число заполнено и нажат знак');
+
+      //   calc.arrA = calc.inputLine;
+      //   calc.strOut = calc.arrA.join('');
+      // }
+
       // если и первое и второе числа заполнены и вычисления произведены
       if (calc.arrA.length > 0 &&
         calc.arrB.length > 0 &&
@@ -78,34 +91,48 @@ const calc = {
         // calc.arrA = calc.inputLine;
         // console.log(typeof (calc.inputLine));
         // calc.arrA = calc.inputLine.split('');
-        calc.arrA.push(calc.inputLine);
+        // calc.arrA.push(calc.inputLine);
         // calc.arrB.push(calc.inputLine);
-        // calc.arrA = calc.inputLine;
+        calc.arrA = calc.inputLine.split('');
         calc.arrB = []; // второе число
         calc.sign = []; // знак операции
         calc.finish = false;
         console.log('finish: ' + calc.finish);
-        calc.strOut = calc.arrA.join('');
+        calc.strOut = calc.arrA;
         // return;
       };
 
       // ввод второго числа
+
       if (calc.arrA.length > 0 &&
         calc.sign.length > 0 &&
         calc.finish === false) {
 
-        console.log('ввод второго числа');
-
-        // calc.arrB = [];
         calc.arrB.push(calc.inputLine);
         console.log('кол-во цифр числа B: ' +
           calc.arrB.length);
-        if (calc.arrB.length > 0 &&
-          calc.arrB.includes('.')) {
-          console.log('ввод дробного числа');
-        };
+
         calc.strOut = calc.arrB.join('');
       };
+
+      if (calc.arrA.length > 0 &&
+        calc.sign.length > 0 &&
+        calc.arrB.length > 0 &&
+        calc.numOfCalc > 0) {
+        // calc.arrB = [];
+        calc.arrB.length = 0;
+        // calc.arrB = calc.inputLine.split('');
+        calc.arrB.push(calc.inputLine);
+        calc.strOut = calc.arrB.join('');
+        return;
+      }
+
+      if (calc.arrB.length > 0 &&
+        calc.arrB.includes('.')) {
+        console.log('ввод дробного числа');
+      };
+
+      console.log('ввод второго числа');
       return;
     };
     return;
@@ -115,10 +142,12 @@ const calc = {
   operation: function operation(key) {
 
     // if (calc.action.includes(key) &&
-    //   calc.arrB.length > 0 &&
     //   calc.arrA.length > 0 &&
+    //   calc.arrB.length > 0 &&
     //   calc.sign > 0) {
-    //   calc.finish = false;
+    //   // calc.finish = false;
+    //   calc.sign[0] = key;
+    //   calc.strOut = calc.sign;
     //   console.log('есть!');
     //   return;
     // }
@@ -136,9 +165,9 @@ const calc = {
   // вычисления
   calculations: function calculations(key) {
 
-    // calc.finish = false;
-
     if (key === '=' || key === 'Enter') {
+
+      calc.numOfCalc += 1;
 
       console.log('вычисления');
 
@@ -155,6 +184,8 @@ const calc = {
           calc.result = Array.from(String(plus));
           calc.arrA = calc.result;
           console.log(`сложение: ${calc.sign[0]}`);
+          // calc.arrB = calc.arrA;
+          // calc.finish == true;
           break;
         case '-':
           let minus = (+a) - (+b);
@@ -183,7 +214,7 @@ const calc = {
           console.log(`деление: ${calc.sign[0]}`);
           break;
       };
-      calc.finish = true;
+      // calc.finish = true;
       // calc.arrB = [];
       calc.strOut = calc.arrA.join('');
       return;
@@ -208,6 +239,7 @@ const calc = {
       console.log(`результат: ${calc.strOut}`);
     };
     console.log(`finish: ${calc.finish}`);
+    console.log(calc.numOfCalc);
     return;
   }
 };
