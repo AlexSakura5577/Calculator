@@ -53,6 +53,11 @@ const calc = {
     }
   },
 
+  // удалить по одной цифре справа налево
+  backspace: function backspace() { 
+
+  }, 
+
   // очистить всё
   clear: function clear() {
     if (calc.inputLine == 'ac' ||
@@ -266,8 +271,7 @@ calc.key(calc.log);
 
 
 /*
-  backspace: function backspaceKey() { }, // удалить по одной цифре справа налево клавишей backspace
-  comma: function commaKey() { }, // запятую в точку ru раскладка
+
 */
 
 // ввод
