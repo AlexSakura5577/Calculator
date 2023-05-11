@@ -11,7 +11,7 @@ const calc = {
   // кнопка (селектор)
   btn: document.querySelector('.buttons'),
   // цифры и точка
-  digit: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'],
+  digit: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ','],
   // знаки для вычислений
   action: ['-', '+', '*', '/'],
   // числа
@@ -45,6 +45,14 @@ const calc = {
     return;
   },
 
+  // запятую в точку
+  comma: function comma() {
+    if (calc.inputLine == ',') {
+      calc.inputLine = '.';
+      return;
+    }
+  },
+
   // очистить всё
   clear: function clear() {
     if (calc.inputLine == 'ac' ||
@@ -53,6 +61,7 @@ const calc = {
       calc.arrB = [];
       calc.sign = []; // знак операции
       calc.finish = false; //
+      calc.numOfCalc = 0; //
       calc.strOut = 0;
       console.clear();
       console.log('очищено');
@@ -70,68 +79,43 @@ const calc = {
       if (calc.arrB.length == 0 &&
         calc.sign.length == 0 &&
         calc.finish == false) {
-
         console.log('ввод первого числа');
 
         calc.arrA.push(calc.inputLine);
-        // точка
-        if (calc.arrA.length > 0 &&
-          calc.arrA.includes('.')) {
-          console.log('ввод дробного числа');
-        };
         calc.strOut = calc.arrA.join('');
       };
-
-      // второе число заполнено и нажат знак
-      // if (calc.arrA.length > 0 &&
-      //   calc.arrB.length > 0 &&
-      //   calc.sign > 0 &&
-      //   calc.finish == false) {
-
-      //   console.log('второе число заполнено и нажат знак');
-
-      //   calc.arrA = calc.inputLine;
-      //   calc.strOut = calc.arrA.join('');
-      // }
 
       // если и первое и второе числа заполнены и вычисления произведены
       if (calc.arrA.length > 0 &&
         calc.arrB.length > 0 &&
         calc.finish == true) {
-
         console.log('первое и второе числа заполнены');
 
-        // calc.finish = false;
-        // calc.arrA = [];
-        // calc.arrA = calc.inputLine;
-        // console.log(typeof (calc.inputLine));
-        // calc.arrA = calc.inputLine.split('');
-        // calc.arrA.push(calc.inputLine);
-        // calc.arrB.push(calc.inputLine);
         calc.arrA = calc.inputLine.split('');
         calc.arrB = []; // второе число
         calc.sign = []; // знак операции
         calc.finish = false;
-        console.log('finish: ' + calc.finish);
-        calc.strOut = calc.arrA;
+        calc.strOut = calc.arrA.join(''); // join('') можно убрать
         // return;
       };
 
       // ввод второго числа
-
       if (calc.arrA.length > 0 &&
         calc.sign.length > 0 &&
         calc.finish === false) {
+        console.log('ввод второго числа');
+
         calc.arrB.push(calc.inputLine);
-        console.log('кол-во цифр числа B: ' +
-          calc.arrB.length);
         calc.strOut = calc.arrB.join('');
       };
 
+      // ввод второго числа повторно после вычислений
       if (calc.arrA.length > 0 &&
         calc.sign.length > 0 &&
         calc.arrB.length > 0 &&
         calc.numOfCalc > 0) {
+        console.log('ввод второго числа повторно');
+
         calc.arrB = [];
         calc.arrB.length = 0;
         calc.numOfCalc = 0;
@@ -140,12 +124,16 @@ const calc = {
         return;
       }
 
+      // точка
+      if (calc.arrA.length > 0 &&
+        calc.arrA.includes('.')) {
+        console.log('ввод дробного числа');
+      };
+
       if (calc.arrB.length > 0 &&
         calc.arrB.includes('.')) {
         console.log('ввод дробного числа');
       };
-
-      console.log('ввод второго числа');
       return;
     };
     return;
@@ -246,8 +234,10 @@ const calc = {
   log: function log() {
     console.log('inputLine: ' + calc.inputLine);
     console.log(calc.arrA);
+    // console.log('кол-во цифр числа A: ' + calc.arrA.length);
     console.log(calc.sign);
     console.log(calc.arrB);
+    // console.log('кол-во цифр числа B: ' + calc.arrB.length);
     console.log('strOut: ' + calc.strOut);
     if (calc.finish == true) {
       console.log(`результат: ${calc.strOut}`);
@@ -264,6 +254,7 @@ const calc = {
 // calc.key(out2);
 // while (true) {
 calc.key(calc.line);
+calc.key(calc.comma);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
 calc.key(calc.operation);
@@ -274,13 +265,7 @@ calc.key(calc.log);
 
 
 
-
-
-
-
 /*
-  clear: function clearAll() { }, // очистить всё
-  delete: function deleteKey() { }, // очистка консоли и сброс клавишей delete
   backspace: function backspaceKey() { }, // удалить по одной цифре справа налево клавишей backspace
   comma: function commaKey() { }, // запятую в точку ru раскладка
 */
