@@ -45,6 +45,21 @@ const calc = {
     return;
   },
 
+  // очистить всё
+  clear: function clear() {
+    if (calc.inputLine == 'ac' ||
+      calc.inputLine == 'Delete') {
+      calc.arrA = [];
+      calc.arrB = [];
+      calc.sign = []; // знак операции
+      calc.finish = false; //
+      calc.strOut = 0;
+      console.clear();
+      console.log('очищено');
+      return;
+    };
+  },
+
   // условия ввода
   termsOfEnter: function termsOfEnter(key) {
 
@@ -106,8 +121,7 @@ const calc = {
 
       if (calc.arrA.length > 0 &&
         calc.sign.length > 0 &&
-        calc.finish === false) 
-        {
+        calc.finish === false) {
         calc.arrB.push(calc.inputLine);
         console.log('кол-во цифр числа B: ' +
           calc.arrB.length);
@@ -117,11 +131,10 @@ const calc = {
       if (calc.arrA.length > 0 &&
         calc.sign.length > 0 &&
         calc.arrB.length > 0 &&
-        calc.numOfCalc > 0) 
-        {
+        calc.numOfCalc > 0) {
         calc.arrB = [];
         calc.arrB.length = 0;
-        calc.numOfCalc -= 1;
+        calc.numOfCalc = 0;
         calc.arrB = calc.inputLine.split('');
         calc.strOut = calc.arrB.join('');
         return;
@@ -231,6 +244,7 @@ const calc = {
 
   // лог
   log: function log() {
+    console.log('inputLine: ' + calc.inputLine);
     console.log(calc.arrA);
     console.log(calc.sign);
     console.log(calc.arrB);
@@ -244,17 +258,18 @@ const calc = {
   }
 };
 
+
 // вызовы
 // myFunc(out2);
 // calc.key(out2);
 // while (true) {
 calc.key(calc.line);
+calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
 calc.key(calc.operation);
 calc.key(calc.calculations);
 calc.key(calc.output);
 calc.key(calc.log);
-// calc.finish = false;
 //
 
 
