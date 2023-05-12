@@ -60,6 +60,7 @@ const calc = {
       calc.arrB.length == 0 &&
       calc.finish == false) {
       console.log('опечатка в первом числе');
+      console.log('BACKSPACE was pressed');
 
       //     let strNew = arrA.splice(arrA.length - 1, 1);
       //     a = arrA.join('');
@@ -74,6 +75,7 @@ const calc = {
       calc.arrB.length > 0 &&
       calc.numOfCalc < 1) {
       console.log('опечатка во втором числе');
+      console.log('BACKSPACE was pressed');
 
       //     let strNew = arrB.splice(arrB.length - 1, 1);
       //     b = arrB.join('');
@@ -83,21 +85,17 @@ const calc = {
       //     console.log(arrB);
       //     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
     }
-    if (calc.inputLine == "Backspace" &&
-      calc.arrA.length > 0 &&
-      calc.arrB.length > 0 &&
-      calc.numOfCalc > 0) {
-      console.log('BACKSPACE was pressed');
-
-      calc.clear();
-    }
     return;
   },
 
   // очистить всё
   clear: function clear() {
     if (calc.inputLine == 'ac' ||
-      calc.inputLine == 'Delete') {
+      calc.inputLine == 'Delete' ||
+      calc.inputLine == "Backspace" &&
+      calc.arrA.length > 0 &&
+      calc.arrB.length > 0 &&
+      calc.numOfCalc > 0) {
       calc.arrA = [];
       calc.arrB = [];
       calc.sign = []; // знак операции

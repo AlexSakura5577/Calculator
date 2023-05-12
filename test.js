@@ -1,8 +1,8 @@
 
 // вызов функции из объекта
 const obj = {
-    out: document.querySelector('.calc-screen p'),
-    btn: document.querySelector('.buttons'),
+    // out: document.querySelector('.calc-screen p'),
+    // btn: document.querySelector('.buttons'),
     // клавиша
     key: function myFunc(callback) {
         let key;
@@ -10,11 +10,11 @@ const obj = {
             key = e.key;
             callback(key);
         })
-        event2 = obj.btn.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('btn')) return;
-            key = e.target.textContent;
-            callback(key);
-        })
+        // event2 = obj.btn.addEventListener('click', (e) => {
+        //     if (!e.target.classList.contains('btn')) return;
+        //     key = e.target.textContent;
+        //     callback(key);
+        // })
         return;
     },
     // функция присваивания значения переменной ввода
@@ -26,28 +26,28 @@ const obj = {
 
     backspace: function backspace() {
         if (obj.inputLine == "Backspace") {
-        console.log('BACKSPACE was pressed');
-  
-        obj.clear();
-      }
-      return;
+            console.log('BACKSPACE was pressed');
+            // obj.clear();
+        }
+        return;
     },
-
-      // очистить всё
-  clear: function clear() {
-    // if (obj.inputLine == 'ac' ||
-    // obj.inputLine == 'Delete') {
-      console.clear();
-      console.log('очищено');
-      return;
-    // };
-  },
+    // очистить всё
+    clear: function clear() {
+        // if (obj.inputLine == 'ac' ||
+        // obj.inputLine == 'Delete') {
+        console.clear();
+        console.log('очищено');
+        return;
+        // };
+    },
 }
 // вызовы
 obj.key(obj.line);
 obj.key(obj.backspace);
-obj.key(obj.clear);
 
+if (obj.inputLine == "h") {
+    obj.key(obj.clear);
+}
 
 // switch (calc.sign[0]) {
 //     case '+':
