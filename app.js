@@ -39,7 +39,7 @@ const calc = {
   },
 
   // функция присваивания значения переменной ввода
-  line: function out2(key) {
+  line: function line(key) {
     calc.inputLine = key;
     console.log('key: ' + calc.inputLine); //!
     return;
@@ -125,6 +125,7 @@ const calc = {
         console.log('ввод первого числа');
 
         calc.arrA.push(calc.inputLine);
+        calc.duplicateDots(calc.arrA);
         calc.strOut = calc.arrA.join('');
       };
 
@@ -149,6 +150,7 @@ const calc = {
         console.log('ввод второго числа');
 
         calc.arrB.push(calc.inputLine);
+        calc.duplicateDots(calc.arrB);
         calc.strOut = calc.arrB.join('');
       };
 
@@ -168,11 +170,17 @@ const calc = {
       }
 
       // точка
+      // if (calc.arrA.length > 0 &&
+      //   calc.arrA.includes('.') ||
+      //   calc.arrB.length > 0 &&
+      //   calc.arrB.includes('.')) {
+      //   console.log('ввод дробного числа');
+      // };
+
       if (calc.arrA.length > 0 &&
         calc.arrA.includes('.')) {
         console.log('ввод дробного числа');
       };
-
       if (calc.arrB.length > 0 &&
         calc.arrB.includes('.')) {
         console.log('ввод дробного числа');
@@ -180,6 +188,35 @@ const calc = {
       return;
     };
     return;
+  },
+
+  // удаление дубликатов точек
+  duplicateDots: (arr) => {
+    console.log('длина массива: ' + arr.length);
+    let doubleComma = arr.filter(item => item === '.').length;
+    // несколько запятых подряд
+    console.log('кол-во точек: ' + doubleComma);
+    if (doubleComma > 0) {
+      // получить индекс дубля точки
+      let commaIndex = arr.indexOf('.', 0);
+      console.log('индекс точки: ' + commaIndex);
+      let firstComma = commaIndex;
+      console.log('первая точка: ' + firstComma);
+      // удалить дубль и присвоить массиву значение
+      for (let i = 0; i <= doubleComma - 1; i++) {
+        // получить индекс дубля точки
+        let commaIndex = arr.indexOf('.', 0);
+        arr.splice(commaIndex, 1);
+      }
+      arr.splice(firstComma, 0, '.');
+      // console.log(arr);
+      console.log('длина массива: ' + arr.length);
+      console.log('дубликаты точек удалены');
+      // calc.strOut = arr.join('');
+    }
+
+    return arr;
+    // calc.strOut = arr.join('');
   },
 
   // операции
@@ -268,12 +305,10 @@ const calc = {
 
   // окно вывода
   output: function output() {
-    // if (calc.arrA.length == 0 ||
-    //   calc.arrB.length == 0) {
-    //   calc.strOut = 0;
-    // }
+    if (calc.strOut == '') {
+      calc.strOut = '0';
+    }
     calc.out.textContent = calc.strOut;
-    // calc.finish = false;
     return;
   },
 
@@ -299,12 +334,18 @@ const calc = {
 // вызовы
 // myFunc(out2);
 // calc.key(out2);
-// while (true) {
+
 calc.key(calc.line);
 calc.key(calc.comma);
 calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
+
+// calc.duplicateDots(calc.arrA);
+// calc.key(calc.duplicateDots);
+// calc.duplicateDots(calc.arrA);
+// calc.duplicateDots(calc.arrB);
+
 calc.key(calc.operation);
 calc.key(calc.calculations);
 calc.key(calc.output);
@@ -316,17 +357,6 @@ calc.key(calc.log);
 /*
 
 */
-
-// ввод
-// inputLine = '';
-// цифры и точка
-// const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-// знаки для вычислений
-// const action = ['-', '+', '*', '/'];
-// экран вывода
-// const out = document.querySelector('.calc-screen p');
-// кнопка (селектор)
-// const btn = document.querySelector('.buttons')
 
 // calc.key(key => console.log(key)) // key в консоль
 
