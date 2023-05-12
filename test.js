@@ -226,20 +226,26 @@
 // let doubleComma = arr.filter(item => item === '.').length;
 // // несколько запятых подряд
 // console.log('кол-во точек: ' + doubleComma);
-// // получить индекс дубля точки
-// let commaIndex = arr.indexOf('.', 0);
-// console.log('индекс точки: ' + commaIndex);
-// let firstComma = commaIndex;
-// console.log('первая точка: ' + firstComma);
-// // удалить дубль и присвоить массиву значение
-// for (let i = 0; i <= doubleComma - 1; i++) {
+// if (doubleComma > 0) {
+//   // получить индекс дубля точки
+//   let commaIndex = arr.indexOf('.', 0);
+//   console.log('индекс точки: ' + commaIndex);
+//   let firstComma = commaIndex;
+//   console.log('первая точка: ' + firstComma);
+//   // удалить дубль и присвоить массиву значение
+//   for (let i = 0; i <= doubleComma - 1; i++) {
 //     // получить индекс дубля точки
 //     let commaIndex = arr.indexOf('.', 0);
 //     arr.splice(commaIndex, 1);
+//   }
+//   arr.splice(firstComma, 0, '.');
+//   // console.log(arr);
+//   console.log('длина массива: ' + arr.length);
+//   console.log('дубликаты точек удалены');
+//   // calc.strOut = arr.join('');
 // }
-// arr.splice(firstComma, 0, '.');
-// console.log(arr);
-// console.log('длина массива: ' + arr.length);
+// return arr;
+// }
 
 // если нажата = (вычисления)
 // if (key === '=') {
