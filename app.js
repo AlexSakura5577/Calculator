@@ -72,22 +72,6 @@ const calc = {
       calc.arrB.splice(calc.arrB.length - 1, 1);
       calc.strOut = calc.arrB.join('');
     }
-    // if (calc.inputLine == "Backspace" &&
-    //   calc.arrA.length == 0 ||
-    //   calc.arrB.length == 0) {
-    //   console.log('везде 0');
-    //   // calc.strOut = 0;
-    // }
-    // if (calc.inputLine == "Backspace" &&
-    //   calc.arrA.length == 0) {
-    //   console.log('arrA 0');
-    //   calc.strOut = 0;
-    // }
-    // if (calc.inputLine == "Backspace" &&
-    //   calc.arrB.length == 0) {
-    //   console.log('arrB 0');
-    //   calc.strOut = 0;
-    // }
     return;
   },
 
@@ -174,15 +158,6 @@ const calc = {
         calc.strOut = calc.arrB.join('');
         return;
       }
-
-      // точка
-      // if (calc.arrA.length > 0 &&
-      //   calc.arrA.includes('.') ||
-      //   calc.arrB.length > 0 &&
-      //   calc.arrB.includes('.')) {
-      //   console.log('ввод дробного числа');
-      // };
-
       if (calc.arrA.length > 0 &&
         calc.arrA.includes('.')) {
         console.log('ввод дробного числа');
@@ -229,20 +204,7 @@ const calc = {
 
   // операции
   operation: function operation(key) {
-
-    // if (calc.action.includes(key) &&
-    //   calc.arrA.length > 0 &&
-    //   calc.arrB.length > 0 &&
-    //   calc.sign > 0) {
-    //   // calc.finish = false;
-    //   calc.sign[0] = key;
-    //   calc.strOut = calc.sign;
-    //   console.log('есть!');
-    //   return;
-    // }
-
     if (calc.action.includes(key)) {
-
       console.log(`ввод знака`);
 
       calc.sign[0] = key;
@@ -273,8 +235,6 @@ const calc = {
           calc.result = Array.from(String(plus));
           calc.arrA = calc.result;
           console.log(`сложение: ${calc.sign[0]}`);
-          // calc.arrB = calc.arrA;
-          // calc.finish == true;
           break;
         case '-':
           let minus = (+a) - (+b);
@@ -303,8 +263,6 @@ const calc = {
           console.log(`деление: ${calc.sign[0]}`);
           break;
       };
-      // calc.finish = true;
-      // calc.arrB = [];
       calc.strOut = calc.arrA.join('');
       return;
     };
@@ -333,7 +291,7 @@ const calc = {
       console.log(`результат: ${calc.strOut}`);
     };
     console.log(`finish: ${calc.finish}`);
-    console.log(calc.numOfCalc);
+    console.log(`numOfCalc: ${calc.numOfCalc}`);
     return;
   }
 };
@@ -344,7 +302,6 @@ calc.key(calc.comma);
 calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
-// calc.key(calc.plusOrMinus);
 calc.key(calc.operation);
 calc.key(calc.calculations);
 calc.key(calc.output);
