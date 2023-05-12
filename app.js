@@ -60,31 +60,35 @@ const calc = {
       calc.arrB.length == 0 &&
       calc.finish == false) {
       console.log('опечатка в первом числе');
-      console.log('BACKSPACE was pressed');
 
-      //     let strNew = arrA.splice(arrA.length - 1, 1);
-      //     a = arrA.join('');
-      //     out.textContent = a;
-      //     console.log("strNew:" + strNew);
-      //     console.log("a:" + a);
-      //     console.log(arrA);
-      //     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+      calc.arrA.splice(calc.arrA.length - 1, 1);
+      calc.strOut = calc.arrA.join('');
     }
     if (calc.inputLine == "Backspace" &&
       calc.arrA.length > 0 &&
       calc.arrB.length > 0 &&
       calc.numOfCalc < 1) {
       console.log('опечатка во втором числе');
-      console.log('BACKSPACE was pressed');
 
-      //     let strNew = arrB.splice(arrB.length - 1, 1);
-      //     b = arrB.join('');
-      //     out.textContent = b;
-      //     console.log("strNew:" + strNew);
-      //     console.log("b:" + b);
-      //     console.log(arrB);
-      //     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+      calc.arrB.splice(calc.arrB.length - 1, 1);
+      calc.strOut = calc.arrB.join('');
     }
+    // if (calc.inputLine == "Backspace" &&
+    //   calc.arrA.length == 0 ||
+    //   calc.arrB.length == 0) {
+    //   console.log('везде 0');
+    //   // calc.strOut = 0;
+    // }
+    // if (calc.inputLine == "Backspace" &&
+    //   calc.arrA.length == 0) {
+    //   console.log('arrA 0');
+    //   calc.strOut = 0;
+    // }
+    // if (calc.inputLine == "Backspace" &&
+    //   calc.arrB.length == 0) {
+    //   console.log('arrB 0');
+    //   calc.strOut = 0;
+    // }
     return;
   },
 
@@ -264,6 +268,10 @@ const calc = {
 
   // окно вывода
   output: function output() {
+    // if (calc.arrA.length == 0 ||
+    //   calc.arrB.length == 0) {
+    //   calc.strOut = 0;
+    // }
     calc.out.textContent = calc.strOut;
     // calc.finish = false;
     return;
