@@ -41,7 +41,6 @@ const calc = {
   // функция присваивания значения переменной ввода
   line: function line(key) {
     calc.inputLine = key;
-    console.log('key: ' + calc.inputLine); //!
     return;
   },
 
@@ -115,6 +114,12 @@ const calc = {
   // условия ввода
   termsOfEnter: function termsOfEnter(key) {
 
+    if (calc.sign[0] === undefined) {
+      calc.plusOrMinus(calc.arrA);
+    } else {
+      calc.plusOrMinus(calc.arrB);
+    };
+
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
@@ -126,6 +131,7 @@ const calc = {
 
         calc.arrA.push(calc.inputLine);
         calc.duplicateDots(calc.arrA);
+
         calc.strOut = calc.arrA.join('');
       };
 
@@ -188,6 +194,22 @@ const calc = {
       return;
     };
     return;
+  },
+
+  // смена знака если нажата +/-
+  plusOrMinus: (arr) => {
+    if (calc.inputLine == '+/-') {
+      console.log('инверсия числа');
+
+      if (arr[0] !== '-') {
+        arr.unshift('-');
+        calc.strOut = arr.join('');
+      } else {
+        arr.shift();
+        calc.strOut = arr.join('');
+      }
+    }
+    return arr;
   },
 
   // удаление дубликатов точек
@@ -300,7 +322,7 @@ const calc = {
 
   // лог
   log: function log() {
-    console.log('inputLine: ' + calc.inputLine);
+    console.log('inputLine(key): ' + calc.inputLine);
     console.log(calc.arrA);
     // console.log('кол-во цифр числа A: ' + calc.arrA.length);
     console.log(calc.sign);
@@ -322,6 +344,7 @@ calc.key(calc.comma);
 calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
+// calc.key(calc.plusOrMinus);
 calc.key(calc.operation);
 calc.key(calc.calculations);
 calc.key(calc.output);
