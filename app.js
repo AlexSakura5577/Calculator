@@ -24,7 +24,7 @@ const calc = {
   numOfCalc: 0,
 
   // клавиша
-  key: function myFunc(callback) {
+  key: (callback) => {
     let key;
     event1 = window.addEventListener('keydown', (e) => {
       key = e.key;
@@ -49,6 +49,24 @@ const calc = {
     if (calc.inputLine == ',') {
       calc.inputLine = '.';
       return;
+    }
+  },
+
+  // набор нескольких нулей (убрать)
+  doubleZero: (arr) => {
+    if (arr[0] == '0' &&
+      arr[1] == '0') {
+      console.log('дабл зеро');
+
+      arr.shift();
+      calc.strOut = arr.join('');
+    }
+    if (arr.length == 1 &&
+      arr[0] == '.') {
+      console.log('точка и ноль впереди');
+
+      arr.unshift('0');
+      calc.strOut = arr.join('');
     }
   },
 
@@ -115,7 +133,7 @@ const calc = {
 
         calc.arrA.push(calc.inputLine);
         calc.duplicateDots(calc.arrA);
-
+        calc.doubleZero(calc.arrA);
         calc.strOut = calc.arrA.join('');
       };
 
@@ -141,6 +159,7 @@ const calc = {
 
         calc.arrB.push(calc.inputLine);
         calc.duplicateDots(calc.arrB);
+        calc.doubleZero(calc.arrB);
         calc.strOut = calc.arrB.join('');
       };
 
@@ -155,6 +174,8 @@ const calc = {
         calc.arrB.length = 0;
         calc.numOfCalc = 0;
         calc.arrB = calc.inputLine.split('');
+        calc.duplicateDots(calc.arrB);
+        calc.doubleZero(calc.arrB);
         calc.strOut = calc.arrB.join('');
         return;
       }
