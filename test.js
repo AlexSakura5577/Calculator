@@ -1,4 +1,52 @@
 
+// вызов функции из объекта
+const obj = {
+    out: document.querySelector('.calc-screen p'),
+    btn: document.querySelector('.buttons'),
+    // клавиша
+    key: function myFunc(callback) {
+        let key;
+        event1 = window.addEventListener('keydown', (e) => {
+            key = e.key;
+            callback(key);
+        })
+        event2 = obj.btn.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('btn')) return;
+            key = e.target.textContent;
+            callback(key);
+        })
+        return;
+    },
+    // функция присваивания значения переменной ввода
+    line: function out2(key) {
+        obj.inputLine = key;
+        console.log('key: ' + obj.inputLine); //!
+        return;
+    },
+
+    backspace: function backspace() {
+        if (obj.inputLine == "Backspace") {
+        console.log('BACKSPACE was pressed');
+  
+        obj.clear();
+      }
+      return;
+    },
+
+      // очистить всё
+  clear: function clear() {
+    // if (obj.inputLine == 'ac' ||
+    // obj.inputLine == 'Delete') {
+      console.clear();
+      console.log('очищено');
+      return;
+    // };
+  },
+}
+// вызовы
+obj.key(obj.line);
+obj.key(obj.backspace);
+obj.key(obj.clear);
 
 
 // switch (calc.sign[0]) {
