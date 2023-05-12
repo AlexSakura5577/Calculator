@@ -54,9 +54,45 @@ const calc = {
   },
 
   // удалить по одной цифре справа налево
-  backspace: function backspace() { 
+  backspace: function backspace() {
+    if (calc.inputLine == "Backspace" &&
+      calc.arrA.length > 0 &&
+      calc.arrB.length == 0 &&
+      calc.finish == false) {
+      console.log('опечатка в первом числе');
 
-  }, 
+      //     let strNew = arrA.splice(arrA.length - 1, 1);
+      //     a = arrA.join('');
+      //     out.textContent = a;
+      //     console.log("strNew:" + strNew);
+      //     console.log("a:" + a);
+      //     console.log(arrA);
+      //     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+    }
+    if (calc.inputLine == "Backspace" &&
+      calc.arrA.length > 0 &&
+      calc.arrB.length > 0 &&
+      calc.numOfCalc < 1) {
+      console.log('опечатка во втором числе');
+
+      //     let strNew = arrB.splice(arrB.length - 1, 1);
+      //     b = arrB.join('');
+      //     out.textContent = b;
+      //     console.log("strNew:" + strNew);
+      //     console.log("b:" + b);
+      //     console.log(arrB);
+      //     console.log("a:" + a, "sign:" + sign, "b:" + b, 'finish: ' + finish);
+    }
+    if (calc.inputLine == "Backspace" &&
+      calc.arrA.length > 0 &&
+      calc.arrB.length > 0 &&
+      calc.numOfCalc > 0) {
+      console.log('BACKSPACE was pressed');
+
+      calc.clear();
+    }
+    return;
+  },
 
   // очистить всё
   clear: function clear() {
@@ -260,6 +296,7 @@ const calc = {
 // while (true) {
 calc.key(calc.line);
 calc.key(calc.comma);
+calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
 calc.key(calc.operation);
