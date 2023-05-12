@@ -44,6 +44,24 @@ const calc = {
     return;
   },
 
+  // изменение размеров окна вывода
+  outputWindow: (arr) => {
+    if (arr.length > 7) {
+      calc.out.style.fontSize = '3rem';
+    }
+    if (arr.length > 10) {
+      calc.out.style.fontSize = '2rem';
+    }
+    if (arr.length > 15) {
+      calc.out.style.fontSize = '1rem';
+    }
+    if (arr.length > 31) {
+      calc.out.style.fontSize = '4rem';
+      calc.strOut = 'Error';
+    }
+    return arr;
+  },
+
   // запятую в точку
   comma: () => {
     if (calc.inputLine == ',') {
@@ -107,6 +125,7 @@ const calc = {
       calc.finish = false; //
       calc.numOfCalc = 0; //
       calc.strOut = 0;
+      calc.out.style.fontSize = '4rem';
       console.clear();
       console.log('очищено');
       return;
@@ -115,6 +134,9 @@ const calc = {
 
   // условия ввода
   termsOfEnter: (key) => {
+
+    // calc.outputWindow(calc.arrA);
+    // calc.outputWindow(calc.arrB);
 
     if (calc.sign[0] === undefined) {
       calc.plusOrMinus(calc.arrA);
@@ -125,15 +147,21 @@ const calc = {
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
+      // calc.outputWindow(calc.arrA);
+      // calc.outputWindow(calc.arrB);
+
       // ввод первого числа
       if (calc.arrB.length == 0 &&
         calc.sign.length == 0 &&
         calc.finish == false) {
         console.log('ввод первого числа');
 
-        calc.arrA.push(calc.inputLine);
+        if (calc.arrA.length < 32) {
+          calc.arrA.push(calc.inputLine);
+        }
         calc.duplicateDots(calc.arrA);
         calc.doubleZero(calc.arrA);
+        // calc.outputWindow(calc.arrA);
         calc.strOut = calc.arrA.join('');
       };
 
@@ -147,8 +175,7 @@ const calc = {
         calc.arrB = []; // второе число
         calc.sign = []; // знак операции
         calc.finish = false;
-        calc.strOut = calc.arrA.join(''); // join('') можно убрать
-        // return;
+        calc.strOut = calc.arrA.join('');
       };
 
       // ввод второго числа
@@ -157,9 +184,13 @@ const calc = {
         calc.finish === false) {
         console.log('ввод второго числа');
 
-        calc.arrB.push(calc.inputLine);
+        if (calc.arrB.length < 32) {
+          calc.arrB.push(calc.inputLine);
+        }
+        // calc.arrB.push(calc.inputLine);
         calc.duplicateDots(calc.arrB);
         calc.doubleZero(calc.arrB);
+        // calc.outputWindow(calc.arrB);
         calc.strOut = calc.arrB.join('');
       };
 
@@ -176,6 +207,7 @@ const calc = {
         calc.arrB = calc.inputLine.split('');
         calc.duplicateDots(calc.arrB);
         calc.doubleZero(calc.arrB);
+        // calc.outputWindow(calc.arrB);
         calc.strOut = calc.arrB.join('');
         return;
       }
@@ -292,9 +324,13 @@ const calc = {
 
   // окно вывода
   output: () => {
+    // calc.out.style.fontSize = '1rem';
+    calc.outputWindow(calc.arrA);
+    calc.outputWindow(calc.arrB);
+
     if (calc.strOut == '') {
       calc.strOut = '0';
-    }
+    };
     calc.out.textContent = calc.strOut;
     return;
   },
@@ -313,6 +349,9 @@ const calc = {
     };
     console.log(`finish: ${calc.finish}`);
     console.log(`numOfCalc: ${calc.numOfCalc}`);
+    const styles = window.getComputedStyle(calc.out);
+    console.log(styles.fontSize);
+
     return;
   }
 };

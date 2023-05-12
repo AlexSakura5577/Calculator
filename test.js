@@ -201,7 +201,7 @@
 //     console.log('fontSize > 32: Error');
 //     out.style.fontSize = '4rem';
 //     out.textContent = 'Error';
-//     return;
+//     // return;
 // }
 
 // // если нажата кнопка + - * /
