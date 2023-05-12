@@ -39,13 +39,13 @@ const calc = {
   },
 
   // функция присваивания значения переменной ввода
-  line: function line(key) {
+  line: (key) => {
     calc.inputLine = key;
     return;
   },
 
   // запятую в точку
-  comma: function comma() {
+  comma: () => {
     if (calc.inputLine == ',') {
       calc.inputLine = '.';
       return;
@@ -53,7 +53,7 @@ const calc = {
   },
 
   // удалить по одной цифре справа налево
-  backspace: function backspace() {
+  backspace: () => {
     if (calc.inputLine == "Backspace" &&
       calc.arrA.length > 0 &&
       calc.arrB.length == 0 &&
@@ -76,7 +76,7 @@ const calc = {
   },
 
   // очистить всё
-  clear: function clear() {
+  clear: () => {
     if (calc.inputLine == 'ac' ||
       calc.inputLine == 'Delete' ||
       calc.inputLine == "Backspace" &&
@@ -96,7 +96,7 @@ const calc = {
   },
 
   // условия ввода
-  termsOfEnter: function termsOfEnter(key) {
+  termsOfEnter: (key) => {
 
     if (calc.sign[0] === undefined) {
       calc.plusOrMinus(calc.arrA);
@@ -203,7 +203,7 @@ const calc = {
   },
 
   // операции
-  operation: function operation(key) {
+  operation: (key) => {
     if (calc.action.includes(key)) {
       console.log(`ввод знака`);
 
@@ -214,7 +214,7 @@ const calc = {
   },
 
   // вычисления
-  calculations: function calculations(key) {
+  calculations: (key) => {
 
     if (key === '=' || key === 'Enter') {
 
@@ -270,7 +270,7 @@ const calc = {
   },
 
   // окно вывода
-  output: function output() {
+  output: () => {
     if (calc.strOut == '') {
       calc.strOut = '0';
     }
@@ -279,7 +279,7 @@ const calc = {
   },
 
   // лог
-  log: function log() {
+  log: () => {
     console.log('inputLine(key): ' + calc.inputLine);
     console.log(calc.arrA);
     // console.log('кол-во цифр числа A: ' + calc.arrA.length);
