@@ -32,7 +32,16 @@ const calc = {
     })
     event2 = calc.btn.addEventListener('click', (e) => {
       if (!e.target.classList.contains('btn')) return;
-      key = e.target.textContent;
+
+      if (e.target.textContent == '÷') { key = '/' }
+      if (e.target.textContent == '×') { key = '*' }
+      if (e.target.textContent == '·') { key = '.' }
+
+      if (e.target.textContent !== '÷' &&
+        e.target.textContent !== '×' &&
+        e.target.textContent !== '·') {
+        key = e.target.textContent;
+      }
       callback(key);
     })
     return;
