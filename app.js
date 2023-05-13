@@ -1,6 +1,6 @@
 // Calculator
 
-// calc
+// obj calc
 const calc = {
   // строка ввода
   inputLine: '',
@@ -289,6 +289,7 @@ const calc = {
           break;
         case '/':
           if (calc.arrB[0] == 0) {
+            calc.out.style.fontSize = '3.5rem';
             calc.strOut = 'Деление на 0';
             console.log('Деление на 0');
             calc.arrA = [];
