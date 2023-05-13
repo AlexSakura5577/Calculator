@@ -46,16 +46,16 @@ const calc = {
 
   // изменение размеров окна вывода
   outputWindow: (arr) => {
-    if (arr.length > 7) {
+    if (arr.length > 8) {
       calc.out.style.fontSize = '3rem';
     }
-    if (arr.length > 10) {
+    if (arr.length > 11) {
       calc.out.style.fontSize = '2rem';
     }
-    if (arr.length > 15) {
+    if (arr.length > 16) {
       calc.out.style.fontSize = '1rem';
     }
-    if (arr.length > 31) {
+    if (arr.length > 32) {
       calc.out.style.fontSize = '4rem';
       calc.strOut = 'Error';
     }
@@ -116,16 +116,16 @@ const calc = {
     if (calc.inputLine == 'ac' ||
       calc.inputLine == 'Delete' ||
       calc.inputLine == "Backspace" &&
-      calc.arrA.length > 0 &&
-      calc.arrB.length > 0 &&
+      calc.arrA.length >= 0 &&
+      calc.arrB.length >= 0 &&
       calc.numOfCalc > 0) {
+      calc.out.style.fontSize = '4rem';
       calc.arrA = [];
       calc.arrB = [];
       calc.sign = []; // знак операции
       calc.finish = false; //
       calc.numOfCalc = 0; //
       calc.strOut = 0;
-      calc.out.style.fontSize = '4rem';
       console.clear();
       console.log('очищено');
       return;
@@ -316,6 +316,7 @@ const calc = {
           console.log(`деление: ${calc.sign[0]}`);
           break;
       };
+      // calc.outputWindow(calc.arrA);
       calc.strOut = calc.arrA.join('');
       return;
     };
@@ -327,6 +328,7 @@ const calc = {
     // calc.out.style.fontSize = '1rem';
     calc.outputWindow(calc.arrA);
     calc.outputWindow(calc.arrB);
+    calc.outputWindow(calc.result);
 
     if (calc.strOut == '') {
       calc.strOut = '0';
