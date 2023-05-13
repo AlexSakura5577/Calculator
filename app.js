@@ -317,6 +317,89 @@ const calc = {
           break;
       };
       // calc.outputWindow(calc.arrA);
+      // calc.finish = true;
+      calc.strOut = calc.arrA.join('');
+      return;
+    };
+    return;
+  },
+
+  // процентные расчеты
+  percentageCalc: (key) => {
+    if (key === '%') {
+
+      calc.numOfCalc += 1;
+
+      console.log('процентные расчеты');
+      // console.log(event.shiftKey);
+
+      // if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
+      if (calc.finish == true) { calc.arrB = calc.arrA };
+
+      let a = calc.arrA.join('');
+      let b = calc.arrB.join('');
+
+      if (calc.arrA.length == 0 &&
+        calc.arrB.length == 0 &&
+        calc.sign[0] == undefined) {
+
+        calc.strOut = '0';
+
+      } else if (calc.arrA.length > 0 &&
+        calc.arrB.length == 0 &&
+        calc.sign[0] == undefined) {
+
+        let percent = (+a) / (+100);
+        calc.result = Array.from(String(percent));
+        calc.arrA = calc.result;
+
+      } else if (calc.arrA.length > 0 &&
+        calc.arrB.length == 0 &&
+        calc.sign[0] !== undefined) {
+
+        calc.strOut = 'Error';
+
+      } else if (calc.arrA.length > 0 &&
+        calc.arrB.length > 0 &&
+        calc.sign[0] !== undefined &&
+        calc.finish === false) {
+
+        switch (calc.sign[0]) {
+          case '+':
+            let plus = ((+a / 100) * (+b)) + (+a);
+            calc.result = Array.from(String(plus));
+            calc.arrA = calc.result;
+            console.log(`сложение процентов: ${calc.sign[0]}`);
+            break;
+          case '-':
+            let minus = (+a) - ((+a / 100) * (+b));
+            calc.result = Array.from(String(minus));
+            calc.arrA = calc.result;
+            console.log(`вычитание процентов: ${calc.sign[0]}`);
+            break;
+          case '*':
+            let multiply = ((+a / 100) * (+b));
+            calc.result = Array.from(String(multiply));
+            calc.arrA = calc.result;
+            console.log(`умножение процентов: ${calc.sign[0]}`);
+            break;
+          case '/':
+            if (calc.arrB[0] == 0) {
+              calc.strOut = 'Деление на 0';
+              console.log('Деление на 0');
+              calc.arrA = [];
+              calc.arrB = [];
+              calc.sign = [];
+              return;
+            }
+            let divide = ((+a) / (+b / 100));
+            calc.result = Array.from(String(divide));
+            calc.arrA = calc.result;
+            console.log(`деление процентов: ${calc.sign[0]}`);
+            break;
+        };
+      };
+      // calc.finish = true;
       calc.strOut = calc.arrA.join('');
       return;
     };
@@ -343,6 +426,7 @@ const calc = {
     console.log(calc.arrA);
     // console.log('кол-во цифр числа A: ' + calc.arrA.length);
     console.log(calc.sign);
+    // console.log(calc.sign[0]);
     console.log(calc.arrB);
     // console.log('кол-во цифр числа B: ' + calc.arrB.length);
     console.log('strOut: ' + calc.strOut);
@@ -366,6 +450,7 @@ calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
 calc.key(calc.operation);
 calc.key(calc.calculations);
+calc.key(calc.percentageCalc);
 calc.key(calc.output);
 calc.key(calc.log);
 //
