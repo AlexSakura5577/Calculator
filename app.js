@@ -22,7 +22,6 @@ const calc = {
   // строка вывода
   strOut: '',
   numOfCalc: 0,
-
   // клавиша
   key: (callback) => {
     let key;
@@ -46,13 +45,11 @@ const calc = {
     })
     return;
   },
-
   // функция присваивания значения переменной ввода
   line: (key) => {
     calc.inputLine = key;
     return;
   },
-
   // изменение размеров окна вывода
   outputWindow: (arr) => {
     if (arr.length > 8) {
@@ -70,7 +67,6 @@ const calc = {
     }
     return arr;
   },
-
   // запятую в точку
   comma: () => {
     if (calc.inputLine == ',') {
@@ -78,7 +74,6 @@ const calc = {
       return;
     }
   },
-
   // набор нескольких нулей (убрать)
   doubleZero: (arr) => {
     if (arr[0] == '0' &&
@@ -96,7 +91,6 @@ const calc = {
       calc.strOut = arr.join('');
     }
   },
-
   // удалить по одной цифре справа налево
   backspace: () => {
     if (calc.inputLine == "Backspace" &&
@@ -119,7 +113,6 @@ const calc = {
     }
     return;
   },
-
   // очистить всё
   clear: () => {
     if (calc.inputLine == 'ac' ||
@@ -140,12 +133,8 @@ const calc = {
       return;
     };
   },
-
   // условия ввода
   termsOfEnter: (key) => {
-
-    // calc.outputWindow(calc.arrA);
-    // calc.outputWindow(calc.arrB);
 
     if (calc.sign[0] === undefined) {
       calc.plusOrMinus(calc.arrA);
@@ -155,9 +144,6 @@ const calc = {
 
     // если нажата цифра
     if (calc.digit.includes(key)) {
-
-      // calc.outputWindow(calc.arrA);
-      // calc.outputWindow(calc.arrB);
 
       // ввод первого числа
       if (calc.arrB.length == 0 &&
@@ -170,7 +156,6 @@ const calc = {
         }
         calc.duplicateDots(calc.arrA);
         calc.doubleZero(calc.arrA);
-        // calc.outputWindow(calc.arrA);
         calc.strOut = calc.arrA.join('');
       };
 
@@ -196,10 +181,8 @@ const calc = {
         if (calc.arrB.length < 32) {
           calc.arrB.push(calc.inputLine);
         }
-        // calc.arrB.push(calc.inputLine);
         calc.duplicateDots(calc.arrB);
         calc.doubleZero(calc.arrB);
-        // calc.outputWindow(calc.arrB);
         calc.strOut = calc.arrB.join('');
       };
 
@@ -216,7 +199,6 @@ const calc = {
         calc.arrB = calc.inputLine.split('');
         calc.duplicateDots(calc.arrB);
         calc.doubleZero(calc.arrB);
-        // calc.outputWindow(calc.arrB);
         calc.strOut = calc.arrB.join('');
         return;
       }
@@ -232,7 +214,6 @@ const calc = {
     };
     return;
   },
-
   // смена знака если нажата +/-
   plusOrMinus: (arr) => {
     if (calc.inputLine == '+/-') {
@@ -248,7 +229,6 @@ const calc = {
     }
     return arr;
   },
-
   // удаление дубликатов точек
   duplicateDots: (arr) => {
     let doubleComma = arr.filter(item => item === '.').length;
@@ -263,7 +243,6 @@ const calc = {
     }
     return arr;
   },
-
   // операции
   operation: (key) => {
     if (calc.action.includes(key)) {
@@ -274,7 +253,6 @@ const calc = {
       return;
     };
   },
-
   // вычисления
   calculations: (key) => {
 
@@ -286,7 +264,6 @@ const calc = {
 
       if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
       if (calc.finish == true) { calc.arrB = calc.arrA };
-      // if (calc.sign > 0) {calc.finish = false};
 
       let a = calc.arrA.join('');
       let b = calc.arrB.join('');
@@ -325,14 +302,11 @@ const calc = {
           console.log(`деление: ${calc.sign[0]}`);
           break;
       };
-      // calc.outputWindow(calc.arrA);
-      // calc.finish = true;
       calc.strOut = calc.arrA.join('');
       return;
     };
     return;
   },
-
   // процентные расчеты
   percentageCalc: (key) => {
     if (key === '%') {
@@ -340,9 +314,6 @@ const calc = {
       calc.numOfCalc += 1;
 
       console.log('процентные расчеты');
-      // console.log(event.shiftKey);
-
-      // if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
       if (calc.finish == true) { calc.arrB = calc.arrA };
 
       let a = calc.arrA.join('');
@@ -353,6 +324,13 @@ const calc = {
         calc.sign[0] == undefined) {
 
         calc.strOut = '0';
+
+      } else if (calc.arrA[0] == '-' &&
+        calc.arrB.length == 0 &&
+        calc.sign[0] == undefined) {
+
+        calc.strOut = 'Error';
+        console.log('Error');
 
       } else if (calc.arrA.length > 0 &&
         calc.arrB.length == 0 &&
@@ -367,6 +345,7 @@ const calc = {
         calc.sign[0] !== undefined) {
 
         calc.strOut = 'Error';
+        console.log('Error');
 
       } else if (calc.arrA.length > 0 &&
         calc.arrB.length > 0 &&
@@ -407,17 +386,14 @@ const calc = {
             console.log(`деление процентов: ${calc.sign[0]}`);
             break;
         };
+        calc.strOut = calc.arrA.join('');
       };
-      // calc.finish = true;
-      calc.strOut = calc.arrA.join('');
       return;
     };
     return;
   },
-
   // окно вывода
   output: () => {
-    // calc.out.style.fontSize = '1rem';
     calc.outputWindow(calc.arrA);
     calc.outputWindow(calc.arrB);
     calc.outputWindow(calc.result);
@@ -428,18 +404,15 @@ const calc = {
     calc.out.textContent = calc.strOut;
     return;
   },
-
   // лог
   log: () => {
     console.log('inputLine(key): ' + calc.inputLine);
     console.log(calc.arrA);
-    // console.log('кол-во цифр числа A: ' + calc.arrA.length);
     console.log(calc.sign);
-    // console.log(calc.sign[0]);
     console.log(calc.arrB);
-    // console.log('кол-во цифр числа B: ' + calc.arrB.length);
     console.log('strOut: ' + calc.strOut);
-    if (calc.finish == true) {
+    if (calc.finish == true ||
+      calc.numOfCalc > 0) {
       console.log(`результат: ${calc.strOut}`);
     };
     console.log(`finish: ${calc.finish}`);
@@ -450,7 +423,6 @@ const calc = {
     return;
   }
 };
-
 // вызовы
 calc.key(calc.line);
 calc.key(calc.comma);
@@ -463,22 +435,3 @@ calc.key(calc.percentageCalc);
 calc.key(calc.output);
 calc.key(calc.log);
 //
-
-
-
-/*
-
-*/
-
-// calc.key(key => console.log(key)) // key в консоль
-
-// calc.key(key => {
-//   // вот тут пиши дальше код который использует key
-//   inputLine = key;
-//   console.log('inputLine: ' + inputLine);
-// })
-
-// Я сравнивала event.code, а не само значение event.key.
-// if (e.target.textContent == '888') {
-//   key = 7;
-// }
