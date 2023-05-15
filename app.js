@@ -129,11 +129,7 @@ const calc = {
       console.clear();
       console.log('очищено');
       calc.out.style.fontSize = '4rem';
-      calc.btnActive.forEach(element => {
-        console.log(element);
-        element.style.outline = 'rgb(255, 255, 255) none 0px';
-        element.style.outline = '0px';
-      });
+      calc.borderOff();
       calc.arrA = [];
       calc.arrB = [];
       calc.sign = []; // знак операции
@@ -188,6 +184,8 @@ const calc = {
         calc.finish === false) {
         console.log('ввод второго числа');
 
+        calc.borderOff();
+
         if (calc.arrB.length < 32) {
           calc.arrB.push(calc.inputLine);
         }
@@ -202,6 +200,8 @@ const calc = {
         calc.arrB.length > 0 &&
         calc.numOfCalc > 0) {
         console.log('ввод второго числа повторно');
+
+        calc.borderOff();
 
         calc.arrB = [];
         calc.arrB.length = 0;
@@ -253,6 +253,14 @@ const calc = {
     }
     return arr;
   },
+  // сброс обводки
+  borderOff: () => {
+    calc.btnActive.forEach(element => {
+      // console.log(element);
+      element.style.outline = 'rgb(255, 255, 255) none 0px';
+      element.style.outline = '0px';
+    });
+  },
   // операции
   operation: (key) => {
     if (calc.action.includes(key)) {
@@ -264,7 +272,7 @@ const calc = {
       // calc.strOut = calc.sign;
 
       // обводка кнопки введённого знака
-
+      calc.borderOff();
       // задать стили кнопки
       calc.outline = '2px solid rgba(0, 0, 0, 1.0)';
       calc.outlineOffset = '-3px';
@@ -458,7 +466,7 @@ const calc = {
     console.log('inputLine(key): ' + calc.inputLine);
     console.log(calc.arrA);
     console.log(calc.sign);
-    console.log(calc.sign[0]);
+    // console.log(calc.sign[0]);
     console.log(calc.arrB);
     console.log('strOut: ' + calc.strOut);
     if (calc.finish == true ||
@@ -469,12 +477,10 @@ const calc = {
     console.log(`numOfCalc: ${calc.numOfCalc}`);
     const styles = window.getComputedStyle(calc.out);
     // const styles = window.getComputedStyle(calc.btnActive);
-    console.log(styles.fontSize);
-
-    console.log(styles.outline)
-    console.log(styles.outlineOffset)
-
-    console.log(calc.btnActive);
+    // console.log(styles.fontSize);
+    // console.log(styles.outline);
+    // console.log(styles.outlineOffset);
+    // console.log(calc.btnActive);
 
     return;
   }
