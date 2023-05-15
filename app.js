@@ -27,6 +27,7 @@ const calc = {
   // стиль оранжевой кнопки по-умолчанию
   outline: 'rgb(255, 255, 255) none 0px',
   outlineOffset: '0px',
+  equalsCount: false,
   // клавиша
   key: (callback) => {
     let key;
@@ -93,6 +94,18 @@ const calc = {
       calc.inputLine = '.';
       return;
     }
+  },
+  // знак в равно
+  equals: (key) => {
+    if (calc.action.includes(key) &&
+      calc.arrA.length > 0 &&
+      calc.arrB.length > 0 &&
+      calc.sign[0] !== undefined) {
+      console.log('знак в равно');
+      calc.equalsCount = true;
+      calc.inputLine = 'Enter';
+      return;
+    };
   },
   // набор нескольких нулей (убрать)
   doubleZero: (arr) => {
@@ -163,8 +176,20 @@ const calc = {
       calc.plusOrMinus(calc.arrB);
     };
 
+
+
     // если нажата цифра
     if (calc.digit.includes(key)) {
+
+      if (calc.numOfCalc > 0 ||
+        calc.equalsCount === true) {
+        console.log('вычисления произведены');
+        calc.arrA = calc.inputLine.split('');
+        calc.arrB = []; // второе число
+        calc.sign = []; // знак операции
+        calc.finish = false;
+        calc.strOut = calc.arrA.join('');
+      }
 
       // ввод первого числа
       if (calc.arrB.length == 0 &&
@@ -183,7 +208,8 @@ const calc = {
       // если и первое и второе числа заполнены и вычисления произведены
       if (calc.arrA.length > 0 &&
         calc.arrB.length > 0 &&
-        calc.finish == true) {
+        calc.sign[0] !== undefined &&
+        calc.inputLine === 'Enter') {
         console.log('первое и второе числа заполнены');
 
         calc.arrA = calc.inputLine.split('');
@@ -329,9 +355,11 @@ const calc = {
     };
   },
   // вычисления
-  calculations: (key) => {
+  calculations: () => {
 
-    if (key === '=' || key === 'Enter') {
+    // if (key === '=' || key === 'Enter') {
+
+    if (calc.inputLine === '=' || calc.inputLine === 'Enter') {
 
       calc.numOfCalc += 1;
 
@@ -378,9 +406,11 @@ const calc = {
           console.log(`деление: ${calc.sign[0]}`);
           break;
       };
+
       calc.strOut = calc.arrA.join('');
       return;
     };
+    // calc.equalsCount = false;
     return;
   },
   // процентные расчеты
@@ -500,13 +530,14 @@ const calc = {
     // console.log(styles.outline);
     // console.log(styles.outlineOffset);
     // console.log(calc.btnActive);
-
+    console.log(calc.equalsCount);
     return;
   }
 };
 // вызовы
 calc.key(calc.line);
 calc.key(calc.comma);
+calc.key(calc.equals);
 calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
