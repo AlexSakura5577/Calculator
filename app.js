@@ -32,6 +32,7 @@ const calc = {
     let key;
     event1 = window.addEventListener('keydown', (e) => {
       key = e.key;
+      // console.log(e);
       callback(key);
     })
     event2 = calc.btn.addEventListener('click', (e) => {
@@ -71,6 +72,20 @@ const calc = {
       calc.strOut = 'Error';
     }
     return arr;
+  },
+  // объект селекторов кнопок (для css)
+  digitSelect: {
+    zero: document.querySelector('.btn.zero'),
+    one: document.querySelector('.btn.one'),
+    two: document.querySelector('.btn.two'),
+    three: document.querySelector('.btn.three'),
+    four: document.querySelector('.btn.four'),
+    five: document.querySelector('.btn.five'),
+    six: document.querySelector('.btn.six'),
+    seven: document.querySelector('.btn.seven'),
+    eight: document.querySelector('.btn.eight'),
+    nine: document.querySelector('.btn.nine'),
+    dot: document.querySelector('.btn.dot'),
   },
   // запятую в точку
   comma: () => {
@@ -256,9 +271,9 @@ const calc = {
   // сброс обводки
   borderOff: () => {
     calc.btnActive.forEach(element => {
-      // console.log(element);
       element.style.outline = 'rgb(255, 255, 255) none 0px';
-      element.style.outline = '0px';
+      element.style.outlineOffset = '0px';
+      element.style.filter = 'brightness(100%)';
     });
   },
   // операции
@@ -287,21 +302,25 @@ const calc = {
           let plus = document.querySelector('.btn.plus');
           plus.style.outline = calc.outline;
           plus.style.outlineOffset = calc.outlineOffset;
+          plus.style.filter = 'brightness(80%)';
           break;
         case '-':
           let minus = document.querySelector('.btn.minus');
           minus.style.outline = calc.outline;
           minus.style.outlineOffset = calc.outlineOffset;
+          minus.style.filter = 'brightness(80%)';
           break;
         case '*':
           let multiply = document.querySelector('.btn.multiplied');
           multiply.style.outline = calc.outline;
           multiply.style.outlineOffset = calc.outlineOffset;
+          multiply.style.filter = 'brightness(80%)';
           break;
         case '/':
           let divide = document.querySelector('.btn.division');
           divide.style.outline = calc.outline;
           divide.style.outlineOffset = calc.outlineOffset;
+          divide.style.filter = 'brightness(80%)';
           break;
         default:
           console.log('default');
