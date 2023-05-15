@@ -22,6 +22,11 @@ const calc = {
   // строка вывода
   strOut: '',
   numOfCalc: 0,
+  // оранжевая кнопка
+  btnActive: document.querySelectorAll('.btn.bg-orange'),
+  // стиль оранжевой кнопки по-умолчанию
+  outline: 'rgb(255, 255, 255) none 0px',
+  outlineOffset: '0px',
   // клавиша
   key: (callback) => {
     let key;
@@ -121,15 +126,20 @@ const calc = {
       calc.arrA.length >= 0 &&
       calc.arrB.length >= 0 &&
       calc.numOfCalc > 0) {
+      console.clear();
+      console.log('очищено');
       calc.out.style.fontSize = '4rem';
+      calc.btnActive.forEach(element => {
+        console.log(element);
+        element.style.outline = 'rgb(255, 255, 255) none 0px';
+        element.style.outline = '0px';
+      });
       calc.arrA = [];
       calc.arrB = [];
       calc.sign = []; // знак операции
       calc.finish = false; //
       calc.numOfCalc = 0; //
       calc.strOut = 0;
-      console.clear();
-      console.log('очищено');
       return;
     };
   },
@@ -249,7 +259,45 @@ const calc = {
       console.log(`ввод знака`);
 
       calc.sign[0] = key;
-      calc.strOut = calc.sign;
+
+      // отображение знака операции:
+      // calc.strOut = calc.sign;
+
+      // обводка кнопки введённого знака
+
+      // задать стили кнопки
+      calc.outline = '2px solid rgba(0, 0, 0, 1.0)';
+      calc.outlineOffset = '-3px';
+
+      switch (calc.sign[0]) {
+        case undefined:
+          console.log('нет знака');
+          btnActive.style.outline = 'rgb(255, 255, 255) none 0px';
+          btnActive.style.outlineOffset = '0px';
+          break;
+        case '+':
+          let plus = document.querySelector('.btn.plus');
+          plus.style.outline = calc.outline;
+          plus.style.outlineOffset = calc.outlineOffset;
+          break;
+        case '-':
+          let minus = document.querySelector('.btn.minus');
+          minus.style.outline = calc.outline;
+          minus.style.outlineOffset = calc.outlineOffset;
+          break;
+        case '*':
+          let multiply = document.querySelector('.btn.multiplied');
+          multiply.style.outline = calc.outline;
+          multiply.style.outlineOffset = calc.outlineOffset;
+          break;
+        case '/':
+          let divide = document.querySelector('.btn.division');
+          divide.style.outline = calc.outline;
+          divide.style.outlineOffset = calc.outlineOffset;
+          break;
+        default:
+          console.log('default');
+      };
       return;
     };
   },
@@ -410,6 +458,7 @@ const calc = {
     console.log('inputLine(key): ' + calc.inputLine);
     console.log(calc.arrA);
     console.log(calc.sign);
+    console.log(calc.sign[0]);
     console.log(calc.arrB);
     console.log('strOut: ' + calc.strOut);
     if (calc.finish == true ||
@@ -419,7 +468,13 @@ const calc = {
     console.log(`finish: ${calc.finish}`);
     console.log(`numOfCalc: ${calc.numOfCalc}`);
     const styles = window.getComputedStyle(calc.out);
+    // const styles = window.getComputedStyle(calc.btnActive);
     console.log(styles.fontSize);
+
+    console.log(styles.outline)
+    console.log(styles.outlineOffset)
+
+    console.log(calc.btnActive);
 
     return;
   }

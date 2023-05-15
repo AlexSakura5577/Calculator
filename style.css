@@ -82,4 +82,11 @@ background #333
     background: #ff9501;
     font-size: 2rem;
 }
+/* .btn.bg-orange:active {
+    outline: 3px solid rgba(0, 0, 0, 1.0); 
+    outline-offset: -3px; 
+} */
+/* .btn.plus {
+    font-size: 4rem;
+} */
 
