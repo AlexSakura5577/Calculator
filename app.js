@@ -292,6 +292,8 @@ const calc = {
       arr.splice(firstComma, 0, '.');
     }
     return arr;
+
+    // alert( parseFloat('12.3.4') ); // 12.3, произойдёт остановка чтения на второй точке
   },
   // сброс обводки
   borderOff: () => {
@@ -364,47 +366,59 @@ const calc = {
 
       console.log('вычисления');
 
-      if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
-      if (calc.finish == true) { calc.arrB = calc.arrA };
+      // if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
+      // if (calc.finish == true) { calc.arrB = calc.arrA };
 
       let a = calc.arrA.join('');
       let b = calc.arrB.join('');
 
-      switch (calc.sign[0]) {
-        case '+':
-          let plus = (+a) + (+b);
-          calc.result = Array.from(String(plus));
-          calc.arrA = calc.result;
-          console.log(`сложение: ${calc.sign[0]}`);
-          break;
-        case '-':
-          let minus = (+a) - (+b);
-          calc.result = Array.from(String(minus));
-          calc.arrA = calc.result;
-          console.log(`вычитание: ${calc.sign[0]}`);
-          break;
-        case '*':
-          let multiply = (+a) * (+b);
-          calc.result = Array.from(String(multiply));
-          calc.arrA = calc.result;
-          console.log(`умножение: ${calc.sign[0]}`);
-          break;
-        case '/':
-          if (calc.arrB[0] == 0) {
-            calc.out.style.fontSize = '3.5rem';
-            calc.strOut = 'Деление на 0';
-            console.log('Деление на 0');
-            calc.arrA = [];
-            calc.arrB = [];
-            calc.sign = [];
-            return;
-          }
-          let divide = (+a) / (+b);
-          calc.result = Array.from(String(divide));
-          calc.arrA = calc.result;
-          console.log(`деление: ${calc.sign[0]}`);
-          break;
-      };
+      if (calc.arrA.length > 0 &&
+        calc.arrB.length > 0 &&
+        calc.sign[0] !== undefined) {
+
+        switch (calc.sign[0]) {
+          case '+':
+            let plus = (+a) + (+b); // число
+            let res = calc.rounding(plus);
+            calc.result = Array.from(String(res)); // обёртка в массив
+            calc.arrA = calc.result;
+            console.log(`сложение: ${calc.sign[0]}`);
+            break;
+          case '-':
+            let minus = (+a) - (+b);
+            calc.rounding(minus);
+            calc.result = Array.from(String(minus));
+            calc.arrA = calc.result;
+            console.log(`вычитание: ${calc.sign[0]}`);
+            break;
+          case '*':
+            let multiply = (+a) * (+b);
+            calc.rounding(multiply);
+            calc.result = Array.from(String(multiply));
+            calc.arrA = calc.result;
+            console.log(`умножение: ${calc.sign[0]}`);
+            break;
+          case '/':
+            if (calc.arrB[0] == 0) {
+              calc.out.style.fontSize = '3.5rem';
+              calc.strOut = 'Деление на 0';
+              console.log('Деление на 0');
+              calc.arrA = [];
+              calc.arrB = [];
+              calc.sign = [];
+              return;
+            }
+            let divide = (+a) / (+b);
+            calc.rounding(divide);
+            calc.result = Array.from(String(divide));
+            calc.arrA = calc.result;
+            console.log(`деление: ${calc.sign[0]}`);
+            break;
+        };
+      } else {
+        calc.sign = [];
+        console.log('введите число');
+      }
 
       calc.strOut = calc.arrA.join('');
       return;
@@ -495,6 +509,22 @@ const calc = {
       };
       return;
     };
+    return;
+  },
+  // округления
+  rounding: (res) => {
+    console.log('округления');
+    let numb = Number(res.toFixed(10));
+    console.log(`numb: ${numb}`);
+    console.log(`NaN: ${isNaN(numb)}`);
+    console.log(`isFinite: ${isFinite(numb)}`);
+    console.log(`res: ${res}`);
+
+    if (isNaN(numb) === false &&
+      isFinite(numb) === true) {
+      return numb;
+    } else console.log('Error');
+
     return;
   },
   // окно вывода
