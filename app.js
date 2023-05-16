@@ -158,8 +158,8 @@ const calc = {
       console.log('очищено');
       calc.out.style.fontSize = '4rem';
       calc.borderOff();
-      calc.arrA = [];
-      calc.arrB = [];
+      calc.arrA = []; // число 1
+      calc.arrB = []; // число 2
       calc.sign = []; // знак операции
       calc.finish = false; //
       calc.numOfCalc = 0; //
@@ -358,8 +358,6 @@ const calc = {
   // вычисления
   calculations: () => {
 
-    // if (key === '=' || key === 'Enter') {
-
     if (calc.inputLine === '=' || calc.inputLine === 'Enter') {
 
       calc.numOfCalc += 1;
@@ -380,7 +378,7 @@ const calc = {
           case '+':
             let plus = (+a) + (+b); // число
             let resPlus = calc.rounding(plus);
-            calc.result = Array.from(String(resPlus)); // обёртка в массив
+            calc.result = Array.from(String(resPlus));
             calc.arrA = calc.result;
             console.log(`сложение: ${calc.sign[0]}`);
             break;
@@ -516,6 +514,7 @@ const calc = {
   rounding: (res) => {
     console.log('округления');
     let numb = Number(res.toFixed(10));
+    
     console.log(`numb: ${numb}`);
     console.log(`NaN: ${isNaN(numb)}`);
     console.log(`isFinite: ${isFinite(numb)}`);
@@ -525,7 +524,6 @@ const calc = {
       isFinite(numb) === true) {
       return numb;
     } else console.log('Error');
-
     return;
   },
   // окно вывода
