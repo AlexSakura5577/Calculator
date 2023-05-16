@@ -170,26 +170,25 @@ const calc = {
   // условия ввода
   termsOfEnter: (key) => {
 
+    // смена знака
     if (calc.sign[0] === undefined) {
       calc.plusOrMinus(calc.arrA);
     } else {
       calc.plusOrMinus(calc.arrB);
     };
 
-
-
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
-      if (calc.numOfCalc > 0 ||
-        calc.equalsCount === true) {
-        console.log('вычисления произведены');
-        calc.arrA = calc.inputLine.split('');
-        calc.arrB = []; // второе число
-        calc.sign = []; // знак операции
-        calc.finish = false;
-        calc.strOut = calc.arrA.join('');
-      }
+      // if (calc.numOfCalc > 0 ||
+      //   calc.equalsCount === true) {
+      //   console.log('вычисления произведены');
+      //   calc.arrA = calc.inputLine.split('');
+      //   calc.arrB = []; // второе число
+      //   calc.sign = []; // знак операции
+      //   calc.finish = false;
+      //   calc.strOut = calc.arrA.join('');
+      // }
 
       // ввод первого числа
       if (calc.arrB.length == 0 &&
@@ -537,7 +536,7 @@ const calc = {
 // вызовы
 calc.key(calc.line);
 calc.key(calc.comma);
-calc.key(calc.equals);
+// calc.key(calc.equals);
 calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
