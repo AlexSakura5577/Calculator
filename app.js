@@ -379,27 +379,28 @@ const calc = {
         switch (calc.sign[0]) {
           case '+':
             let plus = (+a) + (+b); // число
-            let res = calc.rounding(plus);
-            calc.result = Array.from(String(res)); // обёртка в массив
+            let resPlus = calc.rounding(plus);
+            calc.result = Array.from(String(resPlus)); // обёртка в массив
             calc.arrA = calc.result;
             console.log(`сложение: ${calc.sign[0]}`);
             break;
           case '-':
             let minus = (+a) - (+b);
-            calc.rounding(minus);
-            calc.result = Array.from(String(minus));
+            let resMinus = calc.rounding(minus);
+            calc.result = Array.from(String(resMinus));
             calc.arrA = calc.result;
             console.log(`вычитание: ${calc.sign[0]}`);
             break;
           case '*':
             let multiply = (+a) * (+b);
-            calc.rounding(multiply);
-            calc.result = Array.from(String(multiply));
+            let resMultiply = calc.rounding(multiply);
+            calc.result = Array.from(String(resMultiply));
             calc.arrA = calc.result;
             console.log(`умножение: ${calc.sign[0]}`);
             break;
           case '/':
-            if (calc.arrB[0] == 0) {
+            if (calc.arrB[0] == 0 &&
+              calc.arrB.length == 1) {
               calc.out.style.fontSize = '3.5rem';
               calc.strOut = 'Деление на 0';
               console.log('Деление на 0');
@@ -409,8 +410,8 @@ const calc = {
               return;
             }
             let divide = (+a) / (+b);
-            calc.rounding(divide);
-            calc.result = Array.from(String(divide));
+            let resDivide = calc.rounding(divide);
+            calc.result = Array.from(String(resDivide));
             calc.arrA = calc.result;
             console.log(`деление: ${calc.sign[0]}`);
             break;
