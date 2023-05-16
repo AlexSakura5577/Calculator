@@ -97,10 +97,10 @@ const calc = {
   },
   // знак в равно
   equals: (key) => {
-    if (calc.action.includes(key) &&
-      calc.arrA.length > 0 &&
+    if (calc.arrA.length > 0 &&
       calc.arrB.length > 0 &&
-      calc.sign[0] !== undefined) {
+      calc.sign[0] !== undefined &&
+      calc.action.includes(key)) {
       console.log('знак в равно');
       calc.equalsCount = true;
       calc.inputLine = 'Enter';
@@ -162,6 +162,7 @@ const calc = {
       calc.arrB = []; // число 2
       calc.sign = []; // знак операции
       calc.finish = false; //
+      calc.equalsCount = false; //
       calc.numOfCalc = 0; //
       calc.strOut = 0;
       return;
@@ -192,8 +193,7 @@ const calc = {
 
       // ввод первого числа
       if (calc.arrB.length == 0 &&
-        calc.sign.length == 0 &&
-        calc.finish == false) {
+        calc.sign[0] === undefined) {
         console.log('ввод первого числа');
 
         if (calc.arrA.length < 32) {
@@ -208,7 +208,7 @@ const calc = {
       if (calc.arrA.length > 0 &&
         calc.arrB.length > 0 &&
         calc.sign[0] !== undefined &&
-        calc.inputLine === 'Enter') {
+        calc.finish === true) {
         console.log('первое и второе числа заполнены');
 
         calc.arrA = calc.inputLine.split('');
@@ -220,7 +220,7 @@ const calc = {
 
       // ввод второго числа
       if (calc.arrA.length > 0 &&
-        calc.sign.length > 0 &&
+        calc.sign[0] !== undefined &&
         calc.finish === false) {
         console.log('ввод второго числа');
 
@@ -235,23 +235,23 @@ const calc = {
       };
 
       // ввод второго числа повторно после вычислений
-      if (calc.arrA.length > 0 &&
-        calc.sign.length > 0 &&
-        calc.arrB.length > 0 &&
-        calc.numOfCalc > 0) {
-        console.log('ввод второго числа повторно');
+      // if (calc.arrA.length > 0 &&
+      //   calc.sign.length > 0 &&
+      //   calc.arrB.length > 0 &&
+      //   calc.numOfCalc > 0) {
+      //   console.log('ввод второго числа повторно');
 
-        calc.borderOff();
+      //   calc.borderOff();
 
-        calc.arrB = [];
-        calc.arrB.length = 0;
-        calc.numOfCalc = 0;
-        calc.arrB = calc.inputLine.split('');
-        calc.duplicateDots(calc.arrB);
-        calc.doubleZero(calc.arrB);
-        calc.strOut = calc.arrB.join('');
-        return;
-      }
+      //   calc.arrB = [];
+      //   calc.arrB.length = 0;
+      //   calc.numOfCalc = 0;
+      //   calc.arrB = calc.inputLine.split('');
+      //   calc.duplicateDots(calc.arrB);
+      //   calc.doubleZero(calc.arrB);
+      //   calc.strOut = calc.arrB.join('');
+      //   return;
+      // }
       if (calc.arrA.length > 0 &&
         calc.arrA.includes('.')) {
         console.log('ввод дробного числа');
@@ -313,6 +313,16 @@ const calc = {
       // отображение знака операции:
       // calc.strOut = calc.sign;
 
+      if (calc.arrA.length > 0 &&
+        calc.arrB.length > 0 &&
+        calc.sign[0] !== undefined &&
+        calc.finish === false) {
+        calc.inputLine = 'Enter';
+        // calc.finish = true;
+        calc.equalsCount = true;
+        return;
+      }
+
       // обводка кнопки введённого знака
       calc.borderOff();
       // задать стили кнопки
@@ -359,9 +369,6 @@ const calc = {
   calculations: () => {
 
     if (calc.inputLine === '=' || calc.inputLine === 'Enter') {
-
-      calc.numOfCalc += 1;
-
       console.log('вычисления');
 
       // if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
@@ -418,11 +425,11 @@ const calc = {
         calc.sign = [];
         console.log('введите число');
       }
-
+      calc.finish = true;
+      calc.numOfCalc += 1;
       calc.strOut = calc.arrA.join('');
       return;
     };
-    // calc.equalsCount = false;
     return;
   },
   // процентные расчеты
@@ -514,7 +521,7 @@ const calc = {
   rounding: (res) => {
     console.log('округления');
     let numb = Number(res.toFixed(10));
-    
+
     console.log(`numb: ${numb}`);
     console.log(`NaN: ${isNaN(numb)}`);
     console.log(`isFinite: ${isFinite(numb)}`);
@@ -558,7 +565,7 @@ const calc = {
     // console.log(styles.outline);
     // console.log(styles.outlineOffset);
     // console.log(calc.btnActive);
-    console.log(calc.equalsCount);
+    console.log(`equalsCount: ${calc.equalsCount}`);
     return;
   }
 };
