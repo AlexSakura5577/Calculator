@@ -181,6 +181,26 @@ const calc = {
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
+      
+      // if (calc.arrA.length > 0 &&
+      //   calc.sign.length > 0 &&
+      //   calc.arrB.length > 0 &&
+      //   calc.finish === true) {
+      //   console.log('ввод второго числа повторно');
+
+      //   calc.borderOff();
+
+      //   calc.arrB = [];
+      //   calc.arrB = calc.arrA;
+      //   // calc.arrB.length = 0;
+      //   calc.numOfCalc = 0;
+      //   // calc.arrB = calc.inputLine.split('');
+      //   calc.duplicateDots(calc.arrB);
+      //   calc.doubleZero(calc.arrB);
+      //   // calc.strOut = calc.arrB.join('');
+      //   return;
+      // }
+
       // if (calc.numOfCalc > 0 ||
       //   calc.equalsCount === true) {
       //   console.log('вычисления произведены');
@@ -209,7 +229,7 @@ const calc = {
         calc.arrB.length > 0 &&
         calc.sign[0] !== undefined &&
         calc.finish === true) {
-        console.log('первое и второе числа заполнены');
+        console.log('вычисления произведены');
 
         calc.arrA = calc.inputLine.split('');
         calc.arrB = []; // второе число
@@ -238,13 +258,15 @@ const calc = {
       // if (calc.arrA.length > 0 &&
       //   calc.sign.length > 0 &&
       //   calc.arrB.length > 0 &&
-      //   calc.numOfCalc > 0) {
+      //   calc.finish === true &&
+      //   calc.inputLine === 'Enter') {
       //   console.log('ввод второго числа повторно');
 
       //   calc.borderOff();
 
       //   calc.arrB = [];
-      //   calc.arrB.length = 0;
+      //   calc.arrB = calc.arrA;
+      //   // calc.arrB.length = 0;
       //   calc.numOfCalc = 0;
       //   calc.arrB = calc.inputLine.split('');
       //   calc.duplicateDots(calc.arrB);
@@ -252,6 +274,7 @@ const calc = {
       //   calc.strOut = calc.arrB.join('');
       //   return;
       // }
+
       if (calc.arrA.length > 0 &&
         calc.arrA.includes('.')) {
         console.log('ввод дробного числа');
@@ -312,6 +335,21 @@ const calc = {
 
       // отображение знака операции:
       // calc.strOut = calc.sign;
+
+      if (calc.arrA.length > 0 &&
+        calc.sign.length > 0 &&
+        calc.arrB.length > 0 &&
+        calc.finish === true) {
+        console.log('ввод второго числа повторно');
+        // calc.borderOff();
+        calc.arrB = [];
+        calc.arrB = calc.arrA;
+        calc.numOfCalc = 0;
+        // calc.finish = false;
+        // calc.duplicateDots(calc.arrB);
+        // calc.doubleZero(calc.arrB);
+        return;
+      }
 
       if (calc.arrA.length > 0 &&
         calc.arrB.length > 0 &&
