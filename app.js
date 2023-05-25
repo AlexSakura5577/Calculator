@@ -181,7 +181,7 @@ const calc = {
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
-      
+
       // if (calc.arrA.length > 0 &&
       //   calc.sign.length > 0 &&
       //   calc.arrB.length > 0 &&
@@ -557,19 +557,25 @@ const calc = {
   },
   // округления
   rounding: (res) => {
-    console.log('округления');
-    let numb = Number(res.toFixed(10));
 
-    console.log(`numb: ${numb}`);
-    console.log(`NaN: ${isNaN(numb)}`);
-    console.log(`isFinite: ${isFinite(numb)}`);
-    console.log(`res: ${res}`);
+    console.log(`целое число?: ${Number.isInteger(res)}`);
+    if (Number.isInteger(res) === false) {
 
-    if (isNaN(numb) === false &&
-      isFinite(numb) === true) {
-      return numb;
-    } else console.log('Error');
-    return;
+      console.log('округления');
+      let numb = Number(res.toFixed(10));
+
+      console.log(`numb: ${numb}`);
+      console.log(`NaN: ${isNaN(numb)}`);
+      console.log(`isFinite: ${isFinite(numb)}`);
+      // console.log(`sInteger: ${Number.isInteger(numb)}`);
+      console.log(`res: ${res}`);
+
+      if (isNaN(numb) === false &&
+        isFinite(numb) === true) {
+        return numb;
+      } else console.log('Error');
+      return;
+    };
   },
   // окно вывода
   output: () => {
@@ -577,10 +583,15 @@ const calc = {
     calc.outputWindow(calc.arrB);
     calc.outputWindow(calc.result);
 
-    if (calc.strOut == '') {
+    if (calc.strOut === '') {
       calc.strOut = '0';
     };
-    calc.out.textContent = calc.strOut;
+    if (calc.strOut !== undefined &&
+      calc.strOut !== null &&
+      calc.strOut !== NaN) {
+        
+      calc.out.textContent = calc.strOut;
+    };
     return;
   },
   // лог
