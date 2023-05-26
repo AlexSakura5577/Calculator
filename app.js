@@ -104,6 +104,7 @@ const calc = {
       console.log('знак в равно');
       calc.equalsCount = true;
       calc.inputLine = 'Enter';
+      // calc.calculations();
       return;
     };
   },
@@ -341,25 +342,22 @@ const calc = {
         calc.arrB.length > 0 &&
         calc.finish === true) {
         console.log('ввод второго числа повторно');
-        // calc.borderOff();
+
         calc.arrB = [];
         calc.arrB = calc.arrA;
         calc.numOfCalc = 0;
-        // calc.finish = false;
-        // calc.duplicateDots(calc.arrB);
-        // calc.doubleZero(calc.arrB);
         return;
       }
 
-      if (calc.arrA.length > 0 &&
-        calc.arrB.length > 0 &&
-        calc.sign[0] !== undefined &&
-        calc.finish === false) {
-        calc.inputLine = 'Enter';
-        // calc.finish = true;
-        calc.equalsCount = true;
-        return;
-      }
+      // if (calc.arrA.length > 0 &&
+      //   calc.arrB.length > 0 &&
+      //   calc.sign[0] !== undefined &&
+      //   calc.finish === false) {
+      //   calc.inputLine = 'Enter';
+      //   // calc.finish = true;
+      //   calc.equalsCount = true;
+      //   return;
+      // }
 
       // обводка кнопки введённого знака
       calc.borderOff();
@@ -405,6 +403,8 @@ const calc = {
   },
   // вычисления
   calculations: () => {
+
+    calc.key(calc.equals);
 
     if (calc.inputLine === '=' || calc.inputLine === 'Enter') {
       console.log('вычисления');
@@ -558,7 +558,7 @@ const calc = {
   // округления
   rounding: (res) => {
 
-    console.log(`целое число?: ${Number.isInteger(res)}`);
+    console.log(`целое число? ${Number.isInteger(res)}`);
     if (Number.isInteger(res) === false) {
 
       console.log('округления');
@@ -574,8 +574,9 @@ const calc = {
         isFinite(numb) === true) {
         return numb;
       } else console.log('Error');
-      return;
+      // return res;
     };
+    return res;
   },
   // окно вывода
   output: () => {
@@ -586,12 +587,13 @@ const calc = {
     if (calc.strOut === '') {
       calc.strOut = '0';
     };
-    if (calc.strOut !== undefined &&
-      calc.strOut !== null &&
+    if (calc.strOut !== undefined ||
+      calc.strOut !== null ||
       calc.strOut !== NaN) {
-        
+
       calc.out.textContent = calc.strOut;
     };
+    // calc.out.textContent = calc.strOut;
     return;
   },
   // лог
