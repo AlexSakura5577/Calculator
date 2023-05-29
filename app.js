@@ -97,16 +97,23 @@ const calc = {
   },
   // знак в равно
   equals: (key) => {
-    if (calc.arrA.length > 0 &&
+    if (calc.inputLine !== 'Enter' &&
+      calc.arrA.length > 0 &&
       calc.arrB.length > 0 &&
       calc.sign[0] !== undefined &&
       calc.action.includes(key) &&
       calc.equalsCount === false) {
+
       console.log('знак в равно');
       calc.equalsCount = true;
       calc.inputLine = 'Enter';
+      // calc.inputLine = key;
+
+      // calc.sign[0] = key;
+      // calc.sign[0] = calc.sign[0];
       // calc.calculations();
-      calc.arrB = calc.arrA;
+      // calc.arrB = calc.arrA;
+      // calc.arrA = calc.result;
       return;
     };
   },
@@ -376,11 +383,11 @@ const calc = {
   // операции
   operation: (key) => {
     if (calc.action.includes(key) &&
-      calc.arrB.length === 0 &&
-      calc.equalsCount === true) {
+      calc.arrB.length === 0) {
       console.log(`ввод знака`);
 
       calc.sign[0] = key;
+      console.log(`знак: ${calc.sign}`);
 
       // отображение знака операции:
       // calc.strOut = calc.sign;
@@ -466,11 +473,21 @@ const calc = {
       calc.numOfCalc += 1;
       calc.strOut = calc.arrA.join('');
 
+      // calc.sign[0] = key;
+
+
+      if (calc.action.includes(key) &&
+        calc.equalsCount === true) {
+        console.log('присвоить знак');
+        calc.sign[0] = key;
+        calc.arrB = calc.arrA;
+        // calc.border(key);
+        calc.key(calc.border);
+      };
+
       return;
     };
-    if (calc.action.includes(key)) {
-      calc.sign[0] = key;
-    };
+
 
     return;
   },
@@ -601,13 +618,15 @@ const calc = {
     return;
   },
   // лог
-  log: () => {
-    console.log('inputLine(key): ' + calc.inputLine);
+  log: (key) => {
+    console.log('Начало логов');
+    console.log(`key: ${key}`);
+    console.log('inputLine: ' + calc.inputLine);
     console.log(calc.arrA);
     console.log(calc.sign);
     // console.log(calc.sign[0]);
     console.log(calc.arrB);
-    console.log('strOut: ' + calc.strOut);
+    console.log('строка вывода (strOut): ' + calc.strOut);
     if (calc.finish == true ||
       calc.numOfCalc > 0) {
       console.log(`результат: ${calc.strOut}`);
@@ -628,6 +647,7 @@ const calc = {
 calc.key(calc.line);
 calc.key(calc.comma);
 calc.key(calc.equals);
+// calc.key(calc.border);
 calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
