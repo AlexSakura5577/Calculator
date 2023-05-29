@@ -100,11 +100,13 @@ const calc = {
     if (calc.arrA.length > 0 &&
       calc.arrB.length > 0 &&
       calc.sign[0] !== undefined &&
-      calc.action.includes(key)) {
+      calc.action.includes(key) &&
+      calc.equalsCount === false) {
       console.log('знак в равно');
       calc.equalsCount = true;
       calc.inputLine = 'Enter';
       // calc.calculations();
+      calc.arrB = calc.arrA;
       return;
     };
   },
@@ -327,38 +329,8 @@ const calc = {
       element.style.filter = 'brightness(100%)';
     });
   },
-  // операции
-  operation: (key) => {
+  border: (key) => {
     if (calc.action.includes(key)) {
-      console.log(`ввод знака`);
-
-      calc.sign[0] = key;
-
-      // отображение знака операции:
-      // calc.strOut = calc.sign;
-
-      if (calc.arrA.length > 0 &&
-        calc.sign.length > 0 &&
-        calc.arrB.length > 0 &&
-        calc.finish === true) {
-        console.log('ввод второго числа повторно');
-
-        calc.arrB = [];
-        calc.arrB = calc.arrA;
-        calc.numOfCalc = 0;
-        return;
-      }
-
-      // if (calc.arrA.length > 0 &&
-      //   calc.arrB.length > 0 &&
-      //   calc.sign[0] !== undefined &&
-      //   calc.finish === false) {
-      //   calc.inputLine = 'Enter';
-      //   // calc.finish = true;
-      //   calc.equalsCount = true;
-      //   return;
-      // }
-
       // обводка кнопки введённого знака
       calc.borderOff();
       // задать стили кнопки
@@ -366,11 +338,11 @@ const calc = {
       calc.outlineOffset = '-3px';
 
       switch (calc.sign[0]) {
-        case undefined:
-          console.log('нет знака');
-          btnActive.style.outline = 'rgb(255, 255, 255) none 0px';
-          btnActive.style.outlineOffset = '0px';
-          break;
+        // case undefined:
+        //   console.log('нет знака');
+        //   btnActive.style.outline = 'rgb(255, 255, 255) none 0px';
+        //   btnActive.style.outlineOffset = '0px';
+        //   break;
         case '+':
           let plus = document.querySelector('.btn.plus');
           plus.style.outline = calc.outline;
@@ -399,12 +371,39 @@ const calc = {
           console.log('default');
       };
       return;
+    }
+  },
+  // операции
+  operation: (key) => {
+    if (calc.action.includes(key) &&
+      calc.arrB.length === 0 &&
+      calc.equalsCount === true) {
+      console.log(`ввод знака`);
+
+      calc.sign[0] = key;
+
+      // отображение знака операции:
+      // calc.strOut = calc.sign;
+
+      if (calc.arrA.length > 0 &&
+        calc.sign.length > 0 &&
+        calc.arrB.length > 0 &&
+        calc.finish === true) {
+        console.log('ввод второго числа повторно');
+
+        calc.arrB = [];
+        calc.arrB = calc.arrA;
+        calc.numOfCalc = 0;
+        return;
+      };
+
+
     };
   },
   // вычисления
-  calculations: () => {
+  calculations: (key) => {
 
-    calc.key(calc.equals);
+    // calc.key(calc.equals);
 
     if (calc.inputLine === '=' || calc.inputLine === 'Enter') {
       console.log('вычисления');
@@ -466,8 +465,13 @@ const calc = {
       calc.finish = true;
       calc.numOfCalc += 1;
       calc.strOut = calc.arrA.join('');
+
       return;
     };
+    if (calc.action.includes(key)) {
+      calc.sign[0] = key;
+    };
+
     return;
   },
   // процентные расчеты
@@ -623,12 +627,13 @@ const calc = {
 // вызовы
 calc.key(calc.line);
 calc.key(calc.comma);
-// calc.key(calc.equals);
+calc.key(calc.equals);
 calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
 calc.key(calc.operation);
 calc.key(calc.calculations);
+calc.key(calc.border);
 calc.key(calc.percentageCalc);
 calc.key(calc.output);
 calc.key(calc.log);
