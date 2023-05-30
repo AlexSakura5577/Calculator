@@ -187,17 +187,6 @@ const calc = {
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
-      // if (calc.numOfCalc > 0 ||
-      //   calc.equalsCount === true) {
-      //   console.log('вычисления произведены');
-      //   // calc.arrA = calc.inputLine.split('');
-      //   calc.arrA = []; // первое число
-      //   calc.sign = []; // знак операции
-      //   calc.arrB = []; // второе число
-      //   calc.finish = false;
-      //   calc.strOut = calc.arrA.join('');
-      // }
-
       // ввод первого числа
       if (calc.arrB.length == 0 &&
         calc.sign[0] === undefined) {
@@ -260,13 +249,8 @@ const calc = {
         calc.borderOff();
 
         calc.arrB = [];
-        // calc.arrB = calc.arrA;
-        // calc.arrB.length = 0;
         calc.numOfCalc = 0;
         calc.arrB = calc.inputLine.split('');
-        // if (calc.arrB.length < 32) {
-        //   calc.arrB.push(calc.inputLine);
-        // }
         calc.duplicateDots(calc.arrB);
         calc.doubleZero(calc.arrB);
         calc.finish = false;
@@ -346,6 +330,7 @@ const calc = {
       element.style.filter = 'brightness(100%)';
     });
   },
+  // выделение нажатой кнопки знака
   border: (key) => {
     if (calc.action.includes(key)) {
       // обводка кнопки введённого знака
@@ -629,7 +614,7 @@ const calc = {
   },
   // лог
   log: (key) => {
-    console.log('Начало логов');
+    // console.log('Начало логов');
     console.log(`key: ${key}`);
     console.log('inputLine: ' + calc.inputLine);
     console.log(calc.arrA);
@@ -658,7 +643,6 @@ const calc = {
 calc.key(calc.line);
 calc.key(calc.comma);
 calc.key(calc.equals);
-// calc.key(calc.border);
 calc.key(calc.backspace);
 calc.key(calc.clear);
 calc.key(calc.termsOfEnter);
