@@ -109,14 +109,6 @@ const calc = {
       calc.equalsCount = true;
       calc.inputLine = 'Enter';
       calc.enter = false;
-      // calc.inputLine = key;
-
-      // calc.sign[0] = key;
-      // calc.sign[0] = calc.sign[0];
-      // calc.calculations();
-      // calc.arrB = calc.arrA;
-      // calc.arrA = calc.result;
-      // calc.finish = false;
       return;
     };
   },
@@ -177,6 +169,7 @@ const calc = {
       calc.finish = false; //
       calc.equalsCount = false; //
       calc.numOfCalc = 0; //
+      calc.enter = false; //
       calc.strOut = 0;
       return;
     };
@@ -316,7 +309,7 @@ const calc = {
   },
   // смена знака если нажата +/-
   plusOrMinus: (arr) => {
-    if (calc.inputLine == '+/-') {
+    if (calc.inputLine === '+/-') {
       console.log('инверсия числа');
 
       if (arr[0] !== '-') {
@@ -422,23 +415,15 @@ const calc = {
         calc.numOfCalc = 0;
         return;
       };
-
-
     };
   },
   // вычисления
   calculations: (key) => {
 
-    // calc.key(calc.equals);
-
-    // if (calc.inputLine === '=' || calc.inputLine === 'Enter') {
-    //   calc.enter = true;
-    // }
-
-
-
     if (calc.equalsCount = false &&
-      calc.inputLine === '=' || calc.inputLine === 'Enter') {
+      calc.inputLine === '=' ||
+      calc.inputLine === 'Enter' ||
+      calc.inputLine === '=') {
       console.log('вычисления');
 
       // if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
@@ -501,23 +486,15 @@ const calc = {
         calc.inputLine === 'Enter') {
         calc.enter = false;
       } else { calc.enter = true; }
-      
-      // if (calc.equalsCount === true) {
-      //         calc.enter = true;
-      // } else { calc.enter = true; }
 
       calc.numOfCalc += 1;
       calc.strOut = calc.arrA.join('');
-
-      // calc.sign[0] = key;
-
 
       if (calc.action.includes(key) &&
         calc.equalsCount === true) {
         console.log('присвоить знак');
         calc.sign[0] = key;
         calc.arrB = calc.arrA;
-        // calc.border(key);
         calc.key(calc.border);
       };
       return;
