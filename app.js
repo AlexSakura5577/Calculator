@@ -28,6 +28,7 @@ const calc = {
   outline: 'rgb(255, 255, 255) none 0px',
   outlineOffset: '0px',
   equalsCount: false,
+  enter: false,
   // клавиша
   key: (callback) => {
     let key;
@@ -99,14 +100,15 @@ const calc = {
   equals: (key) => {
     if (calc.inputLine !== 'Enter' &&
       calc.arrA.length > 0 &&
-      calc.arrB.length > 0 &&
       calc.sign[0] !== undefined &&
+      calc.arrB.length > 0 &&
       calc.action.includes(key) &&
       calc.equalsCount === false) {
 
       console.log('знак в равно');
       calc.equalsCount = true;
       calc.inputLine = 'Enter';
+      calc.enter = false;
       // calc.inputLine = key;
 
       // calc.sign[0] = key;
@@ -114,6 +116,7 @@ const calc = {
       // calc.calculations();
       // calc.arrB = calc.arrA;
       // calc.arrA = calc.result;
+      // calc.finish = false;
       return;
     };
   },
@@ -191,32 +194,13 @@ const calc = {
     // если нажата цифра
     if (calc.digit.includes(key)) {
 
-
-      // if (calc.arrA.length > 0 &&
-      //   calc.sign.length > 0 &&
-      //   calc.arrB.length > 0 &&
-      //   calc.finish === true) {
-      //   console.log('ввод второго числа повторно');
-
-      //   calc.borderOff();
-
-      //   calc.arrB = [];
-      //   calc.arrB = calc.arrA;
-      //   // calc.arrB.length = 0;
-      //   calc.numOfCalc = 0;
-      //   // calc.arrB = calc.inputLine.split('');
-      //   calc.duplicateDots(calc.arrB);
-      //   calc.doubleZero(calc.arrB);
-      //   // calc.strOut = calc.arrB.join('');
-      //   return;
-      // }
-
       // if (calc.numOfCalc > 0 ||
       //   calc.equalsCount === true) {
       //   console.log('вычисления произведены');
-      //   calc.arrA = calc.inputLine.split('');
-      //   calc.arrB = []; // второе число
+      //   // calc.arrA = calc.inputLine.split('');
+      //   calc.arrA = []; // первое число
       //   calc.sign = []; // знак операции
+      //   calc.arrB = []; // второе число
       //   calc.finish = false;
       //   calc.strOut = calc.arrA.join('');
       // }
@@ -236,22 +220,29 @@ const calc = {
 
       // если и первое и второе числа заполнены и вычисления произведены
       if (calc.arrA.length > 0 &&
-        calc.arrB.length > 0 &&
         calc.sign[0] !== undefined &&
-        calc.finish === true) {
+        calc.arrB.length > 0 &&
+        calc.finish === true &&
+        calc.numOfCalc > 0 &&
+        calc.equalsCount === true &&
+        calc.enter === true) {
         console.log('вычисления произведены');
 
         calc.arrA = calc.inputLine.split('');
         calc.arrB = []; // второе число
         calc.sign = []; // знак операции
         calc.finish = false;
+        calc.equalsCount = false;
+        calc.numOfCalc = 0;
+        calc.enter = false;
         calc.strOut = calc.arrA.join('');
       };
 
       // ввод второго числа
       if (calc.arrA.length > 0 &&
         calc.sign[0] !== undefined &&
-        calc.finish === false) {
+        calc.finish === false &&
+        calc.equalsCount === false) {
         console.log('ввод второго числа');
 
         calc.borderOff();
@@ -265,26 +256,52 @@ const calc = {
       };
 
       // ввод второго числа повторно после вычислений
-      // if (calc.arrA.length > 0 &&
-      //   calc.sign.length > 0 &&
-      //   calc.arrB.length > 0 &&
-      //   calc.finish === true &&
-      //   calc.inputLine === 'Enter') {
-      //   console.log('ввод второго числа повторно');
+      if (calc.arrA.length > 0 &&
+        calc.sign[0] !== undefined &&
+        calc.arrB.length > 0 &&
+        calc.finish === true &&
+        calc.numOfCalc === 1 &&
+        calc.equalsCount === true) {
+        console.log('ввод второго числа повторно');
 
-      //   calc.borderOff();
+        calc.borderOff();
 
-      //   calc.arrB = [];
-      //   calc.arrB = calc.arrA;
-      //   // calc.arrB.length = 0;
-      //   calc.numOfCalc = 0;
-      //   calc.arrB = calc.inputLine.split('');
-      //   calc.duplicateDots(calc.arrB);
-      //   calc.doubleZero(calc.arrB);
-      //   calc.strOut = calc.arrB.join('');
-      //   return;
-      // }
+        calc.arrB = [];
+        // calc.arrB = calc.arrA;
+        // calc.arrB.length = 0;
+        calc.numOfCalc = 0;
+        calc.arrB = calc.inputLine.split('');
+        // if (calc.arrB.length < 32) {
+        //   calc.arrB.push(calc.inputLine);
+        // }
+        calc.duplicateDots(calc.arrB);
+        calc.doubleZero(calc.arrB);
+        calc.finish = false;
+        calc.strOut = calc.arrB.join('');
+        return;
+      }
 
+      // ввод другого второго числа
+      if (calc.arrA.length > 0 &&
+        calc.sign[0] !== undefined &&
+        calc.finish === true &&
+        calc.numOfCalc === 0 &&
+        calc.equalsCount === false) {
+        console.log('ввод другого второго числа');
+
+        calc.borderOff();
+
+        calc.arrB = [];
+        if (calc.arrB.length < 32) {
+          calc.arrB.push(calc.inputLine);
+        }
+        calc.duplicateDots(calc.arrB);
+        calc.doubleZero(calc.arrB);
+        calc.finish = false;
+        calc.strOut = calc.arrB.join('');
+      }
+
+      // предупреждение о дроби
       if (calc.arrA.length > 0 &&
         calc.arrA.includes('.')) {
         console.log('ввод дробного числа');
@@ -383,7 +400,9 @@ const calc = {
   // операции
   operation: (key) => {
     if (calc.action.includes(key) &&
-      calc.arrB.length === 0) {
+      calc.arrB.length === 0 ||
+      calc.action.includes(key) &&
+      calc.finish === true) {
       console.log(`ввод знака`);
 
       calc.sign[0] = key;
@@ -412,7 +431,14 @@ const calc = {
 
     // calc.key(calc.equals);
 
-    if (calc.inputLine === '=' || calc.inputLine === 'Enter') {
+    // if (calc.inputLine === '=' || calc.inputLine === 'Enter') {
+    //   calc.enter = true;
+    // }
+
+
+
+    if (calc.equalsCount = false &&
+      calc.inputLine === '=' || calc.inputLine === 'Enter') {
       console.log('вычисления');
 
       // if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
@@ -470,6 +496,16 @@ const calc = {
         console.log('введите число');
       }
       calc.finish = true;
+
+      if (calc.action.includes(key) &&
+        calc.inputLine === 'Enter') {
+        calc.enter = false;
+      } else { calc.enter = true; }
+      
+      // if (calc.equalsCount === true) {
+      //         calc.enter = true;
+      // } else { calc.enter = true; }
+
       calc.numOfCalc += 1;
       calc.strOut = calc.arrA.join('');
 
@@ -484,11 +520,8 @@ const calc = {
         // calc.border(key);
         calc.key(calc.border);
       };
-
       return;
     };
-
-
     return;
   },
   // процентные расчеты
@@ -640,6 +673,7 @@ const calc = {
     // console.log(styles.outlineOffset);
     // console.log(calc.btnActive);
     console.log(`equalsCount: ${calc.equalsCount}`);
+    console.log(`enter: ${calc.enter}`);
     return;
   }
 };
