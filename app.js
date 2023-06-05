@@ -411,7 +411,7 @@ const calc = {
       calc.inputLine === '=') {
       console.log('вычисления');
 
-      // if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
+      if (calc.arrB.length == 0) { calc.arrB = calc.arrA };
       // if (calc.finish == true) { calc.arrB = calc.arrA };
 
       let a = calc.arrA.join('');
@@ -579,19 +579,25 @@ const calc = {
 
       console.log('округления');
       let numb = Number(res.toFixed(10));
+      let inf = (numb === Infinity);
 
       console.log(`numb: ${numb}`);
+      console.log(`Infinity: ${inf}`);
       console.log(`NaN: ${isNaN(numb)}`);
       console.log(`isFinite: ${isFinite(numb)}`);
       // console.log(`sInteger: ${Number.isInteger(numb)}`);
       console.log(`res: ${res}`);
 
       if (isNaN(numb) === false &&
-        isFinite(numb) === true) {
+        isFinite(numb) === true &&
+        inf === false) {
         return numb;
       } else console.log('Error');
-      // return res;
+      calc.strOut = 'Error';
+      // calc.out.textContent = 'Error';
+      return calc.strOut;
     };
+    // console.log(calc.out.textContent);
     return res;
   },
   // окно вывода
