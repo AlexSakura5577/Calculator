@@ -293,7 +293,8 @@ const calc = {
   },
   // смена знака если нажата +/-
   plusOrMinus: (arr) => {
-    if (calc.inputLine === '+/-') {
+    if (calc.inputLine === '+/-' &&
+      arr[0] !== '0') {
       console.log('инверсия числа');
 
       if (arr[0] !== '-') {
@@ -377,6 +378,16 @@ const calc = {
   },
   // операции
   operation: (key) => {
+
+    // если не ввели первое число 
+    if (calc.action.includes(key) &&
+      calc.arrA[0] === undefined) {
+
+      console.log('первое число 0');
+      calc.arrA.push('0');
+      // calc.arrA[0] = 0;
+    };
+
     if (calc.action.includes(key) &&
       calc.arrB.length === 0 ||
       calc.action.includes(key) &&
@@ -621,6 +632,7 @@ const calc = {
   // лог
   log: (key) => {
     // console.log('Начало логов');
+    // console.log(calc.arrA[0]);
     console.log(`key: ${key}`);
     console.log('inputLine: ' + calc.inputLine);
     console.log(calc.arrA);
